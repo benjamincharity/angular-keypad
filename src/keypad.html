@@ -1,0 +1,20 @@
+<div class="keypad" data-ng-show="isVisible">
+
+  <button
+    class="keypad__button"
+    data-ng-repeat="number in numbers"
+    data-ng-click="setNumber(number)"
+    angular-ripple
+  >
+    {{ ::number }}
+  </button>
+
+  <button
+    class="keypad__button  keypad__button--delete"
+    data-ng-click="deleteNumber()"
+    angular-ripple
+    data-ng-include=" 'assets/icons/backspace-empty.svg' "
+  ></button>
+
+</div>
+
