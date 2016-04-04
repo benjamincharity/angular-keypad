@@ -1,24 +1,28 @@
 {
-  "name": "MY_LIBRARY",
-  "version": "0.0.1",
-  "description": "My_library_description",
+  "name": "angular-keypad",
+  "version": "0.1.0",
+  "description": "An Angular directive that creates a numeric keypad.",
   "keywords": [
     "angular",
-    "KEYWORDS",
+    "keypad",
+    "numeric",
+    "keyboard",
+    "numberpad",
+    "numbers"
   ],
   "author": "Benjamin Charity <ben@benjamincharity.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/benjamincharity/MY_LIBRARY/issues"
+    "url": "https://github.com/benjamincharity/angular-keypad/issues"
   },
-  "homepage": "https://github.com/benjamincharity/MY_LIBRARY",
-  "main": "dist/MY_LIBRARY.js",
+  "homepage": "https://github.com/benjamincharity/angular-keypad",
+  "main": "dist/angular-keypad.js",
   "scripts": {
     "build": "npm run build:js && npm run build:css",
     "build:js": "WEBPACK_ENV=build webpack && osx-notifier --type \"pass\" --title \"Build successful\" --message \"gg\" --group \"npmBuild\"",
     "build:css": "npm run scss:compressed && npm run scss:expanded && npm run autoprefixer",
     "autoprefixer": "postcss -u autoprefixer -r dist/*.css",
-    "scss:compressed": "node-sass --output-style compressed -o dist/ src && mv dist/angular-ratings.css dist/angular-ratings.min.css",
+    "scss:compressed": "node-sass --output-style compressed -o dist/ src && mv dist/angular-keypad.css dist/angular-keypad.min.css",
     "scss:expanded": "node-sass --output-style expanded -o dist/ src",
     "watch:css": "onchange 'src/*.scss' -- npm run build:css",
     "watch:js": "onchange 'src/*.js' -- npm run build:js",
@@ -26,7 +30,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/benjamincharity/MY_LIBRARY.git"
+    "url": "https://github.com/benjamincharity/angular-keypad.git"
   },
   "dependencies": {
     "webpack-dev-server": "^1.14.1"

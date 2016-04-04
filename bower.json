@@ -1,26 +1,30 @@
 {
-    "version": "1.0.0",
-    "name": "MY_LIBRARY",
-    "description": "MY_LIBRARY_DESCRIPTION",
-    "homepage": "https://github.com/benjamincharity/MY_LIBRARY",
-    "authors": [
-        "Benjamin Charity <ben@benjamincharity.com>"
+  "version": "0.1.0",
+  "name": "angular-keypad",
+  "description": "An Angular directive that creates a numeric keypad.",
+  "homepage": "https://github.com/benjamincharity/angular-keypad",
+  "authors": [
+    "Benjamin Charity <ben@benjamincharity.com>"
     ],
     "license": "MIT",
-    "main": "dist/MY_LIBRARY.js",
+    "main": "dist/angular-keypad.js",
     "keywords": [
-        "angular",
-        "KEYWORDS",
+      "angular",
+      "keypad",
+      "numeric",
+      "keyboard",
+      "numberpad",
+      "numbers"
     ],
     "dependencies": {
-        "angular": "~1.4.0"
+      "angular": "~1.4.0"
     },
     "ignore": [
-        "**/.*",
-        "src",
-        "node_modules",
-        "package.json",
-        "webpack.config.js"
+      "**/.*",
+      "src",
+      "node_modules",
+      "package.json",
+      "webpack.config.js"
     ]
 }
 
