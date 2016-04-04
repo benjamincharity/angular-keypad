@@ -5,13 +5,14 @@ export class KeypadConfigProvider {
     // Define defaults
     constructor() {
 
-        // This should be SVG code
+        // This should be a .svg
         this.backspaceTemplate = backspaceTemplate;
 
         // By default there is no max length
+        // Integer
         this.maxLength = null;
 
-        // Set a default theme
+        // Set a default theme: light|dark
         this.theme = 'light';
 
         /* eslint-disable no-magic-numbers */

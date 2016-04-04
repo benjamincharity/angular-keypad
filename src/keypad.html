@@ -1,9 +1,9 @@
-<div class="keypad" data-ng-show="isVisible">
+<div class="keypad">
 
   <button
     class="keypad__button"
-    data-ng-repeat="number in numbers"
-    data-ng-click="setNumber(number)"
+    data-ng-repeat="number in ::vm.numbers track by number"
+    data-ng-click="vm.setNumber(number)"
     angular-ripple
   >
     {{ ::number }}
@@ -11,9 +11,9 @@
 
   <button
     class="keypad__button  keypad__button--delete"
-    data-ng-click="deleteNumber()"
+    data-ng-click="vm.deleteNumber()"
     angular-ripple
-    data-ng-include=" backspaceTemplate "
+    data-ng-include=" vm.backspaceTemplate "
   ></button>
 
 </div>
