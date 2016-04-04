@@ -1,0 +1,2 @@
+angular.module('bc.LIBRARY', []);
+
