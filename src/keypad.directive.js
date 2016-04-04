@@ -11,7 +11,8 @@ import template from './keypad.html';
  * @return {Element} <div.keypad>
  */
 export function KeypadDirective(
-    $rootScope
+    $rootScope,
+    AngularKeypadConfig
 ) {
     'ngInject';
 
@@ -44,6 +45,9 @@ export function KeypadDirective(
      * TODO: Move items to provider
      */
     function linkFunction($scope, $element, $attrs, vm) {
+
+        // Expose backspace svg template to dom
+        $scope.backspaceTemplate = AngularKeypadConfig.backspaceTemplate;
 
         /* eslint-disable no-magic-numbers */
 
