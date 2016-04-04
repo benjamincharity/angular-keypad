@@ -90,13 +90,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	    function KeypadConfigProvider() {
 	        _classCallCheck(this, KeypadConfigProvider);
 	
-	        // This should be SVG code
+	        // This should be a .svg
 	        this.backspaceTemplate = _backspace2.default;
 	
 	        // By default there is no max length
+	        // Integer
 	        this.maxLength = null;
 	
-	        // Set a default theme
+	        // Set a default theme: light|dark
 	        this.theme = 'light';
 	
 	        /* eslint-disable no-magic-numbers */
@@ -161,16 +162,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var directive = {
 	        restrict: 'E',
 	        replace: true,
-	        scope: {
+	        scope: {},
+	        bindToController: {
 	            numberModel: '=',
-	            isVisible: '=?',
 	            maxLength: '@',
 	            theme: '@'
 	        },
-	
-	        /*
-	         *bindToController: {},
-	         */
 	        templateUrl: _keypad3.default,
 	        link: linkFunction,
 	        controller: _keypad.KeypadController,
@@ -182,64 +179,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	    /**
 	     * Link
 	     * TODO: How much can we move to the controller?
-	     * TODO: Remove magic numbers
 	     * TODO: Move items to provider
 	     */
 	    function linkFunction($scope, $element, $attrs, vm) {
 	
-	        // Expose backspace svg template to dom
-	        $scope.backspaceTemplate = AngularKeypadConfig.backspaceTemplate;
-	
-	        /* eslint-disable no-magic-numbers */
-	
-	        // Expose numbers to build out keypad
-	        $scope.numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
-	
-	        /* eslint-enable no-magic-numbers */
-	
-	        // Expose functions
-	        $scope.setNumber = setNumber;
-	        $scope.deleteNumber = deleteNumber;
-	
-	        // Check for visibility on scope and set to true if undefined
-	        if (angular.isUndefined($scope.isVisible)) {
-	            $scope.isVisible = true;
-	        }
-	
 	        // Add the theme class
-	        $element.addClass('keypad--' + $scope.theme);
-	
-	        /**
-	         * Set tapped number
-	         * TODO: If $scope.numberModel doesn't exist it throws error. How to handle?
-	         *
-	         * @param {String} number
-	         */
-	        function setNumber(number) {
-	
-	            if (!$scope.maxLength || $scope.numberModel.length < $scope.maxLength) {
-	
-	                $scope.numberModel += number;
-	            }
-	        }
-	
-	        /**
-	         * Delete last number
-	         */
-	        function deleteNumber() {
-	
-	            var length = $scope.numberModel.length;
-	
-	            // If at least one number exists
-	            if (length) {
-	
-	                $scope.numberModel = $scope.numberModel.substring(0, length - 1);
-	            } else {
-	
-	                // TODO: Expose something via two-way binding rather than using $emit
-	                $rootScope.$emit('KeypadGoBack');
-	            }
-	        }
+	        $element.addClass('keypad--' + vm.theme);
 	    }
 	}
 
@@ -258,17 +203,67 @@ return /******/ (function(modules) { // webpackBootstrap
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
 	var KeypadController = exports.KeypadController = function () {
-	    function KeypadController() {
+	    KeypadController.$inject = ["$rootScope", "AngularKeypadConfig"];
+	    function KeypadController($rootScope, AngularKeypadConfig) {
 	        'ngInject';
 	
 	        _classCallCheck(this, KeypadController);
+	
+	        this.$rootScope = $rootScope;
+	        this.AngularKeypadConfig = AngularKeypadConfig;
 	
 	        this._activate();
 	    }
 	
 	    _createClass(KeypadController, [{
 	        key: '_activate',
-	        value: function _activate() {}
+	        value: function _activate() {
+	
+	            // Expose backspace svg template to dom
+	            this.backspaceTemplate = this.AngularKeypadConfig.backspaceTemplate;
+	
+	            // The numbers that make up the keypad
+	            this.numbers = this.AngularKeypadConfig.numbers;
+	
+	            // Set the max length
+	            this.maxLength = this.maxLength || this.AngularKeypadConfig.maxLength;
+	
+	            // Set the theme
+	            this.theme = this.theme || this.AngularKeypadConfig.theme;
+	        }
+	
+	        /**
+	         * Add the selected number to the number string
+	         *
+	         * @param {String} number
+	         */
+	
+	    }, {
+	        key: 'setNumber',
+	        value: function setNumber(number) {
+	
+	            if (!this.maxLength || this.numberModel.length < this.maxLength) {
+	                this.numberModel += number;
+	            }
+	        }
+	
+	        /**
+	         * Delete the last number from the number string
+	         */
+	
+	    }, {
+	        key: 'deleteNumber',
+	        value: function deleteNumber() {
+	            var length = this.numberModel.length;
+	
+	            // If at least one number exists
+	            if (length > 0) {
+	                this.numberModel = this.numberModel.substring(0, length - 1);
+	            } else {
+	                // TODO: Expose something via two-way binding rather than using $emit
+	                this.$rootScope.$emit('KeypadGoBack');
+	            }
+	        }
 	    }]);
 	
 	    return KeypadController;
@@ -279,7 +274,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports) {
 
 	var path = '/Users/bc/Code/open-source/angular-keypad/src/keypad.html';
-	var html = "<div class=keypad data-ng-show=isVisible> <button class=keypad__button data-ng-repeat=\"number in numbers\" data-ng-click=setNumber(number) angular-ripple> {{ ::number }} </button> <button class=\"keypad__button keypad__button--delete\" data-ng-click=deleteNumber() angular-ripple data-ng-include=\" backspaceTemplate \"></button> </div>";
+	var html = "<div class=keypad> <button class=keypad__button data-ng-repeat=\"number in ::vm.numbers track by number\" data-ng-click=vm.setNumber(number) angular-ripple> {{ ::number }} </button> <button class=\"keypad__button keypad__button--delete\" data-ng-click=vm.deleteNumber() angular-ripple data-ng-include=\" vm.backspaceTemplate \"></button> </div>";
 	window.angular.module('ng').run(['$templateCache', function(c) { c.put(path, html) }]);
 	module.exports = path;
 
