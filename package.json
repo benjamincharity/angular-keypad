@@ -25,7 +25,7 @@
     "scss:compressed": "node-sass --output-style compressed -o dist/ src && mv dist/angular-keypad.css dist/angular-keypad.min.css",
     "scss:expanded": "node-sass --output-style expanded -o dist/ src",
     "watch:css": "onchange 'src/*.scss' -- npm run build:css",
-    "watch:js": "onchange 'src/*.js' -- npm run build:js",
+    "watch:js": "onchange 'src/*.js' 'src/*.html' -- npm run build:js",
     "watch": "npm run watch:js && npm run watch:css"
   },
   "repository": {
@@ -46,10 +46,6 @@
     "eslint": "1.7.2",
     "eslint-config-moment": "^1.5.0",
     "eslint-loader": "1.1.0",
-    "onchange": "^2.2.0",
-    "osx-notifier": "^0.2.2",
-    "webpack": "1.12.9",
-    "yargs": "3.32.0",
     "html-loader": "^0.4.2",
     "loader-utils": "^0.2.12",
     "minifier": "^0.7.1",
@@ -57,8 +53,12 @@
     "ng-annotate-webpack-plugin": "^0.1.2",
     "ngtemplate-loader": "^1.3.1",
     "node-sass": "^3.4.2",
+    "onchange": "^2.2.0",
+    "osx-notifier": "^0.2.2",
     "postcss-cli": "^2.5.1",
     "sass-loader": "^3.1.2",
-    "source-map": "^0.5.3"
+    "source-map": "^0.5.3",
+    "webpack": "1.12.9",
+    "yargs": "3.32.0"
   }
 }

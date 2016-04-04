@@ -37,7 +37,7 @@ var config = {
                 exclude: /bower_components/
             },
             {
-                test: /\.html$/,
+                test: /\.(html|svg)$/,
                 loader: 'ngtemplate!html'
             }
         ]
