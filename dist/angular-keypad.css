@@ -74,6 +74,7 @@
   background-position: 45% 50%;
   background-repeat: no-repeat;
   border: 0;
+  position: relative;
 }
 
 .keypad__button--delete::before {
