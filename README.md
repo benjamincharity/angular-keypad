@@ -11,7 +11,9 @@ _[Comments and Pull Requests welcome!][issues]_
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage](#usage)
-- [Options](#options)
+- [Styles](#styles)
+- [angular-ripple](#angular-ripple)
+- [Global Defaults](#global-defaults)
 
 
 ## Installation
@@ -28,7 +30,7 @@ bower install angular-keypad --save
 
 ## Dependencies
 
-- [Flickity.js (1.1.2)](http://flickity.metafizzy.co/)
+- Angular.js (~1.4.0)
 
 
 ## Usage
@@ -45,25 +47,150 @@ while maintaining the aspect ratio of the keypad buttons.
 ```html
 <!-- Define the keypad: -->
 <bc-keypad
-  number-model="vm.numbers"
-  max-length="{{ vm.neededLength }}"
+  bc-number-model="vm.numbers"
+  bc-max-length="{{ vm.neededLength }}"
 ></bc-keypad>
 ```
 
 ### `bc-number-model`
 
-**Required**
+**Required**: `String`
 
 The directive will expose the current string of numbers to this model.
 
 ### `bc-max-length`
 
-**Required**
+**Optional**: `Integer`
 
-The directive will expose the current string of numbers to this model.
+The directive will use this number to set a hard limit on how many characters are allowed in the
+number model (`vm.numbers` in the example below).
+
+```html
+<bc-keypad
+  bc-number-model="vm.numbers"
+  bc-max-length="4"
+></bc-keypad>
+```
+
+
+## Styles
+
+The included styles are 99% layout with _just_ enough style to work out of the box. The true
+styles should be written at your project level using the associated classes.
+
+Your project CSS should always be included after any library CSS files. This makes it easy for you
+to override or add to any styles added by this module. Below are the classes available for styling.
+
+### `.bc-keypad`
+
+This targets the primary container (`<div>`) around the keypad.
+
+### `.bc-keypad__button`
+
+This targets all buttons (`<button>`) on the keypad.
+
+### `.bc-keypad__button--backspace`
+
+This targets the 'backspace' button (`<button>`) on the keypad.
+
+
+## angular-ripple
+
+The `bc-keypad` directive was written for mobile where `:hover` cannot be used for interaction
+styles. At the time, we chose to implement the Material design 'ripple' effect to fill this gap.
+
+As not everyone may want that style of interaction, this project does not automatically install the
+`angular-ripple` library, but is however built to support it out of the box. Simply install the
+`angular-ripple` in your primary project and you should see it working.
+
+- [angular-ripple][angular_ripple]: The original `angular-ripple` library.
+- [KL-Moment/angular-ripple][angular_ripple_fork]: Custom fork of `angular-ripple` library with better
+  mobile support.
+
+
+## Global Defaults
+
+This module exposes `KeypadConfigProvider` which can be used to set project-wide defaults for the
+directive. Setting options here will overwrite the directive's default options for all instances.
+
+```
+// ES6 Config Example
+export function config(KeypadConfigProvider) {
+    'ngInject';
+
+        // Define a custom 'backspace' icon
+        // This must be an SVG template
+        KeypadConfigProvider.backspaceTemplate = myCustomTemplate;
+
+        // Set a max length allowed for the model
+        KeypadConfigProvider.maxLength = null;
+
+        // Create a custom array or order of numbers
+        KeypadConfigProvider.numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
+
+}
+
+// ES5 Config Example
+angular.module('myModule')
+    .config((KeypadConfigProvider) => {
+        'ngInject';
+
+        KeypadConfigProvider.backspaceTemplate = myCustomTemplate;
+
+    })
+;
+```
+
+
+### `backspaceTemplate`
+
+The template must be a raw SVG. This enables you to override the color of the SVG via CSS.
+
+You can define a custom backspace template for the keypad. By default it is using
+`ion-backspace-outline` from [ionicons][ionicons].
+
+![Ionicons backspace icon][backspace]
+
+```
+KeypadConfigProvider.backspaceTemplate = myCustomTemplate;
+```
+
+### `maxLength`
+
+`Integer`
+
+The directive will use this number to impose a hard limit on how many characters the model can hold.
+This is useful for specific data items such as a phone number:
+
+![max-length demo][max_length_gif]
+
+```
+KeypadConfigProvider.maxLength = 6;
+```
+
+
+### `numbers`
+
+`Array`
+
+This array of numbers is used to build out the keypad with `ng-repeat`. You can overwrite this array
+with one of your own. Keep in mind that changing more than the order of numbers will likely
+introduce layout bugs.
+
+```
+KeypadConfigProvider.numbers = [9, 8, 7, 6, 5, 4, 3, 2, 1, 0];
+```
 
 
 
 [demo_basic]: http://embed.plnkr.co/VWJh3w/
 [issues]: https://github.com/benjamincharity/angular-keypad/issues
+[demo_length]: http://embed.plnkr.co/qXq3s4/
+[demo_ripple]: http://embed.plnkr.co/oXUTui/
+[angular_ripple]: https://github.com/nelsoncash/angular-ripple
+[angular_ripple_fork]: https://github.com/KL-Moment/angular-ripple
+[ripple_changes]: https://github.com/KL-Moment/angular-ripple/commit/09374947e6cc986ebe7e2629b48edb0885ca842b
+[backspace]: http://cdn.benjamincharity.com/plnkr/angular-keypad/backspace.svg
+[ionicons]: http://ionicons.com/
+[max_length_gif]: http://cdn.benjamincharity.com/plnkr/angular-keypad/rippleDemo.gif
 
