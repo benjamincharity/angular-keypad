@@ -130,7 +130,6 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	'use strict';
 	
-	KeypadDirective.$inject = ["$rootScope", "AngularKeypadConfig"];
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
@@ -148,12 +147,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * Creates a keypad
 	 *
 	 * @param {String} numberModel : '77043'
-	 * @param {Bool} isVisible : true
 	 * @param {Integer} maxLength : 10
-	 * @param {String} color : light|dark
 	 * @return {Element} <div.keypad>
 	 */
-	function KeypadDirective($rootScope, AngularKeypadConfig) {
+	function KeypadDirective() {
 	    'ngInject';
 	
 	    var directive = {
