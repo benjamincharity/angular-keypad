@@ -1,6 +1,6 @@
 import backspaceTemplate from './backspace.svg';
 
-export class KeypadConfigProvider {
+export class KeypadConfig {
 
     // Define defaults
     constructor() {

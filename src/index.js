@@ -1,8 +1,8 @@
-import { KeypadConfigProvider } from './keypad.provider';
+import { KeypadConfig } from './keypad.provider';
 import { KeypadDirective } from './keypad.directive';
 
 angular.module('bc.AngularKeypad', [])
-    .provider('KeypadConfig', KeypadConfigProvider)
+    .provider('KeypadConfig', KeypadConfig)
     .directive('bcKeypad', KeypadDirective)
 ;
 
