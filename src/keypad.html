@@ -1,7 +1,7 @@
-<div class="keypad">
+<div class="bc-keypad">
 
   <button
-    class="keypad__button"
+    class="bc-keypad__button"
     data-ng-repeat="number in ::vm.numbers track by number"
     data-ng-click="vm.setNumber(number)"
     angular-ripple
@@ -10,7 +10,7 @@
   </button>
 
   <button
-    class="keypad__button  keypad__button--delete"
+    class="bc-keypad__button  bc-keypad__button--delete"
     data-ng-click="vm.deleteNumber()"
     angular-ripple
     data-ng-include=" vm.backspaceTemplate "

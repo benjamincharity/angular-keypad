@@ -12,127 +12,80 @@
 
 
 $color_black: #000;
-$color_off_white: #fcfcfc;
-$color_secondary: #e74c3c;
+$color_white: #fff;
+$color_light_gray: #ccc;
 
-@mixin button__base() {
-  background-color: transparent;
-  border: 0;
-  cursor: pointer;
-  outline: 0;
-  text-align: center;
-
-  &:focus {
-    outline: 0;
-  }
-}
-
-
-
-
-
-
-//
-// Keypad Buttons
-//
-@mixin button__keypad() {
-  @include button__base();
-  background: none;
-  color: inherit;
-  font-size: 1.4rem;
-  line-height: 1.5em;
-  padding: 2%;
-  width: 30%;
-
-  &::after {
-    background-color: rgba($color_black, .1);
-    content: '';
-    display: block;
-    height: 2px;
-    position: absolute;
-    left: 10%;
-    bottom: -1px;
-    width: 80%;
-  }
-
-  // target '0'
-  &:nth-of-type(10) {
-    margin-left: 32%;
-  }
-}
 
 
 // <div> primary keypad container
-.keypad {
-  background: rgba($color_black, .1);
+.bc-keypad {
   overflow: hidden;
   text-align: center;
-}
-
-// light theme
-.keypad--light {
-  color: $color_off_white;
-
-  .keypad__button {
-    border-bottom-color: rgba($color_off_white, .2);
-  }
 
   .angular-ripple {
-    background-color: rgba($color_off_white, .2);
+    background-color: $color_light_gray;
   }
 
-  svg {
-    path {
-      fill: $color_off_white;
+  // <button> number button
+  &__button {
+    background: none;
+    background-color: transparent;
+    border: 0;
+    color: inherit;
+    cursor: pointer;
+    font-size: 1.4rem;
+    line-height: 1.5em;
+    outline: 0;
+    padding: 2%;
+    position: relative;
+    text-align: center;
+    width: 30%;
+
+    &:focus {
+      outline: 0;
+    }
+
+    &::after {
+      background-color: $color_light_gray;
+      content: '';
+      display: block;
+      height: 1px;
+      position: absolute;
+      left: 10%;
+      bottom: -1px;
+      width: 80%;
+    }
+
+    // target '0'
+    &:nth-of-type(10) {
+      margin-left: 32%;
+    }
+
+    // target 'delete'
+    &--delete {
+      background-size: 50%;
+      background-position: 45% 50%;
+      background-repeat: no-repeat;
+      border: 0;
+      position: relative;
+
+      &::before {
+        color: transparent;
+        content: 'Delete';
+        display: inline-block;
+      }
+
+      // icon
+      svg {
+        height: 44px;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-60%, -50%);
+        width: 50px;
+      }
     }
   }
-}
 
-// dark theme
-.keypad--dark {
-  color: $color_secondary;
-
-  .keypad__button {
-    border-bottom-color: rgba($color_secondary, .2);
-  }
-
-  .angular-ripple {
-    background-color: rgba($color_secondary, .2);
-  }
-
-  svg {
-    path {
-      fill: $color_secondary;
-    }
-  }
-}
-
-// <button> number button
-.keypad__button {
-  @include button__keypad();
-}
-
-// target 'delete'
-.keypad__button--delete {
-  background-size: 50%;
-  background-position: 45% 50%;
-  background-repeat: no-repeat;
-  border: 0;
-  position: relative;
-
-  &::before {
-    color: transparent;
-    content: 'Delete';
-    display: inline-block;
-  }
-
-  svg {
-    height: 44px;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-60%, -50%);
-    width: 50px;
-  }
 }
 
