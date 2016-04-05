@@ -12,9 +12,6 @@ export class KeypadConfigProvider {
         // Integer
         this.maxLength = null;
 
-        // Set a default theme: light|dark
-        this.theme = 'light';
-
         /* eslint-disable no-magic-numbers */
 
         // Define the array of numbers that makes up the keypad

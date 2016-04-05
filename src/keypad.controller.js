@@ -26,10 +26,8 @@ export class KeypadController {
         this.numbers = this.AngularKeypadConfig.numbers;
 
         // Set the max length
-        this.maxLength = this.maxLength || this.AngularKeypadConfig.maxLength;
+        this.bcMaxLength = this.bcMaxLength || this.AngularKeypadConfig.maxLength;
 
-        // Set the theme
-        this.theme = this.theme || this.AngularKeypadConfig.theme;
     }
 
 
@@ -40,8 +38,8 @@ export class KeypadController {
      */
     setNumber(number) {
 
-        if (!this.maxLength || this.numberModel.length < this.maxLength) {
-            this.numberModel += number;
+        if (!this.bcMaxLength || this.bcNumberModel.length < this.bcMaxLength) {
+            this.bcNumberModel += number;
         }
 
     }
@@ -51,11 +49,11 @@ export class KeypadController {
      * Delete the last number from the number string
      */
     deleteNumber() {
-        const length = this.numberModel.length;
+        const length = this.bcNumberModel.length;
 
         // If at least one number exists
         if (length > 0) {
-            this.numberModel = this.numberModel.substring(0, length - 1);
+            this.bcNumberModel = this.bcNumberModel.substring(0, length - 1);
         } else {
             // TODO: Expose something via two-way binding rather than using $emit
             this.$rootScope.$emit('KeypadGoBack');

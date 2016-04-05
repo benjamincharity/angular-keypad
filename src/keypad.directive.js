@@ -21,9 +21,8 @@ export function KeypadDirective(
         replace: true,
         scope: {},
         bindToController: {
-            numberModel: '=',
-            maxLength: '@',
-            theme: '@',
+            bcNumberModel: '=',
+            bcMaxLength: '@',
         },
         templateUrl: template,
         controller: KeypadController,
