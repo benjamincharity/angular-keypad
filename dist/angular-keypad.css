@@ -1,5 +1,6 @@
 .bc-keypad {
   overflow: hidden;
+  padding-bottom: .375em;
   text-align: center;
 }
 
@@ -33,8 +34,8 @@
   height: 1px;
   position: absolute;
   left: 10%;
-  bottom: -1px;
-  width: 80%;
+  right: 10%;
+  bottom: 0;
 }
 
 .bc-keypad__button:nth-of-type(10) {
@@ -63,4 +64,38 @@
   -webkit-transform: translate(-60%, -50%);
           transform: translate(-60%, -50%);
   width: 50px;
+}
+
+[angular-ripple] {
+  overflow: hidden;
+  position: relative;
+}
+
+.angular-ripple {
+  -webkit-transform: scale(0);
+          transform: scale(0);
+  border-radius: 50%;
+  display: block;
+  position: absolute;
+}
+
+.angular-ripple.animate {
+  -webkit-animation: ripple .2s linear;
+          animation: ripple .2s linear;
+}
+
+@-webkit-keyframes ripple {
+  100% {
+    opacity: 0;
+    -webkit-transform: scale(2.5);
+            transform: scale(2.5);
+  }
+}
+
+@keyframes ripple {
+  100% {
+    opacity: 0;
+    -webkit-transform: scale(2.5);
+            transform: scale(2.5);
+  }
 }
