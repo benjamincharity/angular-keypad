@@ -20,8 +20,10 @@ $color_light_gray: #ccc;
 // <div> primary keypad container
 .bc-keypad {
   overflow: hidden;
+  padding-bottom: .375em;
   text-align: center;
 
+  // <span> target the span injected by angular-ripple
   .angular-ripple {
     background-color: rgba($color_black, .1);
   }
@@ -41,10 +43,12 @@ $color_light_gray: #ccc;
     text-align: center;
     width: 30%;
 
+    // you should define your own 'active' styles per project
     &:focus {
       outline: 0;
     }
 
+    // create pseudo element for underline
     &::after {
       background-color: $color_light_gray;
       content: '';
@@ -52,8 +56,9 @@ $color_light_gray: #ccc;
       height: 1px;
       position: absolute;
       left: 10%;
-      bottom: -1px;
-      width: 80%;
+      right: 10%;
+      // angular-ripple adds overflow: hidden so this cannot be below 0
+      bottom: 0;
     }
 
     // target '0'
@@ -87,5 +92,35 @@ $color_light_gray: #ccc;
     }
   }
 
+}
+
+
+//
+// Angular-Ripple styles
+//
+// target the parent element (the button/link)
+[angular-ripple] {
+  overflow: hidden;
+  position: relative;
+}
+
+// <span> injected by angiular-ripple
+.angular-ripple {
+  transform: scale(0);
+  border-radius: 50%;
+  display: block;
+  position: absolute;
+
+  &.animate {
+    animation: ripple .2s linear;
+  }
+}
+
+// Define a nice scale effect animation
+@keyframes ripple {
+  100% {
+    opacity: 0;
+    transform: scale(2.5);
+  }
 }
 
