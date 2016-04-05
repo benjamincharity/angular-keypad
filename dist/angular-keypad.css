@@ -4,7 +4,7 @@
 }
 
 .bc-keypad .angular-ripple {
-  background-color: #ccc;
+  background-color: rgba(0, 0, 0, 0.1);
 }
 
 .bc-keypad__button {
