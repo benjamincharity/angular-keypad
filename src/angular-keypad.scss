@@ -23,7 +23,7 @@ $color_light_gray: #ccc;
   text-align: center;
 
   .angular-ripple {
-    background-color: $color_light_gray;
+    background-color: rgba($color_black, .1);
   }
 
   // <button> number button
