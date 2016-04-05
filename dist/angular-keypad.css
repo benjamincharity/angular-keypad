@@ -1,75 +1,47 @@
-.keypad {
-  background: rgba(0, 0, 0, 0.1);
+.bc-keypad {
   overflow: hidden;
   text-align: center;
 }
 
-.keypad--light {
-  color: #fcfcfc;
+.bc-keypad .angular-ripple {
+  background-color: #ccc;
 }
 
-.keypad--light .keypad__button {
-  border-bottom-color: rgba(252, 252, 252, 0.2);
-}
-
-.keypad--light .angular-ripple {
-  background-color: rgba(252, 252, 252, 0.2);
-}
-
-.keypad--light svg path {
-  fill: #fcfcfc;
-}
-
-.keypad--dark {
-  color: #e74c3c;
-}
-
-.keypad--dark .keypad__button {
-  border-bottom-color: rgba(231, 76, 60, 0.2);
-}
-
-.keypad--dark .angular-ripple {
-  background-color: rgba(231, 76, 60, 0.2);
-}
-
-.keypad--dark svg path {
-  fill: #e74c3c;
-}
-
-.keypad__button {
+.bc-keypad__button {
+  background: none;
   background-color: transparent;
   border: 0;
-  cursor: pointer;
-  outline: 0;
-  text-align: center;
-  background: none;
   color: inherit;
+  cursor: pointer;
   font-size: 1.4rem;
   line-height: 1.5em;
+  outline: 0;
   padding: 2%;
+  position: relative;
+  text-align: center;
   width: 30%;
 }
 
-.keypad__button:focus {
+.bc-keypad__button:focus {
   outline: 0;
 }
 
-.keypad__button::after {
-  background-color: rgba(0, 0, 0, 0.1);
+.bc-keypad__button::after {
+  background-color: #ccc;
   content: '';
   display: block;
-  height: 2px;
+  height: 1px;
   position: absolute;
   left: 10%;
   bottom: -1px;
   width: 80%;
 }
 
-.keypad__button:nth-of-type(10) {
+.bc-keypad__button:nth-of-type(10) {
   margin-left: 32%;
 }
 
-.keypad__button--delete {
+.bc-keypad__button--delete {
   background-size: 50%;
   background-position: 45% 50%;
   background-repeat: no-repeat;
@@ -77,13 +49,13 @@
   position: relative;
 }
 
-.keypad__button--delete::before {
+.bc-keypad__button--delete::before {
   color: transparent;
   content: 'Delete';
   display: inline-block;
 }
 
-.keypad__button--delete svg {
+.bc-keypad__button--delete svg {
   height: 44px;
   position: absolute;
   left: 50%;

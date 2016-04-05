@@ -169,23 +169,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	            theme: '@'
 	        },
 	        templateUrl: _keypad3.default,
-	        link: linkFunction,
 	        controller: _keypad.KeypadController,
 	        controllerAs: 'vm'
 	    };
 	
 	    return directive;
-	
-	    /**
-	     * Link
-	     * TODO: How much can we move to the controller?
-	     * TODO: Move items to provider
-	     */
-	    function linkFunction($scope, $element, $attrs, vm) {
-	
-	        // Add the theme class
-	        $element.addClass('keypad--' + vm.theme);
-	    }
 	}
 
 /***/ },
@@ -274,7 +262,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports) {
 
 	var path = '/Users/bc/Code/open-source/angular-keypad/src/keypad.html';
-	var html = "<div class=keypad> <button class=keypad__button data-ng-repeat=\"number in ::vm.numbers track by number\" data-ng-click=vm.setNumber(number) angular-ripple> {{ ::number }} </button> <button class=\"keypad__button keypad__button--delete\" data-ng-click=vm.deleteNumber() angular-ripple data-ng-include=\" vm.backspaceTemplate \"></button> </div>";
+	var html = "<div class=bc-keypad> <button class=bc-keypad__button data-ng-repeat=\"number in ::vm.numbers track by number\" data-ng-click=vm.setNumber(number) angular-ripple> {{ ::number }} </button> <button class=\"bc-keypad__button bc-keypad__button--delete\" data-ng-click=vm.deleteNumber() angular-ripple data-ng-include=\" vm.backspaceTemplate \"></button> </div>";
 	window.angular.module('ng').run(['$templateCache', function(c) { c.put(path, html) }]);
 	module.exports = path;
 
