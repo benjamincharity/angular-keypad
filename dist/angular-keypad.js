@@ -97,9 +97,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	        // Integer
 	        this.maxLength = null;
 	
-	        // Set a default theme: light|dark
-	        this.theme = 'light';
-	
 	        /* eslint-disable no-magic-numbers */
 	
 	        // Define the array of numbers that makes up the keypad
@@ -164,9 +161,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	        replace: true,
 	        scope: {},
 	        bindToController: {
-	            numberModel: '=',
-	            maxLength: '@',
-	            theme: '@'
+	            bcNumberModel: '=',
+	            bcMaxLength: '@'
 	        },
 	        templateUrl: _keypad3.default,
 	        controller: _keypad.KeypadController,
@@ -214,10 +210,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            this.numbers = this.AngularKeypadConfig.numbers;
 	
 	            // Set the max length
-	            this.maxLength = this.maxLength || this.AngularKeypadConfig.maxLength;
-	
-	            // Set the theme
-	            this.theme = this.theme || this.AngularKeypadConfig.theme;
+	            this.bcMaxLength = this.bcMaxLength || this.AngularKeypadConfig.maxLength;
 	        }
 	
 	        /**
@@ -230,8 +223,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	        key: 'setNumber',
 	        value: function setNumber(number) {
 	
-	            if (!this.maxLength || this.numberModel.length < this.maxLength) {
-	                this.numberModel += number;
+	            if (!this.bcMaxLength || this.bcNumberModel.length < this.bcMaxLength) {
+	                this.bcNumberModel += number;
 	            }
 	        }
 	
@@ -242,11 +235,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }, {
 	        key: 'deleteNumber',
 	        value: function deleteNumber() {
-	            var length = this.numberModel.length;
+	            var length = this.bcNumberModel.length;
 	
 	            // If at least one number exists
 	            if (length > 0) {
-	                this.numberModel = this.numberModel.substring(0, length - 1);
+	                this.bcNumberModel = this.bcNumberModel.substring(0, length - 1);
 	            } else {
 	                // TODO: Expose something via two-way binding rather than using $emit
 	                this.$rootScope.$emit('KeypadGoBack');
