@@ -187,14 +187,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
 	var KeypadController = exports.KeypadController = function () {
-	    KeypadController.$inject = ["$rootScope", "AngularKeypadConfig"];
-	    function KeypadController($rootScope, AngularKeypadConfig) {
+	    KeypadController.$inject = ["$rootScope", "KeypadConfigProvider"];
+	    function KeypadController($rootScope, KeypadConfigProvider) {
 	        'ngInject';
 	
 	        _classCallCheck(this, KeypadController);
 	
 	        this.$rootScope = $rootScope;
-	        this.AngularKeypadConfig = AngularKeypadConfig;
+	        this.KeypadConfigProvider = KeypadConfigProvider;
 	
 	        this._activate();
 	    }
@@ -204,13 +204,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	        value: function _activate() {
 	
 	            // Expose backspace svg template to dom
-	            this.backspaceTemplate = this.AngularKeypadConfig.backspaceTemplate;
+	            this.backspaceTemplate = this.KeypadConfigProvider.backspaceTemplate;
 	
 	            // The numbers that make up the keypad
-	            this.numbers = this.AngularKeypadConfig.numbers;
+	            this.numbers = this.KeypadConfigProvider.numbers;
 	
 	            // Set the max length
-	            this.bcMaxLength = this.bcMaxLength || this.AngularKeypadConfig.maxLength;
+	            this.bcMaxLength = this.bcMaxLength || this.KeypadConfigProvider.maxLength;
 	        }
 	
 	        /**

@@ -2,12 +2,12 @@ export class KeypadController {
 
     constructor(
         $rootScope,
-        AngularKeypadConfig
+        KeypadConfigProvider
     ) {
         'ngInject';
 
         this.$rootScope = $rootScope;
-        this.AngularKeypadConfig = AngularKeypadConfig;
+        this.KeypadConfigProvider = KeypadConfigProvider;
 
 
         this._activate();
@@ -20,13 +20,13 @@ export class KeypadController {
     _activate() {
 
         // Expose backspace svg template to dom
-        this.backspaceTemplate = this.AngularKeypadConfig.backspaceTemplate;
+        this.backspaceTemplate = this.KeypadConfigProvider.backspaceTemplate;
 
         // The numbers that make up the keypad
-        this.numbers = this.AngularKeypadConfig.numbers;
+        this.numbers = this.KeypadConfigProvider.numbers;
 
         // Set the max length
-        this.bcMaxLength = this.bcMaxLength || this.AngularKeypadConfig.maxLength;
+        this.bcMaxLength = this.bcMaxLength || this.KeypadConfigProvider.maxLength;
 
     }
 
