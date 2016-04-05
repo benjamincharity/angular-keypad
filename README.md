@@ -13,7 +13,8 @@ _[Comments and Pull Requests welcome!][issues]_
 - [Usage](#usage)
 - [Styles](#styles)
 - [angular-ripple](#angular-ripple)
-- [Global Defaults](#global-defaults)
+- [KeypadConfigProvider](#keypadconfigprovider)
+- [Development](#development)
 
 
 ## Installation
@@ -108,7 +109,7 @@ As not everyone may want that style of interaction, this project does not automa
   mobile support.
 
 
-## Global Defaults
+## `KeypadConfigProvider`
 
 This module exposes `KeypadConfigProvider` which can be used to set project-wide defaults for the
 directive. Setting options here will overwrite the directive's default options for all instances.
@@ -181,6 +182,19 @@ introduce layout bugs.
 KeypadConfigProvider.numbers = [9, 8, 7, 6, 5, 4, 3, 2, 1, 0];
 ```
 
+[Demo using custom numbers array (Plunker)][demo_custom_array]
+
+
+
+## Development
+
+- `npm run build` - Build JS/CSS/HTML/SVG
+- `npm run build:js` - Build JS
+- `npm run build:css` - Build CSS
+- `npm run watch:css` - Watch CSS and rebuild on change
+- `npm run watch:js` - Watch JS/HTML and rebuild on change
+- `npm run watch` - Watch JS/CSS/HTML and rebuild on change
+
 
 
 [demo_basic]: http://embed.plnkr.co/VWJh3w/
@@ -193,4 +207,5 @@ KeypadConfigProvider.numbers = [9, 8, 7, 6, 5, 4, 3, 2, 1, 0];
 [backspace]: http://cdn.benjamincharity.com/plnkr/angular-keypad/backspace.svg
 [ionicons]: http://ionicons.com/
 [max_length_gif]: http://cdn.benjamincharity.com/plnkr/angular-keypad/rippleDemo.gif
+[demo_custom_array]: http://embed.plnkr.co/LkrspU/
 
