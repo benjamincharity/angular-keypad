@@ -5,29 +5,28 @@
   "homepage": "https://github.com/benjamincharity/angular-keypad",
   "authors": [
     "Benjamin Charity <ben@benjamincharity.com>"
-    ],
-    "license": "MIT",
-    "main": [
-      "dist/angular-keypad.js",
-      "dist/angular-keypad.css"
-    ],
-    "keywords": [
-      "angular",
-      "keypad",
-      "numeric",
-      "keyboard",
-      "numberpad",
-      "numbers"
-    ],
-    "dependencies": {
-      "angular": "~1.4.0"
-    },
-    "ignore": [
-      "**/.*",
-      "src",
-      "node_modules",
-      "package.json",
-      "webpack.config.js"
-    ]
+  ],
+  "license": "MIT",
+  "main": [
+    "dist/angular-keypad.js",
+    "dist/angular-keypad.css"
+  ],
+  "keywords": [
+    "angular",
+    "keypad",
+    "numeric",
+    "keyboard",
+    "numberpad",
+    "numbers"
+  ],
+  "dependencies": {
+    "angular": "~1.4.0"
+  },
+  "ignore": [
+    "**/.*",
+    "src",
+    "node_modules",
+    "package.json",
+    "webpack.config.js"
+  ]
 }
-
