@@ -262,7 +262,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports) {
 
 	var path = '/Users/bc/Code/open-source/angular-keypad/src/keypad.html';
-	var html = "<div class=bc-keypad> <button class=bc-keypad__button data-ng-repeat=\"number in ::vm.numbers track by number\" data-ng-click=vm.setNumber(number) angular-ripple> {{ ::number }} </button> <button class=\"bc-keypad__button bc-keypad__button--delete\" data-ng-click=vm.deleteNumber() angular-ripple data-ng-include=\" vm.backspaceTemplate \"></button> </div>";
+	var html = "<div class=bc-keypad> <button class=bc-keypad__button data-ng-repeat=\"number in ::vm.numbers track by number\" data-ng-click=vm.setNumber(number) angular-ripple> {{ ::number }} </button> <button class=\"bc-keypad__button bc-keypad__button--backspace\" data-ng-click=vm.deleteNumber() angular-ripple data-ng-include=vm.backspaceTemplate></button> </div>";
 	window.angular.module('ng').run(['$templateCache', function(c) { c.put(path, html) }]);
 	module.exports = path;
 

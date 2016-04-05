@@ -41,7 +41,7 @@
   margin-left: 32%;
 }
 
-.bc-keypad__button--delete {
+.bc-keypad__button--backspace {
   background-size: 50%;
   background-position: 45% 50%;
   background-repeat: no-repeat;
@@ -49,13 +49,13 @@
   position: relative;
 }
 
-.bc-keypad__button--delete::before {
+.bc-keypad__button--backspace::before {
   color: transparent;
   content: 'Delete';
   display: inline-block;
 }
 
-.bc-keypad__button--delete svg {
+.bc-keypad__button--backspace svg {
   height: 44px;
   position: absolute;
   left: 50%;
