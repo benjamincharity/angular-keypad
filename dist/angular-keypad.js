@@ -60,7 +60,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _keypad2 = __webpack_require__(3);
 	
-	angular.module('bc.AngularKeypad', []).provider('AngularKeypadConfig', _keypad.KeypadConfigProvider).directive('bcKeypad', _keypad2.KeypadDirective);
+	angular.module('bc.AngularKeypad', []).provider('KeypadConfig', _keypad.KeypadConfigProvider).directive('bcKeypad', _keypad2.KeypadDirective);
 
 /***/ },
 /* 1 */
