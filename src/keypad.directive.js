@@ -26,25 +26,12 @@ export function KeypadDirective(
             theme: '@',
         },
         templateUrl: template,
-        link: linkFunction,
         controller: KeypadController,
         controllerAs: 'vm',
     };
 
     return directive;
 
-
-    /**
-     * Link
-     * TODO: How much can we move to the controller?
-     * TODO: Move items to provider
-     */
-    function linkFunction($scope, $element, $attrs, vm) {
-
-        // Add the theme class
-        $element.addClass('keypad--' + vm.theme);
-
-    }
 
 }
 
