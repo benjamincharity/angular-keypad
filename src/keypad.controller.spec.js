@@ -12,11 +12,57 @@ describe('KeypadController', () => {
     }));
 
 
-    describe('first test', () => {
+    describe('bcNumberModel is a string', () => {
+        let $scope;
+        let element;
+        let vm;
 
-        it('should be successful!', () => {
-            expect(true).toBe(true);
+        beforeEach(() => {
+            $scope = $rootScope.$new();
+            $scope.neededLength = 4;
+            element = angular.element(
+                '<bc-keypad ' +
+                    'bc-number-model="numbers" ' +
+                    'bc-max-length="{{ neededLength }}"' +
+                '></bc-keypad>'
+            );
+            element = $compile(element)($scope);
+            $scope.$apply();
+            vm = element.isolateScope().vm;
         });
+
+        it('should be a string even when nothing is passed in', () => {
+            expect(typeof vm.bcNumberModel).toEqual('string');
+        });
+
+    });
+
+
+    describe('setNumber', () => {
+        let $scope;
+        let element;
+        let vm;
+
+        beforeEach(() => {
+            $scope = $rootScope.$new();
+            $scope.numbers = '';
+            $scope.neededLength = 4;
+            element = angular.element(
+                '<bc-keypad ' +
+                    'bc-number-model="numbers" ' +
+                    'bc-max-length="{{ neededLength }}"' +
+                '></bc-keypad>'
+            );
+            element = $compile(element)($scope);
+            $scope.$apply();
+            vm = element.isolateScope().vm;
+        });
+
+        /*
+         *it('should set the number', () => {
+         *    expect(true).toBe(true);
+         *});
+         */
 
     });
 
