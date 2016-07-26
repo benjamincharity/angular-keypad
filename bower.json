@@ -1,5 +1,4 @@
 {
-  "version": "1.0.0",
   "name": "angular-keypad",
   "description": "An Angular directive that creates a numeric keypad.",
   "homepage": "https://github.com/benjamincharity/angular-keypad",

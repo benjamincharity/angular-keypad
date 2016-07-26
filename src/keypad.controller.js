@@ -18,6 +18,10 @@ export class KeypadController {
 
 
     _activate() {
+        // If anything other than a string was bound, overwrite with an empty string
+        if (!angular.isString(this.bcNumberModel)) {
+            this.bcNumberModel = '';
+        }
 
         // Expose backspace svg template to dom
         this.backspaceTemplate = this.KeypadConfig.backspaceTemplate;

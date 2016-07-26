@@ -2,6 +2,8 @@
 
 An Angular directive that creates a numeric keypad.
 
+[![MIT License][license_image]][license_url] [![Coverage Status][coveralls_badge]][coveralls_link] [![NPM version][npm_version_image]][npm_url]
+
 [**Simple Demo (Plunker)**][demo_basic]
 
 _[Comments and Pull Requests welcome!][issues]_
@@ -55,7 +57,7 @@ while maintaining the aspect ratio of the keypad buttons.
 
 ### `bc-number-model`
 
-**Required**: `String`
+**Required**: `Model`
 
 The directive will expose the current string of numbers to this model.
 
@@ -209,3 +211,9 @@ KeypadConfigProvider.numbers = [9, 8, 7, 6, 5, 4, 3, 2, 1, 0];
 [max_length_gif]: http://cdn.benjamincharity.com/plnkr/angular-keypad/rippleDemo.gif
 [demo_custom_array]: http://embed.plnkr.co/LkrspU/
 
+[coveralls_badge]: https://coveralls.io/repos/github/benjamincharity/angular-keypad/badge.svg?branch=master
+[coveralls_link]: https://coveralls.io/github/benjamincharity/angular-keypad?branch=master
+[license_image]: http://img.shields.io/badge/license-MIT-blue.svg
+[license_url]: LICENSE
+[npm_url]: https://npmjs.org/package/angular-keypad
+[npm_version_image]: http://img.shields.io/npm/v/angular-keypad.svg
