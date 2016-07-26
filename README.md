@@ -2,6 +2,8 @@
 
 An Angular directive that creates a numeric keypad.
 
+![Coverage Status][coveralls_badge]][coveralls_link]
+
 [**Simple Demo (Plunker)**][demo_basic]
 
 _[Comments and Pull Requests welcome!][issues]_
@@ -209,3 +211,5 @@ KeypadConfigProvider.numbers = [9, 8, 7, 6, 5, 4, 3, 2, 1, 0];
 [max_length_gif]: http://cdn.benjamincharity.com/plnkr/angular-keypad/rippleDemo.gif
 [demo_custom_array]: http://embed.plnkr.co/LkrspU/
 
+[coveralls_badge]: https://coveralls.io/repos/github/benjamincharity/angular-keypad/badge.svg?branch=master
+[coveralls_link]: https://coveralls.io/github/benjamincharity/angular-keypad?branch=master
