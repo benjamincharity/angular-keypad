@@ -55,7 +55,7 @@ while maintaining the aspect ratio of the keypad buttons.
 
 ### `bc-number-model`
 
-**Required**: `String`
+**Required**: `Model`
 
 The directive will expose the current string of numbers to this model.
 
