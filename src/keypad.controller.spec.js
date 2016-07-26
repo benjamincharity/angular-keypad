@@ -129,6 +129,47 @@ describe('KeypadController', () => {
 
     });
 
+
+    describe('deleteNumber', () => {
+        let $scope;
+        let element;
+        let vm;
+
+        beforeEach(() => {
+            spyOn($rootScope, '$emit');
+            $scope = $rootScope.$new();
+            $scope.numbers = '';
+            element = angular.element(
+                '<bc-keypad ' +
+                    'bc-number-model="numbers" ' +
+                '></bc-keypad>'
+            );
+            element = $compile(element)($scope);
+            $scope.$apply();
+            vm = element.isolateScope().vm;
+        });
+
+        afterEach(() => {
+            $scope.numbers = '';
+        });
+
+        it('should remove the last number from the model', () => {
+            vm.bcNumberModel = '12';
+            const ORIGINAL_LENGTH = vm.bcNumberModel.length;
+            vm.deleteNumber();
+
+            expect(vm.bcNumberModel.length).toEqual(ORIGINAL_LENGTH - 1);
+        });
+
+        it('should $emit an event when called with no remaining numbers', () => {
+            vm.deleteNumber();
+
+            expect($rootScope.$emit).toHaveBeenCalledWith('KeypadGoBack');
+        });
+
+    });
+
+
     describe('button interaction', () => {
         let $scope;
         let element;
@@ -145,12 +186,24 @@ describe('KeypadController', () => {
             vm = element.isolateScope().vm;
         });
 
+        afterEach(() => {
+            $scope.numbers = '12';
+        });
+
         it('should add to the number model when triggered', () => {
             const ORIGINAL_LENGTH = vm.bcNumberModel.length;
             const numberButton = element[0].querySelectorAll('.bc-keypad__button')[2];
             angular.element(numberButton).triggerHandler('click');
 
             expect(vm.bcNumberModel.length).toEqual(ORIGINAL_LENGTH + 1);
+        });
+
+        it('should remove the last digit when triggered', () => {
+            const ORIGINAL_LENGTH = vm.bcNumberModel.length;
+            const today = element[0].querySelectorAll('.bc-keypad__button--backspace')[0];
+            angular.element(today).triggerHandler('click');
+
+            expect(vm.bcNumberModel.length).toEqual(ORIGINAL_LENGTH - 1);
         });
 
     });
