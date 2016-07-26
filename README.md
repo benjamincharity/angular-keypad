@@ -2,7 +2,7 @@
 
 An Angular directive that creates a numeric keypad.
 
-![Coverage Status][coveralls_badge]][coveralls_link]
+[![Coverage Status][coveralls_badge]][coveralls_link]
 
 [**Simple Demo (Plunker)**][demo_basic]
 
