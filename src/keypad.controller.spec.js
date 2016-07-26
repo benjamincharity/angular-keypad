@@ -61,10 +61,11 @@ describe('KeypadController', () => {
             });
 
             it('should add to the number model when small', () => {
-                const numberButton = element[0].querySelectorAll('.bc-keypad__button')[2];
-                angular.element(numberButton).triggerHandler('click');
+                const ORIGINAL_LENGTH = vm.bcNumberModel.length;
+                const NUMBER = 3;
+                vm.setNumber(NUMBER);
 
-                expect(vm.bcNumberModel).toEqual('3');
+                expect(vm.bcNumberModel.length).toEqual(ORIGINAL_LENGTH + 1);
             });
 
             it('should add to the number model when large', () => {
@@ -72,11 +73,11 @@ describe('KeypadController', () => {
 
                 // Set the model to a long number
                 vm.bcNumberModel = LONG_NUMBER;
+                const ORIGINAL_LENGTH = vm.bcNumberModel.length;
+                const NUMBER = 3;
+                vm.setNumber(NUMBER);
 
-                const numberButton = element[0].querySelectorAll('.bc-keypad__button')[2];
-                angular.element(numberButton).triggerHandler('click');
-
-                expect(vm.bcNumberModel).toEqual(LONG_NUMBER + '3');
+                expect(vm.bcNumberModel.length).toEqual(ORIGINAL_LENGTH + 1);
             });
         });
 
@@ -108,8 +109,8 @@ describe('KeypadController', () => {
                 // Set to partial length
                 vm.bcNumberModel = '12';
                 const ORIGINAL_LENGTH = vm.bcNumberModel.length;
-                const numberButton = element[0].querySelectorAll('.bc-keypad__button')[2];
-                angular.element(numberButton).triggerHandler('click');
+                const NUMBER = 3;
+                vm.setNumber(NUMBER);
 
                 expect(vm.bcNumberModel.length).toEqual(ORIGINAL_LENGTH + 1);
             });
@@ -118,13 +119,38 @@ describe('KeypadController', () => {
                 // Set to max length
                 vm.bcNumberModel = '1234';
                 const ORIGINAL_LENGTH = vm.bcNumberModel.length;
-
-                const numberButton = element[0].querySelectorAll('.bc-keypad__button')[2];
-                angular.element(numberButton).triggerHandler('click');
+                const NUMBER = 3;
+                vm.setNumber(NUMBER);
 
                 expect(vm.bcNumberModel.length).toEqual(ORIGINAL_LENGTH);
             });
 
+        });
+
+    });
+
+    describe('button interaction', () => {
+        let $scope;
+        let element;
+        let vm;
+
+        beforeEach(() => {
+            $scope = $rootScope.$new();
+            $scope.numbers = '12';
+            element = angular.element(
+                '<bc-keypad bc-number-model="numbers"></bc-keypad>'
+            );
+            element = $compile(element)($scope);
+            $scope.$apply();
+            vm = element.isolateScope().vm;
+        });
+
+        it('should add to the number model when triggered', () => {
+            const ORIGINAL_LENGTH = vm.bcNumberModel.length;
+            const numberButton = element[0].querySelectorAll('.bc-keypad__button')[2];
+            angular.element(numberButton).triggerHandler('click');
+
+            expect(vm.bcNumberModel.length).toEqual(ORIGINAL_LENGTH + 1);
         });
 
     });
