@@ -100,7 +100,30 @@ describe('KeypadController', () => {
                 vm = element.isolateScope().vm;
             });
 
+            afterEach(() => {
+                $scope.numbers = '';
+            });
 
+            it('should set the number when not at max length', () => {
+                // Set to partial length
+                vm.bcNumberModel = '12';
+                const ORIGINAL_LENGTH = vm.bcNumberModel.length;
+                const numberButton = element[0].querySelectorAll('.bc-keypad__button')[2];
+                angular.element(numberButton).triggerHandler('click');
+
+                expect(vm.bcNumberModel.length).toEqual(ORIGINAL_LENGTH + 1);
+            });
+
+            it('should NOT set the number if at max length', () => {
+                // Set to max length
+                vm.bcNumberModel = '1234';
+                const ORIGINAL_LENGTH = vm.bcNumberModel.length;
+
+                const numberButton = element[0].querySelectorAll('.bc-keypad__button')[2];
+                angular.element(numberButton).triggerHandler('click');
+
+                expect(vm.bcNumberModel.length).toEqual(ORIGINAL_LENGTH);
+            });
 
         });
 
