@@ -10,8 +10,14 @@
   </button>
 
   <button
+    class="bc-keypad__button"
+    data-ng-click="vm.leftButtonTrigger($event, vm.bcNumbersModel)"
+    angular-ripple
+  >LEFT</button>
+
+  <button
     class="bc-keypad__button  bc-keypad__button--backspace"
-    data-ng-click="vm.deleteNumber()"
+    data-ng-click="vm.rightButtonTrigger($event, vm.bcNumbersModel)"
     angular-ripple
     data-ng-include="vm.backspaceTemplate"
   ></button>

@@ -64,5 +64,19 @@ export class KeypadController {
         }
     }
 
+
+    leftButtonTrigger($event, numbers) {
+        console.log('in leftButtonTrigger', $event, this.bcNumberModel);
+        this.bcLeftButtonMethod({ '$event': $event, 'numbers': this.bcNumberModel });
+    }
+
+
+    rightButtonTrigger($event, numbers) {
+        console.log('in rightButtonTrigger', $event, this.bcNumberModel);
+
+        this.bcRightButtonMethod({ '$event': $event, 'numbers': this.bcNumberModel });
+    }
+
+
 }
 

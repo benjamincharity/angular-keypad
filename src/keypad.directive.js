@@ -18,6 +18,8 @@ export function KeypadDirective() {
         bindToController: {
             bcNumberModel: '=',
             bcMaxLength: '@',
+            bcLeftButtonMethod: '&',
+            bcRightButtonMethod: '&',
         },
         templateUrl: template,
         controller: KeypadController,
