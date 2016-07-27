@@ -86,7 +86,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	var KeypadConfig = exports.KeypadConfig = function () {
 	
 	    // Define defaults
-	
 	    function KeypadConfig() {
 	        _classCallCheck(this, KeypadConfig);
 	
