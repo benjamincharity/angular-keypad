@@ -212,7 +212,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            this.numbers = this.KeypadConfig.numbers;
 	
 	            // Pull the last number off of the array so that we can inject it outside of the ng-repeat
-	            this.lastNumber = this.numbers.splice(this.numbers.length - 1, 1);
+	            this.lastNumber = this.numbers.splice(this.numbers.length - 1, 1)[0];
 	
 	            // Set the max length
 	            this.bcMaxLength = this.bcMaxLength || this.KeypadConfig.maxLength;
