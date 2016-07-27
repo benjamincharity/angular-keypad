@@ -38,10 +38,6 @@
   bottom: 0;
 }
 
-.bc-keypad__button:nth-of-type(10) {
-  margin-left: 32%;
-}
-
 .bc-keypad__button--backspace {
   background-size: 50%;
   background-position: 45% 50%;

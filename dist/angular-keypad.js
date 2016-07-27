@@ -158,7 +158,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	        scope: {},
 	        bindToController: {
 	            bcNumberModel: '=',
-	            bcMaxLength: '@'
+	            bcMaxLength: '@',
+	            bcLeftButtonMethod: '&',
+	            bcRightButtonMethod: '&'
 	        },
 	        templateUrl: _keypad3.default,
 	        controller: _keypad.KeypadController,
@@ -209,6 +211,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	            // The numbers that make up the keypad
 	            this.numbers = this.KeypadConfig.numbers;
 	
+	            // Pull the last number off of the array so that we can inject it outside of the ng-repeat
+	            this.lastNumber = this.numbers.splice(this.numbers.length - 1, 1);
+	
 	            // Set the max length
 	            this.bcMaxLength = this.bcMaxLength || this.KeypadConfig.maxLength;
 	        }
@@ -245,6 +250,19 @@ return /******/ (function(modules) { // webpackBootstrap
 	                this.$rootScope.$emit('KeypadGoBack');
 	            }
 	        }
+	    }, {
+	        key: 'leftButtonTrigger',
+	        value: function leftButtonTrigger($event, numbers) {
+	            console.log('in leftButtonTrigger', $event, this.bcNumberModel);
+	            this.bcLeftButtonMethod({ '$event': $event, 'numbers': this.bcNumberModel });
+	        }
+	    }, {
+	        key: 'rightButtonTrigger',
+	        value: function rightButtonTrigger($event, numbers) {
+	            console.log('in rightButtonTrigger', $event, this.bcNumberModel);
+	
+	            this.bcRightButtonMethod({ '$event': $event, 'numbers': this.bcNumberModel });
+	        }
 	    }]);
 	
 	    return KeypadController;
@@ -255,7 +273,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports) {
 
 	var path = '/Users/bc/Code/open-source/angular-keypad/src/keypad.html';
-	var html = "<div class=bc-keypad> <button class=bc-keypad__button data-ng-repeat=\"number in ::vm.numbers track by number\" data-ng-click=vm.setNumber(number) angular-ripple> {{ ::number }} </button> <button class=\"bc-keypad__button bc-keypad__button--backspace\" data-ng-click=vm.deleteNumber() angular-ripple data-ng-include=vm.backspaceTemplate></button> </div>";
+	var html = "<div class=bc-keypad> <button class=bc-keypad__button data-ng-repeat=\"number in ::vm.numbers track by number\" data-ng-click=vm.setNumber(number) angular-ripple> {{ ::number }} </button> <button class=bc-keypad__button data-ng-click=\"vm.leftButtonTrigger($event, vm.bcNumbersModel)\" angular-ripple>LEFT</button> <button class=bc-keypad__button data-ng-click=vm.setNumber(vm.lastNumber) angular-ripple> {{ ::vm.lastNumber }} </button> <button class=\"bc-keypad__button bc-keypad__button--backspace\" data-ng-click=\"vm.rightButtonTrigger($event, vm.bcNumbersModel)\" angular-ripple data-ng-include=vm.backspaceTemplate></button> </div>";
 	window.angular.module('ng').run(['$templateCache', function(c) { c.put(path, html) }]);
 	module.exports = path;
 
