@@ -208,5 +208,36 @@ describe('KeypadController', () => {
 
     });
 
+
+    describe('custom buttons', () => {
+        let $scope;
+        let element;
+        let vm;
+
+        beforeEach(() => {
+            $scope = $rootScope.$new();
+            $scope.numbers = '12';
+            element = angular.element(
+                '<bc-keypad bc-number-model="numbers"></bc-keypad>'
+            );
+            element = $compile(element)($scope);
+            $scope.$apply();
+            vm = element.isolateScope().vm;
+        });
+
+        afterEach(() => {
+            $scope.numbers = '12';
+        });
+
+        /*
+         *it('should call ctrl method when clicked', () => {
+         *    const numberButton = element[0].querySelectorAll('.bc-keypad__button')[2];
+         *    angular.element(numberButton).triggerHandler('click');
+         *    expect(vm.bcNumberModel.length).toEqual(ORIGINAL_LENGTH + 1);
+         *});
+         */
+
+    });
+
 });
 
