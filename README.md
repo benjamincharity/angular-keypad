@@ -33,7 +33,7 @@ bower install angular-keypad --save
 
 ## Dependencies
 
-- Angular.js (~1.4.0)
+- Angular.js (>=1.4.0)
 
 
 ## Usage
@@ -48,6 +48,9 @@ Use the directive anywhere in your HTML. The keypad will expand to fill the widt
 while maintaining the aspect ratio of the keypad buttons.
 
 ```html
+<!-- Add the input where to put display numbers: -->
+<input type="text" data-ng-model="vm.numbers">
+
 <!-- Define the keypad: -->
 <bc-keypad
   bc-number-model="vm.numbers"
