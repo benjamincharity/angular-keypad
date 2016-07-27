@@ -29,9 +29,11 @@ export class KeypadController {
         // The numbers that make up the keypad
         this.numbers = this.KeypadConfig.numbers;
 
+        // Pull the last number off of the array so that we can inject it outside of the ng-repeat
+        this.lastNumber = this.numbers.splice(this.numbers.length - 1, 1);
+
         // Set the max length
         this.bcMaxLength = this.bcMaxLength || this.KeypadConfig.maxLength;
-
     }
 
 

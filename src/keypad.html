@@ -9,11 +9,20 @@
     {{ ::number }}
   </button>
 
+
   <button
     class="bc-keypad__button"
     data-ng-click="vm.leftButtonTrigger($event, vm.bcNumbersModel)"
     angular-ripple
   >LEFT</button>
+
+  <button
+    class="bc-keypad__button"
+    data-ng-click="vm.setNumber(vm.lastNumber)"
+    angular-ripple
+  >
+    {{ ::vm.lastNumber }}
+  </button>
 
   <button
     class="bc-keypad__button  bc-keypad__button--backspace"
