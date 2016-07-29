@@ -8,6 +8,7 @@ export class KeypadController {
 
         this.$rootScope = $rootScope;
         this.KeypadConfig = KeypadConfig;
+        console.log('KeypadConfig: ', KeypadConfig, KeypadConfig.numbers);
 
 
         this._activate();
@@ -28,12 +29,20 @@ export class KeypadController {
 
         // The numbers that make up the keypad
         this.numbers = this.KeypadConfig.numbers;
+        console.log('numbers ctrl: ', this.numbers);
+
+        for (const n of this.numbers) {
+            console.log(n);
+        }
 
         // Pull the last number off of the array so that we can inject it outside of the ng-repeat
         this.lastNumber = this.numbers.splice(this.numbers.length - 1, 1)[0];
+        console.log('lastNumber: ', this.lastNumber);
+
 
         // Set the max length
         this.bcMaxLength = this.bcMaxLength || this.KeypadConfig.maxLength;
+
     }
 
 

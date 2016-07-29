@@ -99,14 +99,63 @@ return /******/ (function(modules) { // webpackBootstrap
 	        /* eslint-disable no-magic-numbers */
 	
 	        // Define the array of numbers that makes up the keypad
-	        this.numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
+	        this.numbers = [1, 2, 3, 4, 6, 5, 7, 8, 9, 0];
+	        var _iteratorNormalCompletion = true;
+	        var _didIteratorError = false;
+	        var _iteratorError = undefined;
 	
-	        /* eslint-enable no-magic-numbers */
+	        try {
+	            for (var _iterator = this.numbers[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+	                var n = _step.value;
+	
+	                console.warn(n);
+	            }
+	
+	            /* eslint-enable no-magic-numbers */
+	        } catch (err) {
+	            _didIteratorError = true;
+	            _iteratorError = err;
+	        } finally {
+	            try {
+	                if (!_iteratorNormalCompletion && _iterator.return) {
+	                    _iterator.return();
+	                }
+	            } finally {
+	                if (_didIteratorError) {
+	                    throw _iteratorError;
+	                }
+	            }
+	        }
 	    }
 	
 	    _createClass(KeypadConfig, [{
 	        key: '$get',
 	        value: function $get() {
+	            var _iteratorNormalCompletion2 = true;
+	            var _didIteratorError2 = false;
+	            var _iteratorError2 = undefined;
+	
+	            try {
+	                for (var _iterator2 = this.numbers[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+	                    var n = _step2.value;
+	
+	                    console.info(n);
+	                }
+	            } catch (err) {
+	                _didIteratorError2 = true;
+	                _iteratorError2 = err;
+	            } finally {
+	                try {
+	                    if (!_iteratorNormalCompletion2 && _iterator2.return) {
+	                        _iterator2.return();
+	                    }
+	                } finally {
+	                    if (_didIteratorError2) {
+	                        throw _iteratorError2;
+	                    }
+	                }
+	            }
+	
 	            return this;
 	        }
 	    }]);
@@ -193,6 +242,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	        this.$rootScope = $rootScope;
 	        this.KeypadConfig = KeypadConfig;
+	        console.log('KeypadConfig: ', KeypadConfig, KeypadConfig.numbers);
 	
 	        this._activate();
 	    }
@@ -210,9 +260,37 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	            // The numbers that make up the keypad
 	            this.numbers = this.KeypadConfig.numbers;
+	            console.log('numbers ctrl: ', this.numbers);
 	
-	            // Pull the last number off of the array so that we can inject it outside of the ng-repeat
+	            var _iteratorNormalCompletion = true;
+	            var _didIteratorError = false;
+	            var _iteratorError = undefined;
+	
+	            try {
+	                for (var _iterator = this.numbers[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+	                    var n = _step.value;
+	
+	                    console.log(n);
+	                }
+	
+	                // Pull the last number off of the array so that we can inject it outside of the ng-repeat
+	            } catch (err) {
+	                _didIteratorError = true;
+	                _iteratorError = err;
+	            } finally {
+	                try {
+	                    if (!_iteratorNormalCompletion && _iterator.return) {
+	                        _iterator.return();
+	                    }
+	                } finally {
+	                    if (_didIteratorError) {
+	                        throw _iteratorError;
+	                    }
+	                }
+	            }
+	
 	            this.lastNumber = this.numbers.splice(this.numbers.length - 1, 1)[0];
+	            console.log('lastNumber: ', this.lastNumber);
 	
 	            // Set the max length
 	            this.bcMaxLength = this.bcMaxLength || this.KeypadConfig.maxLength;

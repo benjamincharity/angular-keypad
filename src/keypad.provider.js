@@ -15,7 +15,10 @@ export class KeypadConfig {
         /* eslint-disable no-magic-numbers */
 
         // Define the array of numbers that makes up the keypad
-        this.numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
+        this.numbers = [1, 2, 3, 4, 6, 5, 7, 8, 9, 0];
+        for (const n of this.numbers) {
+            console.warn(n);
+        }
 
         /* eslint-enable no-magic-numbers */
     }
@@ -24,6 +27,9 @@ export class KeypadConfig {
 
 
     $get() {
+        for (const n of this.numbers) {
+            console.info(n);
+        }
         return this;
     }
 
