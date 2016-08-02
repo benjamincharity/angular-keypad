@@ -119,7 +119,7 @@ As not everyone may want that style of interaction, this project does not automa
 This module exposes `KeypadConfigProvider` which can be used to set project-wide defaults for the
 directive. Setting options here will overwrite the directive's default options for all instances.
 
-```
+```javascript
 // ES6 Config Example
 export function config(KeypadConfigProvider) {
     'ngInject';
@@ -152,12 +152,12 @@ angular.module('myModule')
 
 The template must be a raw SVG. This enables you to override the color of the SVG via CSS.
 
-You can define a custom backspace template for the keypad. By default it is using
+You can define a custom backspace template for the keypad. By default it is using an SVG version of
 `ion-backspace-outline` from [ionicons][ionicons].
 
 ![Ionicons backspace icon][backspace]
 
-```
+```javascript
 KeypadConfigProvider.backspaceTemplate = myCustomTemplate;
 ```
 
@@ -170,7 +170,7 @@ This is useful for specific data items such as a phone number:
 
 ![max-length demo][max_length_gif]
 
-```
+```javascript
 KeypadConfigProvider.maxLength = 6;
 ```
 
@@ -183,7 +183,7 @@ This array of numbers is used to build out the keypad with `ng-repeat`. You can 
 with one of your own. Keep in mind that changing more than the order of numbers will likely
 introduce layout bugs.
 
-```
+```javascript
 KeypadConfigProvider.numbers = [9, 8, 7, 6, 5, 4, 3, 2, 1, 0];
 ```
 
