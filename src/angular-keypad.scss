@@ -19,6 +19,8 @@ $color_light_gray: #ccc;
 
 // <div> primary keypad container
 .bc-keypad {
+  display: flex;
+  flex-flow: row wrap;
   overflow: hidden;
   padding-bottom: .375em;
   text-align: center;
@@ -28,61 +30,64 @@ $color_light_gray: #ccc;
     background-color: rgba($color_black, .1);
   }
 
-  // <button> number button
-  &__button {
-    background: none;
-    background-color: transparent;
-    border: 0;
-    color: inherit;
-    cursor: pointer;
-    font-size: 1.4rem;
-    line-height: 1.5em;
-    outline: 0;
-    padding: 2%;
+  &__key {
     position: relative;
     text-align: center;
-    width: 30%;
+    width: calc(100% / 3);
 
-    // you should define your own 'active' styles per project
-    &:focus {
-      outline: 0;
-    }
-
-    // create pseudo element for underline
-    &::after {
-      background-color: $color_light_gray;
-      content: '';
-      display: block;
-      height: 1px;
-      position: absolute;
-      left: 10%;
-      right: 10%;
-      // angular-ripple adds overflow: hidden so this cannot be below 0
-      bottom: 0;
-    }
-
-    // target 'backspace' button
-    &--backspace {
-      background-size: 50%;
-      background-position: 45% 50%;
-      background-repeat: no-repeat;
+    // <button> number button
+    &-button {
+      background: none;
+      background-color: transparent;
       border: 0;
-      position: relative;
+      color: inherit;
+      cursor: pointer;
+      font-size: 1.4rem;
+      line-height: 1.5em;
+      outline: 0;
+      padding: 2%;
 
-      &::before {
-        color: transparent;
-        content: 'Delete';
-        display: inline-block;
+      // you should define your own 'active' styles per project
+      &:focus {
+        outline: 0;
       }
 
-      // icon
-      svg {
-        height: 44px;
+      // create pseudo element for underline
+      &::after {
+        background-color: $color_light_gray;
+        content: '';
+        display: block;
+        height: 1px;
         position: absolute;
-        left: 50%;
-        top: 50%;
-        transform: translate(-60%, -50%);
-        width: 50px;
+        left: 10%;
+        right: 10%;
+        // angular-ripple adds overflow: hidden so this cannot be below 0
+        bottom: 0;
+      }
+
+      // target 'backspace' button
+      &--backspace {
+        background-size: 50%;
+        background-position: 45% 50%;
+        background-repeat: no-repeat;
+        border: 0;
+        position: relative;
+
+        &::before {
+          color: transparent;
+          content: 'Delete';
+          display: inline-block;
+        }
+
+        // icon
+        svg {
+          height: 44px;
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          transform: translate(-60%, -50%);
+          width: 50px;
+        }
       }
     }
   }
