@@ -15,6 +15,10 @@ export class KeypadConfig {
             numbers: [1, 2, 3, 4, 5, 6, 7, 8, 9, 0],
             // This should be a .svg file
             maxLength: null,
+            types: [
+                'delete',
+                'submit',
+            ],
         };
 
         /* eslint-enable no-magic-numbers */
