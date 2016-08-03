@@ -25,8 +25,8 @@
     "scss:compressed": "node-sass --output-style compressed -o dist/ src && mv dist/angular-keypad.css dist/angular-keypad.min.css",
     "scss:expanded": "node-sass --output-style expanded -o dist/ src",
     "watch:css": "onchange 'src/*.scss' -- npm run build:css",
-    "watch:js": "onchange 'src/*.js' 'src/*.html' -- npm run build:js",
-    "watch": "npm run watch:js && npm run watch:css",
+    "watch:js": "onchange 'src/*.js' 'src/templates/*.html' -- npm run build:js",
+    "watch": "parallelshell 'npm run watch:css' 'npm run watch:js'",
     "test": "karma start --singleRun=true"
   },
   "repository": {
@@ -67,6 +67,7 @@
     "node-sass": "^3.4.2",
     "onchange": "^2.2.0",
     "osx-notifier": "^0.2.2",
+    "parallelshell": "^2.0.0",
     "phantomjs": "^2.1.7",
     "postcss-cli": "^2.5.1",
     "sass-loader": "^3.1.2",
