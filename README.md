@@ -1,5 +1,7 @@
 # angular-keypad
 
+<img src="http://cdn.benjamincharity.com/open_source/angular-keypad/keypad-logo.jpg" align="right" alt="angular-keypad">
+
 An Angular directive that creates a numeric keypad.
 
 [![MIT License][license_image]][license_url] [![Coverage Status][coveralls_badge]][coveralls_link] [![NPM version][npm_version_image]][npm_url]
@@ -7,6 +9,8 @@ An Angular directive that creates a numeric keypad.
 [**Simple Demo (Plunker)**][demo_basic]
 
 _[Comments and Pull Requests welcome!][issues]_
+
+---
 
 ## Contents
 
