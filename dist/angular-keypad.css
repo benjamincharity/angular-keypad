@@ -1,4 +1,9 @@
 .bc-keypad {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-flow: row wrap;
+      flex-flow: row wrap;
   overflow: hidden;
   padding-bottom: .375em;
   text-align: center;
@@ -8,7 +13,13 @@
   background-color: rgba(0, 0, 0, 0.1);
 }
 
-.bc-keypad__button {
+.bc-keypad__key {
+  position: relative;
+  text-align: center;
+  width: calc(100% / 3);
+}
+
+.bc-keypad__key-button {
   background: none;
   background-color: transparent;
   border: 0;
@@ -18,16 +29,13 @@
   line-height: 1.5em;
   outline: 0;
   padding: 2%;
-  position: relative;
-  text-align: center;
-  width: 30%;
 }
 
-.bc-keypad__button:focus {
+.bc-keypad__key-button:focus {
   outline: 0;
 }
 
-.bc-keypad__button::after {
+.bc-keypad__key-button::after {
   background-color: #ccc;
   content: '';
   display: block;
@@ -38,7 +46,7 @@
   bottom: 0;
 }
 
-.bc-keypad__button--backspace {
+.bc-keypad__key-button--backspace {
   background-size: 50%;
   background-position: 45% 50%;
   background-repeat: no-repeat;
@@ -46,13 +54,13 @@
   position: relative;
 }
 
-.bc-keypad__button--backspace::before {
+.bc-keypad__key-button--backspace::before {
   color: transparent;
   content: 'Delete';
   display: inline-block;
 }
 
-.bc-keypad__button--backspace svg {
+.bc-keypad__key-button--backspace svg {
   height: 44px;
   position: absolute;
   left: 50%;

@@ -89,21 +89,24 @@ return /******/ (function(modules) { // webpackBootstrap
 	    function KeypadConfig() {
 	        _classCallCheck(this, KeypadConfig);
 	
-	        /* eslint-disable no-magic-numbers */
-	
 	        this.keypadDefaults = {
+	
+	            /* eslint-disable no-magic-numbers */
+	
+	            // The array of numbers that makes up the keypad
+	            numbers: [1, 2, 3, 4, 5, 6, 7, 8, 9, 0],
+	
+	            /* eslint-enable no-magic-numbers */
+	
 	            // By default there is no max length
 	            // Integer
-	            backspaceTemplate: _backspace2.default,
-	            // Define the array of numbers that makes up the keypad
-	            numbers: [1, 2, 3, 4, 5, 6, 7, 8, 9, 0],
-	            // This should be a .svg file
-	            maxLength: null
+	            maxLength: null,
+	
+	            // Plug'N'Play button types
+	            types: ['backspace', 'submit']
+	
 	        };
 	
-	        /* eslint-enable no-magic-numbers */
-	
-	        // TODO: convert backspace template to the left/right templates
 	        // TODO: add methods to overwrite the defaults
 	        // TODO: add docs for methods and changes etc
 	    }
@@ -140,7 +143,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _keypad = __webpack_require__(4);
 	
-	var _keypad2 = __webpack_require__(5);
+	var _keypad2 = __webpack_require__(9);
 	
 	var _keypad3 = _interopRequireDefault(_keypad2);
 	
@@ -163,8 +166,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	        bindToController: {
 	            bcNumberModel: '=',
 	            bcMaxLength: '@',
+	            bcLeftButton: '@',
+	            bcRightButton: '@',
 	            bcLeftButtonMethod: '&',
-	            bcRightButtonMethod: '&'
+	            bcRightButtonMethod: '&',
+	            bcEmptyBackspaceMethod: '&'
 	        },
 	        templateUrl: _keypad3.default,
 	        controller: _keypad.KeypadController,
@@ -176,15 +182,34 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 /* 4 */
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
+	exports.KeypadController = undefined;
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _backspaceLeft = __webpack_require__(5);
+	
+	var _backspaceLeft2 = _interopRequireDefault(_backspaceLeft);
+	
+	var _backspaceRight = __webpack_require__(6);
+	
+	var _backspaceRight2 = _interopRequireDefault(_backspaceRight);
+	
+	var _submitLeft = __webpack_require__(7);
+	
+	var _submitLeft2 = _interopRequireDefault(_submitLeft);
+	
+	var _submitRight = __webpack_require__(8);
+	
+	var _submitRight2 = _interopRequireDefault(_submitRight);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
@@ -209,8 +234,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	                this.bcNumberModel = '';
 	            }
 	
-	            // Expose backspace svg template to dom
-	            this.backspaceTemplate = this.KeypadConfig.backspaceTemplate;
+	            this.templates = {
+	                backspaceRight: _backspaceRight2.default,
+	                backspaceLeft: _backspaceLeft2.default,
+	                submitRight: _submitRight2.default,
+	                submitLeft: _submitLeft2.default
+	            };
 	
 	            // The numbers that make up the keypad
 	            this.numbers = this.KeypadConfig.numbers;
@@ -220,6 +249,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	            // Set the max length
 	            this.bcMaxLength = this.bcMaxLength || this.KeypadConfig.maxLength;
+	
+	            this.types = this.KeypadConfig.types;
 	        }
 	
 	        /**
@@ -231,41 +262,111 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }, {
 	        key: 'setNumber',
 	        value: function setNumber(number) {
-	
+	            // If a max length is defined, verify we are not yet to it
 	            if (!this.bcMaxLength || this.bcNumberModel.length < this.bcMaxLength) {
 	                this.bcNumberModel += number;
 	            }
 	        }
 	
 	        /**
-	         * Delete the last number from the number string
+	         * Delete the last number from the number model
 	         */
 	
 	    }, {
-	        key: 'deleteNumber',
-	        value: function deleteNumber() {
-	            var length = this.bcNumberModel.length;
-	
+	        key: 'backspace',
+	        value: function backspace() {
 	            // If at least one number exists
-	            if (length > 0) {
-	                this.bcNumberModel = this.bcNumberModel.substring(0, length - 1);
+	            if (this.bcNumberModel.length > 0) {
+	                this.bcNumberModel = this.bcNumberModel.substring(0, this.bcNumberModel.length - 1);
 	            } else {
-	                // TODO: Expose something via two-way binding rather than using $emit
-	                this.$rootScope.$emit('KeypadGoBack');
+	                // If backspace was hit when the model is already empty
+	                this.bcEmptyBackspaceMethod();
 	            }
 	        }
+	
+	        /**
+	         * Actions for the LEFT button
+	         *
+	         * @param {Object} $event
+	         * @param {String} numbers
+	         * @param {String} type
+	         */
+	
 	    }, {
 	        key: 'leftButtonTrigger',
-	        value: function leftButtonTrigger($event, numbers) {
-	            console.log('in leftButtonTrigger', $event, this.bcNumberModel);
+	        value: function leftButtonTrigger($event, numbers, type) {
+	            /*
+	             *console.log('in leftButtonTrigger', numbers, type);
+	             */
+	
+	            if (type && type === 'backspace') {
+	                this.backspace();
+	            }
+	
 	            this.bcLeftButtonMethod({ '$event': $event, 'numbers': this.bcNumberModel });
 	        }
+	
+	        /**
+	         * Actions for the RIGHT button
+	         *
+	         * @param {Object} $event
+	         * @param {String} numbers
+	         * @param {String} type
+	         */
+	
 	    }, {
 	        key: 'rightButtonTrigger',
-	        value: function rightButtonTrigger($event, numbers) {
-	            console.log('in rightButtonTrigger', $event, this.bcNumberModel);
+	        value: function rightButtonTrigger($event, numbers, type) {
+	            console.log('in rightButtonTrigger', numbers, type);
+	
+	            if (type && type === 'backspace') {
+	                this.backspace();
+	            }
 	
 	            this.bcRightButtonMethod({ '$event': $event, 'numbers': this.bcNumberModel });
+	        }
+	
+	        /**
+	         * Determine the correct template for the left button
+	         *
+	         * @param {String} side
+	         * @return {String} template
+	         */
+	
+	    }, {
+	        key: 'keyTemplate',
+	        value: function keyTemplate(type, side) {
+	            /*
+	             *console.log('keyTemplate: ', type, side);
+	             */
+	
+	            // If the button type matches one of the plug'n'play types
+	            if (this._buttonIsPnP(type)) {
+	                return this.templates[type + side];
+	            } else {
+	                return;
+	            }
+	        }
+	
+	        /**
+	         * Test a button type to see if it matches a Plug'N'Play type
+	         *
+	         * @param {String} type
+	         * @return {String} name
+	         */
+	
+	    }, {
+	        key: '_buttonIsPnP',
+	        value: function _buttonIsPnP(type) {
+	            /*
+	             *console.log('_buttonIsPnP: ', button, this.KeypadConfig.types.indexOf(type) >= 0);
+	             */
+	
+	            if (this.KeypadConfig.types.indexOf(type) >= 0) {
+	                return true;
+	            } else {
+	                return false;
+	            }
 	        }
 	    }]);
 	
@@ -276,8 +377,44 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 5 */
 /***/ function(module, exports) {
 
-	var path = '/Users/bc/Code/open-source/angular-keypad/src/keypad.html';
-	var html = "<div class=bc-keypad> <button class=bc-keypad__button data-ng-repeat=\"number in ::vm.numbers track by number\" data-ng-click=vm.setNumber(number) angular-ripple> {{ ::number }} </button> <button class=bc-keypad__button data-ng-click=\"vm.leftButtonTrigger($event, vm.bcNumbersModel)\" angular-ripple>LEFT</button> <button class=bc-keypad__button data-ng-click=vm.setNumber(vm.lastNumber) angular-ripple> {{ ::vm.lastNumber }} </button> <button class=\"bc-keypad__button bc-keypad__button--backspace\" data-ng-click=\"vm.rightButtonTrigger($event, vm.bcNumbersModel)\" angular-ripple data-ng-include=vm.backspaceTemplate></button> </div>";
+	var path = '/Users/bc/Code/open-source/angular-keypad/src/templates/backspace-left.html';
+	var html = "<button class=bc-keypad__key-button data-ng-click=\"vm.leftButtonTrigger($event, vm.bcNumbersModel, vm.bcLeftButton)\" angular-ripple>B-L</button>";
+	window.angular.module('ng').run(['$templateCache', function(c) { c.put(path, html) }]);
+	module.exports = path;
+
+/***/ },
+/* 6 */
+/***/ function(module, exports) {
+
+	var path = '/Users/bc/Code/open-source/angular-keypad/src/templates/backspace-right.html';
+	var html = "<button class=bc-keypad__key-button data-ng-click=\"vm.rightButtonTrigger($event, vm.bcNumbersModel, vm.bcRightButton)\" angular-ripple>B-R</button>";
+	window.angular.module('ng').run(['$templateCache', function(c) { c.put(path, html) }]);
+	module.exports = path;
+
+/***/ },
+/* 7 */
+/***/ function(module, exports) {
+
+	var path = '/Users/bc/Code/open-source/angular-keypad/src/templates/submit-left.html';
+	var html = "<button class=bc-keypad__key-button data-ng-click=\"vm.leftButtonTrigger($event, vm.bcNumbersModel, vm.bcLeftButton)\" angular-ripple>S-L</button>";
+	window.angular.module('ng').run(['$templateCache', function(c) { c.put(path, html) }]);
+	module.exports = path;
+
+/***/ },
+/* 8 */
+/***/ function(module, exports) {
+
+	var path = '/Users/bc/Code/open-source/angular-keypad/src/templates/submit-right.html';
+	var html = "<button class=bc-keypad__key-button data-ng-click=\"vm.leftButtonTrigger($event, vm.bcNumbersModel, vm.bcRightButton)\" angular-ripple>S-R</button>";
+	window.angular.module('ng').run(['$templateCache', function(c) { c.put(path, html) }]);
+	module.exports = path;
+
+/***/ },
+/* 9 */
+/***/ function(module, exports) {
+
+	var path = '/Users/bc/Code/open-source/angular-keypad/src/templates/keypad.html';
+	var html = "<div class=bc-keypad> <div class=bc-keypad__key data-ng-repeat=\"number in ::vm.numbers track by number\"> <button class=bc-keypad__key-button data-ng-click=vm.setNumber(number) angular-ripple> {{ ::number }} </button> </div> <div class=bc-keypad__key data-ng-include=\"vm.keyTemplate(vm.bcLeftButton, 'Left')\"></div> <div class=bc-keypad__key> <button class=bc-keypad__key-button data-ng-click=vm.setNumber(vm.lastNumber) angular-ripple> {{ ::vm.lastNumber }} </button> </div> <div class=bc-keypad__key data-ng-include=\"vm.keyTemplate(vm.bcRightButton, 'Right')\"></div> </div>";
 	window.angular.module('ng').run(['$templateCache', function(c) { c.put(path, html) }]);
 	module.exports = path;
 
