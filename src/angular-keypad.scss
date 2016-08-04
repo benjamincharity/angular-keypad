@@ -79,30 +79,24 @@ $color_light_gray: #ccc;
         bottom: 0;
       }
 
+      // icon
+      svg {
+        height: 44px;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-60%, -50%);
+        width: 50px;
+      }
+
       // target 'backspace' button
-      //&--backspace {
-        //background-size: 50%;
-        //background-position: 45% 50%;
-        //background-repeat: no-repeat;
-        //border: 0;
-        //position: relative;
-
-        //&::before {
-          //color: transparent;
-          //content: 'Delete';
-          //display: inline-block;
-        //}
-
-        //// icon
-        //svg {
-          //height: 44px;
-          //position: absolute;
-          //left: 50%;
-          //top: 50%;
-          //transform: translate(-60%, -50%);
-          //width: 50px;
-        //}
-      //}
+      &--backspace {
+        background-size: 50%;
+        background-position: 45% 50%;
+        background-repeat: no-repeat;
+        border: 0;
+        position: relative;
+      }
     }
   }
 
