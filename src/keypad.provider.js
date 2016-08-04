@@ -25,6 +25,7 @@ export class KeypadConfig {
                 'submit',
             ],
 
+            backspaceTemplate: backspaceTemplate,
         };
 
 

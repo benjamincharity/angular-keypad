@@ -1,6 +1,8 @@
 <button
-  class="bc-keypad__key-button"
+  class="bc-keypad__key-button  bc-keypad__key-button--backspace"
   data-ng-click="vm.leftButtonTrigger($event, vm.bcLeftButton)"
   angular-ripple
->B-L</button>
+>
+  <ng-include src=" vm.KeypadConfig.backspaceTemplate "></ng-include>
+</button>
 
