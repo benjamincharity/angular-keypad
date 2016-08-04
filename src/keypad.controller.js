@@ -55,7 +55,7 @@ export class KeypadController {
      * @param {String} number
      */
     setNumber(number) {
-        // If a max length is defined, verify we are not yet to it
+        // If a max length is defined, verify we have not yet reached it
         if (!this.bcMaxLength || this.bcNumberModel.length < this.bcMaxLength) {
             this.bcNumberModel += number;
         }
@@ -80,10 +80,9 @@ export class KeypadController {
      * Actions for the LEFT button
      *
      * @param {Object} $event
-     * @param {String} numbers
      * @param {String} type
      */
-    leftButtonTrigger($event, numbers, type) {
+    leftButtonTrigger($event, type) {
         /*
          *console.log('in leftButtonTrigger', numbers, type);
          */
@@ -100,11 +99,12 @@ export class KeypadController {
      * Actions for the RIGHT button
      *
      * @param {Object} $event
-     * @param {String} numbers
      * @param {String} type
      */
-    rightButtonTrigger($event, numbers, type) {
-        console.log('in rightButtonTrigger', numbers, type);
+    rightButtonTrigger($event, type) {
+        /*
+         *console.log('in rightButtonTrigger', this.bcNumberModel, type);
+         */
 
         if (type && type === 'backspace') {
             this.backspace();
