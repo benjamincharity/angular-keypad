@@ -1,4 +1,5 @@
 import backspaceTemplate from './backspace.svg';
+import submitTemplate from './submit.svg';
 
 export class KeypadConfig {
 
@@ -26,12 +27,13 @@ export class KeypadConfig {
             ],
 
             backspaceTemplate: backspaceTemplate,
+            submitTemplate: submitTemplate,
+
         };
 
 
         // TODO: add methods to overwrite the defaults
         // TODO: add docs for methods and changes etc
-
     }
 
 

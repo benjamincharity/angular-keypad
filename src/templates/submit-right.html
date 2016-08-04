@@ -2,5 +2,8 @@
   class="bc-keypad__key-button"
   data-ng-click="vm.rightButtonTrigger($event, vm.bcRightButton)"
   angular-ripple
->S-R</button>
+  aria-role="Submit"
+>
+  <ng-include src=" vm.KeypadConfig.submitTemplate "></ng-include>
+</button>
 
