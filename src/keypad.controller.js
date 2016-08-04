@@ -1,5 +1,7 @@
-import backspaceRightTemplate from './templates/backspace-right.html';
 import backspaceLeftTemplate from './templates/backspace-left.html';
+import backspaceRightTemplate from './templates/backspace-right.html';
+import submitLeftTemplate from './templates/submit-left.html';
+import submitRightTemplate from './templates/submit-right.html';
 
 export class KeypadController {
 
@@ -29,6 +31,8 @@ export class KeypadController {
         this.templates = {
             backspaceRight: backspaceRightTemplate,
             backspaceLeft: backspaceLeftTemplate,
+            submitRight: submitRightTemplate,
+            submitLeft: submitLeftTemplate,
         };
 
         // The numbers that make up the keypad
@@ -64,12 +68,9 @@ export class KeypadController {
     backspace() {
         // If at least one number exists
         if (this.bcNumberModel.length > 0) {
-            this.bcNumberModel = this.bcNumberModel.substring(0, length - 1);
+            this.bcNumberModel = this.bcNumberModel.substring(0, this.bcNumberModel.length - 1);
         } else {
-            // TODO: Expose something via two-way binding rather than using $emit
-            /*
-             *this.$rootScope.$emit('KeypadGoBack');
-             */
+            // If backspace was hit when the model is already empty
             this.bcEmptyBackspaceMethod();
         }
     }
@@ -83,7 +84,9 @@ export class KeypadController {
      * @param {String} type
      */
     leftButtonTrigger($event, numbers, type) {
-        console.log('in leftButtonTrigger', numbers, type);
+        /*
+         *console.log('in leftButtonTrigger', numbers, type);
+         */
 
         if (type && type === 'backspace') {
             this.backspace();
@@ -117,10 +120,14 @@ export class KeypadController {
      * @param {String} side
      * @return {String} template
      */
-    keyTemplate(side) {
+    keyTemplate(type, side) {
+        /*
+         *console.log('keyTemplate: ', type, side);
+         */
+
         // If the button type matches one of the plug'n'play types
-        if (this._buttonIsPnP(this.bcLeftButton)) {
-            return this.templates[this.bcLeftButton + side];
+        if (this._buttonIsPnP(type)) {
+            return this.templates[type + side];
         } else {
             return;
         }
