@@ -1,3 +1,6 @@
+import backspaceRightTemplate from './templates/backspace-right.html';
+import backspaceLeftTemplate from './templates/backspace-left.html';
+
 export class KeypadController {
 
     constructor(
@@ -23,8 +26,10 @@ export class KeypadController {
             this.bcNumberModel = '';
         }
 
-        // Expose backspace svg template to dom
-        this.backspaceTemplate = this.KeypadConfig.backspaceTemplate;
+        this.templates = {
+            backspaceRight: backspaceRightTemplate,
+            backspaceLeft: backspaceLeftTemplate,
+        };
 
         // The numbers that make up the keypad
         this.numbers = this.KeypadConfig.numbers;
@@ -34,6 +39,8 @@ export class KeypadController {
 
         // Set the max length
         this.bcMaxLength = this.bcMaxLength || this.KeypadConfig.maxLength;
+
+        this.types = this.KeypadConfig.types;
 
     }
 
@@ -55,7 +62,7 @@ export class KeypadController {
     /**
      * Delete the last number from the number string
      */
-    deleteNumber() {
+    backspace() {
         const length = this.bcNumberModel.length;
 
         // If at least one number exists
@@ -63,23 +70,66 @@ export class KeypadController {
             this.bcNumberModel = this.bcNumberModel.substring(0, length - 1);
         } else {
             // TODO: Expose something via two-way binding rather than using $emit
-            this.$rootScope.$emit('KeypadGoBack');
+            /*
+             *this.$rootScope.$emit('KeypadGoBack');
+             */
+            this.bcEmptyBackspaceMethod();
         }
     }
 
 
-    leftButtonTrigger($event, numbers) {
-        console.log('in leftButtonTrigger', $event, this.bcNumberModel);
+    leftButtonTrigger($event, numbers, type) {
+        console.log('in leftButtonTrigger', numbers, type);
+
+        if (type && type === 'backspace') {
+            this.backspace();
+        }
+
         this.bcLeftButtonMethod({ '$event': $event, 'numbers': this.bcNumberModel });
     }
 
 
-    rightButtonTrigger($event, numbers) {
-        console.log('in rightButtonTrigger', $event, this.bcNumberModel);
+    rightButtonTrigger($event, numbers, type) {
+        console.log('in rightButtonTrigger', numbers, type);
+
+        if (type && type === 'backspace') {
+            this.backspace();
+        }
 
         this.bcRightButtonMethod({ '$event': $event, 'numbers': this.bcNumberModel });
     }
 
 
+    /**
+     * Determine the correct template for the left button
+     *
+     * @param {String} side
+     * @return {String} template
+     */
+    keyTemplate(side) {
+        // If the button type matches one of the plug'n'play types
+        if (this._buttonIsPnP(this.bcLeftButton)) {
+            return this.templates[this.bcLeftButton + side];
+        } else {
+            return;
+        }
+    }
+
+
+    _buttonIsPnP(button) {
+        /*
+         *console.log('_buttonIsPnP: ', button, this.KeypadConfig.types.indexOf(button) >= 0);
+         */
+
+        if (this.KeypadConfig.types.indexOf(button) >= 0) {
+            return true;
+        } else {
+            return false;
+        }
+
+    }
+
+
 }
+
 
