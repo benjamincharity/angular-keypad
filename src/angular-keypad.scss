@@ -35,6 +35,13 @@ $color_light_gray: #ccc;
     text-align: center;
     width: calc(100% / 3);
 
+    &::before {
+      display: block;
+      content: '';
+      padding-top: 50%;
+      width: 100%;
+    }
+
     // <button> number button
     &-button {
       background: none;
@@ -46,6 +53,13 @@ $color_light_gray: #ccc;
       line-height: 1.5em;
       outline: 0;
       padding: 2%;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      top: 0;
+      text-align: center;
+      width: 100%;
 
       // you should define your own 'active' styles per project
       &:focus {
@@ -66,29 +80,29 @@ $color_light_gray: #ccc;
       }
 
       // target 'backspace' button
-      &--backspace {
-        background-size: 50%;
-        background-position: 45% 50%;
-        background-repeat: no-repeat;
-        border: 0;
-        position: relative;
+      //&--backspace {
+        //background-size: 50%;
+        //background-position: 45% 50%;
+        //background-repeat: no-repeat;
+        //border: 0;
+        //position: relative;
 
-        &::before {
-          color: transparent;
-          content: 'Delete';
-          display: inline-block;
-        }
+        //&::before {
+          //color: transparent;
+          //content: 'Delete';
+          //display: inline-block;
+        //}
 
-        // icon
-        svg {
-          height: 44px;
-          position: absolute;
-          left: 50%;
-          top: 50%;
-          transform: translate(-60%, -50%);
-          width: 50px;
-        }
-      }
+        //// icon
+        //svg {
+          //height: 44px;
+          //position: absolute;
+          //left: 50%;
+          //top: 50%;
+          //transform: translate(-60%, -50%);
+          //width: 50px;
+        //}
+      //}
     }
   }
 
@@ -102,6 +116,10 @@ $color_light_gray: #ccc;
 [angular-ripple] {
   overflow: hidden;
   position: relative;
+
+  &.bc-keypad__key-button {
+    position: absolute;
+  }
 }
 
 // <span> injected by angiular-ripple
