@@ -51,22 +51,19 @@ export class KeypadController {
      * @param {String} number
      */
     setNumber(number) {
-
+        // If a max length is defined, verify we are not yet to it
         if (!this.bcMaxLength || this.bcNumberModel.length < this.bcMaxLength) {
             this.bcNumberModel += number;
         }
-
     }
 
 
     /**
-     * Delete the last number from the number string
+     * Delete the last number from the number model
      */
     backspace() {
-        const length = this.bcNumberModel.length;
-
         // If at least one number exists
-        if (length > 0) {
+        if (this.bcNumberModel.length > 0) {
             this.bcNumberModel = this.bcNumberModel.substring(0, length - 1);
         } else {
             // TODO: Expose something via two-way binding rather than using $emit
@@ -78,6 +75,13 @@ export class KeypadController {
     }
 
 
+    /**
+     * Actions for the LEFT button
+     *
+     * @param {Object} $event
+     * @param {String} numbers
+     * @param {String} type
+     */
     leftButtonTrigger($event, numbers, type) {
         console.log('in leftButtonTrigger', numbers, type);
 
@@ -89,6 +93,13 @@ export class KeypadController {
     }
 
 
+    /**
+     * Actions for the RIGHT button
+     *
+     * @param {Object} $event
+     * @param {String} numbers
+     * @param {String} type
+     */
     rightButtonTrigger($event, numbers, type) {
         console.log('in rightButtonTrigger', numbers, type);
 
@@ -116,12 +127,18 @@ export class KeypadController {
     }
 
 
-    _buttonIsPnP(button) {
+    /**
+     * Test a button type to see if it matches a Plug'N'Play type
+     *
+     * @param {String} type
+     * @return {String} name
+     */
+    _buttonIsPnP(type) {
         /*
-         *console.log('_buttonIsPnP: ', button, this.KeypadConfig.types.indexOf(button) >= 0);
+         *console.log('_buttonIsPnP: ', button, this.KeypadConfig.types.indexOf(type) >= 0);
          */
 
-        if (this.KeypadConfig.types.indexOf(button) >= 0) {
+        if (this.KeypadConfig.types.indexOf(type) >= 0) {
             return true;
         } else {
             return false;
