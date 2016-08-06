@@ -9,7 +9,7 @@ export class KeypadConfig {
         this.keypadDefaults = {
 
             // The array of numbers that makes up the keypad
-            numbers: [1, 2, 3, 4, 5, 6, 7, 8, 9, 0], // eslint-disable no-magic-numbers
+            numbers: [1, 2, 3, 4, 5, 6, 7, 8, 9, 0], // eslint-disable-line no-magic-numbers
 
             // By default there is no max length
             // Integer
@@ -31,8 +31,33 @@ export class KeypadConfig {
 
 
 
+
     $get() {
         return this.keypadDefaults;
+    }
+
+
+    /**
+     * Set a custom backspace button template
+     * NOTE: $templateCache is not available yet so we save the template and the controller will
+     * handle overwriting the default template
+     *
+     * @param {String} template
+     */
+    setBackspaceTemplate(template) {
+        this.keypadDefaults.customBackspaceTemplate = template;
+    }
+
+
+    /**
+     * Set a custom submit button template
+     * NOTE: $templateCache is not available yet so we save the template and the controller will
+     * handle overwriting the default template
+     *
+     * @param {String} template
+     */
+    setSubmitTemplate(template) {
+        this.keypadDefaults.customSubmitTemplate = template;
     }
 
 

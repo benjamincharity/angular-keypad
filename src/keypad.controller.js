@@ -6,12 +6,13 @@ import submitRightTemplate from './templates/submit-right.html';
 export class KeypadController {
 
     constructor(
-        $rootScope,
+        $rootScope, $templateCache,
         bcKeypadConfig
     ) {
         'ngInject';
 
         this.$rootScope = $rootScope;
+        this.$templateCache = $templateCache;
         this.bcKeypadConfig = bcKeypadConfig;
 
 
@@ -46,6 +47,7 @@ export class KeypadController {
 
         this.types = this.bcKeypadConfig.types;
 
+        this._setCustomTemplates();
     }
 
 
@@ -121,6 +123,24 @@ export class KeypadController {
         } else {
             return;
         }
+    }
+
+
+    /**
+     * Overwrite templates if any custom templates were set in the provider
+     */
+    _setCustomTemplates() {
+
+        if (this.bcKeypadConfig.customSubmitTemplate) {
+            const path = this.bcKeypadConfig.submitTemplate;
+            this.$templateCache.put(path, this.bcKeypadConfig.customSubmitTemplate);
+        }
+
+        if (this.bcKeypadConfig.customBackspaceTemplate) {
+            const path = this.bcKeypadConfig.backspaceTemplate;
+            this.$templateCache.put(path, this.bcKeypadConfig.customBackspaceTemplate);
+        }
+
     }
 
 

@@ -96,7 +96,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        this.keypadDefaults = {
 	
 	            // The array of numbers that makes up the keypad
-	            numbers: [1, 2, 3, 4, 5, 6, 7, 8, 9, 0], // eslint-disable no-magic-numbers
+	            numbers: [1, 2, 3, 4, 5, 6, 7, 8, 9, 0], // eslint-disable-line no-magic-numbers
 	
 	            // By default there is no max length
 	            // Integer
@@ -115,6 +115,34 @@ return /******/ (function(modules) { // webpackBootstrap
 	        key: '$get',
 	        value: function $get() {
 	            return this.keypadDefaults;
+	        }
+	
+	        /**
+	         * Set a custom backspace button template
+	         * NOTE: $templateCache is not available yet so we save the template and the controller will
+	         * handle overwriting the default template
+	         *
+	         * @param {String} template
+	         */
+	
+	    }, {
+	        key: 'setBackspaceTemplate',
+	        value: function setBackspaceTemplate(template) {
+	            this.keypadDefaults.customBackspaceTemplate = template;
+	        }
+	
+	        /**
+	         * Set a custom submit button template
+	         * NOTE: $templateCache is not available yet so we save the template and the controller will
+	         * handle overwriting the default template
+	         *
+	         * @param {String} template
+	         */
+	
+	    }, {
+	        key: 'setSubmitTemplate',
+	        value: function setSubmitTemplate(template) {
+	            this.keypadDefaults.customSubmitTemplate = template;
 	        }
 	    }]);
 	
@@ -223,13 +251,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
 	var KeypadController = exports.KeypadController = function () {
-	    KeypadController.$inject = ["$rootScope", "bcKeypadConfig"];
-	    function KeypadController($rootScope, bcKeypadConfig) {
+	    KeypadController.$inject = ["$rootScope", "$templateCache", "bcKeypadConfig"];
+	    function KeypadController($rootScope, $templateCache, bcKeypadConfig) {
 	        'ngInject';
 	
 	        _classCallCheck(this, KeypadController);
 	
 	        this.$rootScope = $rootScope;
+	        this.$templateCache = $templateCache;
 	        this.bcKeypadConfig = bcKeypadConfig;
 	
 	        this._activate();
@@ -260,6 +289,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	            this.bcMaxLength = this.bcMaxLength || this.bcKeypadConfig.maxLength;
 	
 	            this.types = this.bcKeypadConfig.types;
+	
+	            this._setCustomTemplates();
 	        }
 	
 	        /**
@@ -344,6 +375,25 @@ return /******/ (function(modules) { // webpackBootstrap
 	                return this.templates[type + side];
 	            } else {
 	                return;
+	            }
+	        }
+	
+	        /**
+	         * Overwrite templates if any custom templates were set in the provider
+	         */
+	
+	    }, {
+	        key: '_setCustomTemplates',
+	        value: function _setCustomTemplates() {
+	
+	            if (this.bcKeypadConfig.customSubmitTemplate) {
+	                var path = this.bcKeypadConfig.submitTemplate;
+	                this.$templateCache.put(path, this.bcKeypadConfig.customSubmitTemplate);
+	            }
+	
+	            if (this.bcKeypadConfig.customBackspaceTemplate) {
+	                var _path = this.bcKeypadConfig.backspaceTemplate;
+	                this.$templateCache.put(_path, this.bcKeypadConfig.customBackspaceTemplate);
 	            }
 	        }
 	    }]);
