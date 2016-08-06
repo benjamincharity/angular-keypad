@@ -11,14 +11,23 @@
 // @end
 
 
-$color_black: #000;
-$color_white: #fff;
-$color_light_gray: #ccc;
-
 
 
 // <div> primary keypad container
 .bc-keypad {
+  // Define colors
+  $color_black: #000;
+  $color_white: #fff;
+  $color_light_gray: #ccc;
+
+  // Define a nice scale effect animation
+  @keyframes ripple {
+    100% {
+      opacity: 0;
+      transform: scale(2.5);
+    }
+  }
+
   display: flex;
   flex-flow: row wrap;
   overflow: hidden;
@@ -28,6 +37,14 @@ $color_light_gray: #ccc;
   // <span> target the span injected by angular-ripple
   .angular-ripple {
     background-color: rgba($color_black, .1);
+    border-radius: 50%;
+    display: block;
+    position: absolute;
+    transform: scale(0);
+
+    &.animate {
+      animation: ripple .3s linear;
+    }
   }
 
   &__key {
@@ -89,50 +106,42 @@ $color_light_gray: #ccc;
         width: 50px;
       }
 
-      // target 'backspace' button
-      &--backspace {
+      &--icon {
         background-size: 50%;
         background-position: 45% 50%;
         background-repeat: no-repeat;
         border: 0;
         position: relative;
       }
+
+      // target 'backspace' button
+      &--backspace {
+        //
+      }
+
+      // target 'submit' button
+      &--submit {
+        svg {
+          transform: translate(-50%, -50%);
+        }
+      }
+    }
+  }
+
+
+  //
+  // Angular-Ripple styles
+  //
+  // target the parent element (the button/link)
+  [angular-ripple] {
+    overflow: hidden;
+    position: relative;
+
+    &.bc-keypad__key-button {
+      position: absolute;
     }
   }
 
 }
 
-
-//
-// Angular-Ripple styles
-//
-// target the parent element (the button/link)
-[angular-ripple] {
-  overflow: hidden;
-  position: relative;
-
-  &.bc-keypad__key-button {
-    position: absolute;
-  }
-}
-
-// <span> injected by angiular-ripple
-.angular-ripple {
-  transform: scale(0);
-  border-radius: 50%;
-  display: block;
-  position: absolute;
-
-  &.animate {
-    animation: ripple .2s linear;
-  }
-}
-
-// Define a nice scale effect animation
-@keyframes ripple {
-  100% {
-    opacity: 0;
-    transform: scale(2.5);
-  }
-}
 
