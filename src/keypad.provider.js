@@ -6,15 +6,10 @@ export class KeypadConfig {
     // Define defaults
     constructor() {
 
-
         this.keypadDefaults = {
 
-            /* eslint-disable no-magic-numbers */
-
             // The array of numbers that makes up the keypad
-            numbers: [1, 2, 3, 4, 5, 6, 7, 8, 9, 0],
-
-            /* eslint-enable no-magic-numbers */
+            numbers: [1, 2, 3, 4, 5, 6, 7, 8, 9, 0], // eslint-disable no-magic-numbers
 
             // By default there is no max length
             // Integer
@@ -31,9 +26,6 @@ export class KeypadConfig {
 
         };
 
-
-        // TODO: add methods to overwrite the defaults
-        // TODO: add docs for methods and changes etc
     }
 
 
