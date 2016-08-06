@@ -209,35 +209,31 @@ describe('KeypadController', () => {
     });
 
 
-    describe('custom buttons', () => {
-        let $scope;
-        let element;
-        let vm;
+    describe('custom button methods', () => {
 
-        beforeEach(() => {
-            $scope = $rootScope.$new();
-            $scope.numbers = '12';
-            element = angular.element(
-                '<bc-keypad bc-number-model="numbers"></bc-keypad>'
-            );
-            element = $compile(element)($scope);
-            $scope.$apply();
-            vm = element.isolateScope().vm;
+        it('should trigger the ctrl method when LEFT button is clicked', () => {
+            expect(false).toEqual(true);
         });
 
-        afterEach(() => {
-            $scope.numbers = '12';
+        it('should trigger the ctrl method when RIGHT button is clicked', () => {
+            expect(false).toEqual(true);
         });
-
-        /*
-         *it('should call ctrl method when clicked', () => {
-         *    const numberButton = element[0].querySelectorAll('.bc-keypad__button')[2];
-         *    angular.element(numberButton).triggerHandler('click');
-         *    expect(vm.bcNumberModel.length).toEqual(ORIGINAL_LENGTH + 1);
-         *});
-         */
 
     });
+
+
+    describe('custom button templates', () => {
+
+        it('should have custom SUBMIT button template', () => {
+            expect(false).toEqual(true);
+        });
+
+        it('should have custom BACKSPACE button template', () => {
+            expect(false).toEqual(true);
+        });
+
+    });
+
 
 });
 
