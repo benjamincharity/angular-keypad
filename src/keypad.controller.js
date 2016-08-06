@@ -7,12 +7,12 @@ export class KeypadController {
 
     constructor(
         $rootScope,
-        KeypadConfig
+        bcKeypadConfig
     ) {
         'ngInject';
 
         this.$rootScope = $rootScope;
-        this.KeypadConfig = KeypadConfig;
+        this.bcKeypadConfig = bcKeypadConfig;
 
 
         this._activate();
@@ -36,15 +36,15 @@ export class KeypadController {
         };
 
         // The numbers that make up the keypad
-        this.numbers = this.KeypadConfig.numbers;
+        this.numbers = this.bcKeypadConfig.numbers;
 
         // Pull the last number off of the array so that we can inject it outside of the ng-repeat
         this.lastNumber = this.numbers.splice(this.numbers.length - 1, 1)[0];
 
         // Set the max length
-        this.bcMaxLength = this.bcMaxLength || this.KeypadConfig.maxLength;
+        this.bcMaxLength = this.bcMaxLength || this.bcKeypadConfig.maxLength;
 
-        this.types = this.KeypadConfig.types;
+        this.types = this.bcKeypadConfig.types;
 
     }
 
@@ -83,14 +83,11 @@ export class KeypadController {
      * @param {String} type
      */
     leftButtonTrigger($event, type) {
-        /*
-         *console.log('in leftButtonTrigger', numbers, type);
-         */
-
         if (type && type === 'backspace') {
             this.backspace();
         }
 
+        // Call the bound method
         this.bcLeftButtonMethod({ '$event': $event, 'numbers': this.bcNumberModel });
     }
 
@@ -102,14 +99,11 @@ export class KeypadController {
      * @param {String} type
      */
     rightButtonTrigger($event, type) {
-        /*
-         *console.log('in rightButtonTrigger', this.bcNumberModel, type);
-         */
-
         if (type && type === 'backspace') {
             this.backspace();
         }
 
+        // Call the bound method
         this.bcRightButtonMethod({ '$event': $event, 'numbers': this.bcNumberModel });
     }
 
@@ -121,12 +115,8 @@ export class KeypadController {
      * @return {String} template
      */
     keyTemplate(type, side) {
-        /*
-         *console.log('keyTemplate: ', type, side);
-         */
-
         // If the button type matches one of the plug'n'play types
-        if (this._buttonIsPnP(type)) {
+        if (this.bcKeypadConfig.types.indexOf(type) >= 0) {
             return this.templates[type + side];
         } else {
             return;
@@ -134,26 +124,5 @@ export class KeypadController {
     }
 
 
-    /**
-     * Test a button type to see if it matches a Plug'N'Play type
-     *
-     * @param {String} type
-     * @return {String} name
-     */
-    _buttonIsPnP(type) {
-        /*
-         *console.log('_buttonIsPnP: ', button, this.KeypadConfig.types.indexOf(type) >= 0);
-         */
-
-        if (this.KeypadConfig.types.indexOf(type) >= 0) {
-            return true;
-        } else {
-            return false;
-        }
-
-    }
-
-
 }
-
 
