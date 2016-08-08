@@ -27,7 +27,8 @@
     "watch:css": "onchange 'src/*.scss' -- npm run build:css",
     "watch:js": "onchange 'src/*.js' 'src/templates/*.html' -- npm run build:js",
     "watch": "parallelshell 'npm run watch:css' 'npm run watch:js'",
-    "test": "karma start --singleRun=true"
+    "test": "karma start --singleRun=true",
+    "watch:tests": "karma start"
   },
   "repository": {
     "type": "git",
@@ -52,6 +53,7 @@
     "html-loader": "^0.4.2",
     "jasmine": "^2.4.1",
     "karma": "^1.1.2",
+    "karma-chrome-launcher": "^1.0.1",
     "karma-coverage": "^1.1.1",
     "karma-coveralls": "^1.1.2",
     "karma-jasmine": "^1.0.2",
