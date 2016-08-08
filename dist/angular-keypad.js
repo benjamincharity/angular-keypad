@@ -442,7 +442,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports) {
 
 	var path = '/Users/bc/Code/open-source/angular-keypad/src/templates/keypad.html';
-	var html = "<div class=bc-keypad> <div class=bc-keypad__key data-ng-repeat=\"number in ::vm.numbers track by number\"> <button class=bc-keypad__key-button data-ng-click=vm.setNumber(number) angular-ripple aria-role=\"{{ ::number }}\"> {{ ::number }} </button> </div> <div class=bc-keypad__key data-ng-include=\"vm.keyTemplate(vm.bcLeftButton, 'Left')\"></div> <div class=bc-keypad__key> <button class=bc-keypad__key-button data-ng-click=vm.setNumber(vm.lastNumber) angular-ripple> {{ ::vm.lastNumber }} </button> </div> <div class=bc-keypad__key data-ng-include=\"vm.keyTemplate(vm.bcRightButton, 'Right')\"></div> </div>";
+	var html = "<div class=bc-keypad> <div class=bc-keypad__key data-ng-repeat=\"number in ::vm.numbers track by number\"> <button class=bc-keypad__key-button data-ng-click=vm.setNumber(number) angular-ripple aria-role=\"{{ ::number }}\"> {{ ::number }} </button> </div> <div class=\"bc-keypad__key bc-keypad__key--left\" data-ng-include=\"vm.keyTemplate(vm.bcLeftButton, 'Left')\"></div> <div class=\"bc-keypad__key bc-keypad__key--center\"> <button class=bc-keypad__key-button data-ng-click=vm.setNumber(vm.lastNumber) angular-ripple> {{ ::vm.lastNumber }} </button> </div> <div class=\"bc-keypad__key bc-keypad__key--right\" data-ng-include=\"vm.keyTemplate(vm.bcRightButton, 'Right')\"></div> </div>";
 	window.angular.module('ng').run(['$templateCache', function(c) { c.put(path, html) }]);
 	module.exports = path;
 

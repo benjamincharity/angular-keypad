@@ -17,12 +17,12 @@
 
 
   <div
-    class="bc-keypad__key"
+    class="bc-keypad__key  bc-keypad__key--left"
     data-ng-include="vm.keyTemplate(vm.bcLeftButton, 'Left')"
   ></div>
 
 
-  <div class="bc-keypad__key">
+  <div class="bc-keypad__key  bc-keypad__key--center">
     <button
       class="bc-keypad__key-button"
       data-ng-click="vm.setNumber(vm.lastNumber)"
@@ -34,7 +34,7 @@
 
 
   <div
-    class="bc-keypad__key"
+    class="bc-keypad__key  bc-keypad__key--right"
     data-ng-include="vm.keyTemplate(vm.bcRightButton, 'Right')"
   ></div>
 
