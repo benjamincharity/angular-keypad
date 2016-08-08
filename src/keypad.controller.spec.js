@@ -214,7 +214,9 @@ describe('KeypadController', () => {
         });
 
         it('should remove a number when BACKSPACE key is clicked', () => {
-            const numberButton = element[0].querySelectorAll('.bc-keypad__key--left .bc-keypad__key-button--backspace')[0];
+            const numberButton =
+                element[0]
+                .querySelectorAll('.bc-keypad__key--left .bc-keypad__key-button--backspace')[0];
             angular.element(numberButton).triggerHandler('click');
 
             expect($scope.numbers).toEqual('1');
