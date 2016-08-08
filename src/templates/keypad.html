@@ -16,10 +16,9 @@
 
 
 
-  <div
-    class="bc-keypad__key  bc-keypad__key--left"
-    data-ng-include="vm.keyTemplate(vm.bcLeftButton, 'Left')"
-  ></div>
+  <div class="bc-keypad__key  bc-keypad__key--left">
+    <ng-include src="vm.keyTemplate(vm.bcLeftButton, 'Left')"></ng-include>
+  </div>
 
 
   <div class="bc-keypad__key  bc-keypad__key--center">
@@ -33,10 +32,9 @@
   </div>
 
 
-  <div
-    class="bc-keypad__key  bc-keypad__key--right"
-    data-ng-include="vm.keyTemplate(vm.bcRightButton, 'Right')"
-  ></div>
+  <div class="bc-keypad__key  bc-keypad__key--right">
+    <ng-include src="vm.keyTemplate(vm.bcRightButton, 'Right')"></ng-include>
+  </div>
 
 </div>
 
