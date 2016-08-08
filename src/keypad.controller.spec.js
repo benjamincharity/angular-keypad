@@ -181,20 +181,31 @@ describe('KeypadController', () => {
 
         beforeEach(() => {
             $scope = $rootScope.$new();
+            $scope.buttonLeft = function($event, numbers) {};
+            $scope.buttonRight = function($event, numbers) {};
             $scope.numbers = '12';
             element = angular.element(`
-                <bc-keypad bc-number-model="numbers"></bc-keypad>
+                <bc-keypad
+                    bc-number-model="numbers"
+                    bc-left-button="backspace"
+                    bc-right-button="submit"
+                    bc-left-button-method="buttonLeft($event, numbers)"
+                    bc-right-button-method="buttonRight($event, numbers)"
+                ></bc-keypad>
             `);
             element = $compile(element)($scope);
             $scope.$apply();
             vm = element.isolateScope().vm;
+
+            spyOn($scope, 'buttonLeft');
+            spyOn($scope, 'buttonRight');
         });
 
         afterEach(() => {
             $scope.numbers = '12';
         });
 
-        it('should add to the number model when triggered', () => {
+        it('should add to the number model when number key is clicked', () => {
             const ORIGINAL_LENGTH = vm.bcNumberModel.length;
             const numberButton = element[0].querySelectorAll('.bc-keypad__key > button')[2];
             angular.element(numberButton).triggerHandler('click');
@@ -202,8 +213,26 @@ describe('KeypadController', () => {
             expect(vm.bcNumberModel.length).toEqual(ORIGINAL_LENGTH + 1);
         });
 
-        // TODO: test PnP button interaction.
-        // Karma is having trouble with the ngIncludes.
+        it('should remove a number when BACKSPACE key is clicked', () => {
+            const numberButton = element[0].querySelectorAll('.bc-keypad__key--left .bc-keypad__key-button--backspace')[0];
+            angular.element(numberButton).triggerHandler('click');
+
+            expect($scope.numbers).toEqual('1');
+        });
+
+        it('should trigger the custom LEFT button method when key is clicked', () => {
+            const numberButton = element[0].querySelectorAll('.bc-keypad__key--left button')[0];
+            angular.element(numberButton).triggerHandler('click');
+
+            expect($scope.buttonLeft).toHaveBeenCalled();
+        });
+
+        it('should trigger the custom RIGHT button method when key is clicked', () => {
+            const numberButton = element[0].querySelectorAll('.bc-keypad__key--right button')[0];
+            angular.element(numberButton).triggerHandler('click');
+
+            expect($scope.buttonRight).toHaveBeenCalled();
+        });
 
     });
 
@@ -221,7 +250,6 @@ describe('KeypadController', () => {
             element = angular.element(`
                 <bc-keypad
                     bc-number-model="numbers"
-                    bc-left-button="delete"
                     bc-left-button-method="buttonLeft($event, numbers)"
                     bc-right-button-method="buttonRight($event, numbers)"
                 ></bc-keypad>
@@ -243,6 +271,7 @@ describe('KeypadController', () => {
             vm.bcRightButtonMethod();
             expect($scope.buttonRight).toHaveBeenCalled();
         });
+
 
     });
 
