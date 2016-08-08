@@ -45,8 +45,6 @@ export class KeypadController {
         // Set the max length
         this.bcMaxLength = this.bcMaxLength || this.bcKeypadConfig.maxLength;
 
-        this.types = this.bcKeypadConfig.types;
-
         this._setCustomTemplates();
     }
 
