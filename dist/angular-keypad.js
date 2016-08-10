@@ -144,6 +144,18 @@ return /******/ (function(modules) { // webpackBootstrap
 	        value: function setSubmitTemplate(template) {
 	            this.keypadDefaults.customSubmitTemplate = template;
 	        }
+	
+	        /**
+	         * Overwrite the max length
+	         *
+	         * @param {Integer} length
+	         */
+	
+	    }, {
+	        key: 'setMaxLength',
+	        value: function setMaxLength(length) {
+	            this.keypadDefaults.maxLength = parseInt(length, 10);
+	        }
 	    }]);
 	
 	    return KeypadConfig;

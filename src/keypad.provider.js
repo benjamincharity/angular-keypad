@@ -61,5 +61,15 @@ export class KeypadConfig {
     }
 
 
+    /**
+     * Overwrite the max length
+     *
+     * @param {Integer} length
+     */
+    setMaxLength(length) {
+        this.keypadDefaults.maxLength = parseInt(length, 10);
+    }
+
+
 }
 
