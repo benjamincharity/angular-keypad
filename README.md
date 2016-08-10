@@ -17,9 +17,19 @@ _[Comments and Pull Requests welcome!][issues]_
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage](#usage)
+  - [`bc-right-button`](#bc-right-button)
+  - [`bc-right-button-method`](#bc-right-button-method)
+  - [`bc-left-button`](#bc-left-button)
+  - [`bc-left-button-method`](#bc-left-button-method)
+  - [`bc-empty-backspace-method`](#bc-empty-backspace-method)
+- [Plug'n'Play Buttons](#plug-n-play-buttons)
 - [Styles](#styles)
+- [`bcKeypadConfigProvider`](#bckeypadconfigprovider)
+  - [`setBackspaceTemplate`](#setbackspacetemplate)
+  - [`setSubmitTemplate`](#setsubmittemplate)
+  - [`setMaxLength`](#setmaxlength)
+  - [`setCustomNumbers`](#setcustomnumbers)
 - [angular-ripple](#angular-ripple)
-- [KeypadConfigProvider](#keypadconfigprovider)
 - [Development](#development)
 
 
@@ -68,17 +78,14 @@ while maintaining the aspect ratio of the keypad buttons.
 <input type="text" data-ng-model="vm.numbers">
 
 <!-- Define the keypad: -->
-<bc-keypad
-  bc-number-model="vm.numbers"
-  bc-max-length="{{ vm.neededLength }}"
-></bc-keypad>
+<bc-keypad bc-number-model="vm.numbers"></bc-keypad>
 ```
 
 ### `bc-number-model`
 
-**Required**: `Model`
+**Required**: `String`
 
-The directive will expose the current string of numbers to this model.
+The directive will store the current string of numbers here.
 
 ### `bc-max-length`
 
@@ -94,6 +101,68 @@ number model (`vm.numbers` in the example below).
 ></bc-keypad>
 ```
 
+### `bc-right-button`
+
+**Optional**: `String`
+
+
+
+
+### `bc-right-button-method`
+
+**Optional**: `method`
+
+
+### `bc-left-button`
+
+**Optional**: `String`
+
+
+### `bc-left-button-method`
+
+**Optional**: `method`
+
+
+### `bc-empty-backspace-method`
+
+**Optional**: `method`
+
+
+
+## Plug'n'Play Buttons
+
+This directive now supports plug'n'play button types to the left and right of the final digit.
+
+![Custom buttons](http://cdn.benjamincharity.com/open_source/angular-flickity/custom-buttons.png)
+
+```html
+<!-- Example directive setup for the above image -->
+<bc-keypad
+  bc-number-model="vm.numbers"
+  bc-button-left="backspace"
+  bc-button-right="submit"
+></bc-keypad>
+```
+
+
+
+### Backspace
+
+```html
+<bc-keypad
+  bc-number-model="vm.numbers"
+  bc-button-right="backspace"
+></bc-keypad>
+```
+
+### Submit
+
+```html
+<bc-keypad
+  bc-number-model="vm.numbers"
+  bc-button-right="submit"
+></bc-keypad>
+```
 
 ## Styles
 
@@ -116,70 +185,61 @@ This targets all buttons (`<button>`) on the keypad.
 This targets the 'backspace' button (`<button>`) on the keypad.
 
 
-## angular-ripple
-
-The `bc-keypad` directive was written for mobile where `:hover` cannot be used for interaction
-styles. At the time, we chose to implement the Material design 'ripple' effect to fill this gap.
-
-As not everyone may want that style of interaction, this project does not automatically install the
-`angular-ripple` library, but is however built to support it out of the box. Simply install the
-`angular-ripple` in your primary project and you should see it working.
-
-- [angular-ripple][angular_ripple]: The original `angular-ripple` library.
-- [KL-Moment/angular-ripple][angular_ripple_fork]: Custom fork of `angular-ripple` library with better
-  mobile support.
-
-
-## `KeypadConfigProvider`
+## `bcKeypadConfigProvider`
 
 This module exposes `KeypadConfigProvider` which can be used to set project-wide defaults for the
-directive. Setting options here will overwrite the directive's default options for all instances.
+directive. Setting options here will overwrite the directive's default options for all instances
+within a project.
 
 ```javascript
 // ES6 Config Example
-export function config(KeypadConfigProvider) {
+export function config(bcKeypadConfigProvider) {
     'ngInject';
 
-        // Define a custom 'backspace' icon
-        // This must be an SVG template
-        KeypadConfigProvider.backspaceTemplate = myCustomTemplate;
-
-        // Set a max length allowed for the model
-        KeypadConfigProvider.maxLength = null;
-
-        // Create a custom array or order of numbers
-        KeypadConfigProvider.numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
+    // Set a project wide default of '7' for the max length
+    bcKeypadConfigProvider.setMaxLength(7);
 
 }
 
 // ES5 Config Example
 angular.module('myModule')
-    .config((KeypadConfigProvider) => {
+    .config((bcKeypadConfigProvider) => {
         'ngInject';
 
-        KeypadConfigProvider.backspaceTemplate = myCustomTemplate;
+        bcKeypadConfigProvider.setMaxLength(7);
 
     })
 ;
 ```
 
 
-### `backspaceTemplate`
+### `setBackspaceTemplate`
 
-The template must be a raw SVG. This enables you to override the color of the SVG via CSS.
+This allows you to specify a custom template for the [backspace](#backspace) key.
 
-You can define a custom backspace template for the keypad. By default it is using an SVG version of
-`ion-backspace-outline` from [ionicons][ionicons].
+By default it is using a raw SVG version of `ion-backspace-outline` from [ionicons][ionicons] since
+this allows you to overwrite the SVG styles with CSS.
 
 ![Ionicons backspace icon][backspace]
 
 ```javascript
-KeypadConfigProvider.backspaceTemplate = myCustomTemplate;
+bcKeypadConfigProvider.setBackspaceTemplate('<span>hi</span>');
 ```
 
-### `maxLength`
+### `setSubmitTemplate`
 
-`Integer`
+This allows you to specify a custom template for the [submit](#submit) key.
+
+By default it is using a raw SVG version of `ion-log-in` from [ionicons][ionicons] since
+this allows you to overwrite the SVG styles with CSS.
+
+![Ionicons log in icon][submit]
+
+```javascript
+bcKeypadConfigProvider.setSubmitTemplate('Go');
+```
+
+### `setMaxLength`
 
 The directive will use this number to impose a hard limit on how many characters the model can hold.
 This is useful for specific data items such as a phone number:
@@ -206,6 +266,20 @@ KeypadConfigProvider.numbers = [9, 8, 7, 6, 5, 4, 3, 2, 1, 0];
 [Demo using custom numbers array (Plunker)][demo_custom_array]
 
 
+## angular-ripple
+
+The `bc-keypad` directive was written for mobile where `:hover` cannot be used for interaction
+styles. At the time, we chose to implement the Material design 'ripple' effect to fill this gap.
+
+As not everyone may want that style of interaction, this project does not automatically install the
+`angular-ripple` library, but is however built to support it out of the box. Simply install the
+`angular-ripple` in your primary project and you should see it working.
+
+- [angular-ripple][angular_ripple]: The original `angular-ripple` library.
+- [KL-Moment/angular-ripple][angular_ripple_fork]: Custom fork of `angular-ripple` library with better
+  mobile support.
+
+
 
 ## Development
 
@@ -226,6 +300,7 @@ KeypadConfigProvider.numbers = [9, 8, 7, 6, 5, 4, 3, 2, 1, 0];
 [angular_ripple_fork]: https://github.com/KL-Moment/angular-ripple
 [ripple_changes]: https://github.com/KL-Moment/angular-ripple/commit/09374947e6cc986ebe7e2629b48edb0885ca842b
 [backspace]: http://cdn.benjamincharity.com/plnkr/angular-keypad/backspace.svg
+[submit]: http://cdn.benjamincharity.com/open_source/angular-keypad/log-in.svg
 [ionicons]: http://ionicons.com/
 [max_length_gif]: http://cdn.benjamincharity.com/plnkr/angular-keypad/rippleDemo.gif
 [demo_custom_array]: http://embed.plnkr.co/LkrspU/
