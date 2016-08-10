@@ -26,14 +26,26 @@ _[Comments and Pull Requests welcome!][issues]_
 ## Installation
 
 #### NPM
+
 ```bash
 npm install angular-keypad --save
 ```
 
 #### Bower
+
 ```bash
 bower install angular-keypad --save
 ```
+
+#### Manually
+
+Add the scripts to your HTML:
+
+```html
+<link rel="stylesheet" href="../path/to/your/bower_components/angular-keypad/dist/angular-keypad.css">
+<script src="../path/to/your/bower_components/angular-keypad/dist/angular-keypad.js"></script>
+```
+
 
 ## Dependencies
 
