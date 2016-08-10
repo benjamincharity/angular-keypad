@@ -251,21 +251,6 @@ KeypadConfigProvider.maxLength = 6;
 ```
 
 
-### `numbers`
-
-`Array`
-
-This array of numbers is used to build out the keypad with `ng-repeat`. You can overwrite this array
-with one of your own. Keep in mind that changing more than the order of numbers will likely
-introduce layout bugs.
-
-```javascript
-KeypadConfigProvider.numbers = [9, 8, 7, 6, 5, 4, 3, 2, 1, 0];
-```
-
-[Demo using custom numbers array (Plunker)][demo_custom_array]
-
-
 ## angular-ripple
 
 The `bc-keypad` directive was written for mobile where `:hover` cannot be used for interaction
@@ -276,9 +261,8 @@ As not everyone may want that style of interaction, this project does not automa
 `angular-ripple` in your primary project and you should see it working.
 
 - [angular-ripple][angular_ripple]: The original `angular-ripple` library.
-- [KL-Moment/angular-ripple][angular_ripple_fork]: Custom fork of `angular-ripple` library with better
-  mobile support.
-
+- [KL-Moment/angular-ripple][angular_ripple_fork]: Custom fork of `angular-ripple` library with
+  better mobile support.
 
 
 ## Development
@@ -289,6 +273,7 @@ As not everyone may want that style of interaction, this project does not automa
 - `npm run watch:css` - Watch CSS and rebuild on change
 - `npm run watch:js` - Watch JS/HTML and rebuild on change
 - `npm run watch` - Watch JS/CSS/HTML and rebuild on change
+
 
 
 
