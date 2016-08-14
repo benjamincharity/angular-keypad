@@ -111,27 +111,46 @@ number model (`vm.numbers` in the example below).
 ></bc-keypad>
 ```
 
-#### `bc-right-button`
-
-**Optional**: `String`
-
-
 #### `bc-left-button`
 
 **Optional**: `String`
 
+You can define a custom [Plug'n'Play button](#plug-n-play-buttons) type by passing in the name of
+any [valid PNP button](#availablepnpbuttontypes).
+
+```html
+<!-- This would generate a backspace button in the bottom left of the keypad -->
+<bc-keypad
+  bc-number-model="vm.numbers"
+  bc-button-left="backspace"
+></bc-keypad>
+```
+
+#### `bc-right-button`
+
+**Optional**: `String`
+
+You can define a custom [Plug'n'Play button](#plug-n-play-buttons) type by passing in the name of
+any [valid PNP button](#availablepnpbuttontypes).
+
+```html
+<!-- This would generate a submit button in the bottom right of the keypad -->
+<bc-keypad
+  bc-number-model="vm.numbers"
+  bc-button-right="submit"
+></bc-keypad>
+```
+
 
 ### Custom Methods
-
-#### `bc-right-button-method`
-
-**Optional**: `method`
-
 
 #### `bc-left-button-method`
 
 **Optional**: `method`
 
+#### `bc-right-button-method`
+
+**Optional**: `method`
 
 #### `bc-empty-backspace-method`
 
@@ -170,6 +189,11 @@ export class YourController {
 This directive now supports Plug'n'Play (PnP) button types to the
 left and right of the final digit. These button types can be used on either side (or both, but I
 can't imagine what that use case would be).
+
+##### Available PnP Button Types
+
+- [backspace](#backspace)
+- [submit](#submit)
 
 Even when using a <abbr title="plug'n'play">(PnP)</abbr> button, any defined [custom
 methods](#custom-methods) will still be called.
