@@ -17,11 +17,16 @@ _[Comments and Pull Requests welcome!][issues]_
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage](#usage)
-  - [`bc-right-button`](#bc-right-button)
-  - [`bc-right-button-method`](#bc-right-button-method)
-  - [`bc-left-button`](#bc-left-button)
-  - [`bc-left-button-method`](#bc-left-button-method)
-  - [`bc-empty-backspace-method`](#bc-empty-backspace-method)
+- [Directive](#directive)
+  - [Attributes](#attributes)
+    - [`bc-number-model`](#bc-number-model)
+    - [`bc-max-length`](#bc-max-length)
+    - [`bc-right-button`](#bc-right-button)
+    - [`bc-left-button`](#bc-left-button)
+  - [Custom Methods](#custom-methods)
+    - [`bc-right-button-method`](#bc-right-button-method)
+    - [`bc-left-button-method`](#bc-left-button-method)
+    - [`bc-empty-backspace-method`](#bc-empty-backspace-method)
 - [Plug'n'Play Buttons](#plug-n-play-buttons)
 - [Styles](#styles)
 - [`bcKeypadConfigProvider`](#bckeypadconfigprovider)
@@ -81,13 +86,18 @@ while maintaining the aspect ratio of the keypad buttons.
 <bc-keypad bc-number-model="vm.numbers"></bc-keypad>
 ```
 
-### `bc-number-model`
+#### `bc-number-model`
 
 **Required**: `String`
 
-The directive will store the current string of numbers here.
+The directive will store the current string of numbers here. This is the **only** required
+attribute.
 
-### `bc-max-length`
+```html
+<bc-keypad bc-number-model="vm.numbers"></bc-keypad>
+```
+
+#### `bc-max-length`
 
 **Optional**: `Integer`
 
@@ -101,39 +111,73 @@ number model (`vm.numbers` in the example below).
 ></bc-keypad>
 ```
 
-### `bc-right-button`
+#### `bc-right-button`
 
 **Optional**: `String`
 
 
-
-
-### `bc-right-button-method`
-
-**Optional**: `method`
-
-
-### `bc-left-button`
+#### `bc-left-button`
 
 **Optional**: `String`
 
 
-### `bc-left-button-method`
+### Custom Methods
+
+#### `bc-right-button-method`
 
 **Optional**: `method`
 
 
-### `bc-empty-backspace-method`
+#### `bc-left-button-method`
 
 **Optional**: `method`
+
+
+#### `bc-empty-backspace-method`
+
+**Optional**: `method`
+
+```html
+<!-- This would create a backspace button in the bottom left corner of the keypad -->
+<bc-keypad
+  bc-number-model="vm.numbers"
+  bc-button-right="backspace"
+  bc-empty-backspace-method="vm.backspaceWhenEmpty()"
+></bc-keypad>
+```
+
+```javascript
+export class YourController {
+
+    constructor() {
+        this.numbers = '';
+    }
+
+    // I will be called when the backspace PnP button is clicked but the numbers model is empty
+    backspaceWhenEmpty() {
+        console.log('Backspace clicked, but no more numbers exist!');
+    }
+
+}
+```
 
 
 
 ## Plug'n'Play Buttons
 
-This directive now supports plug'n'play button types to the left and right of the final digit.
+<img src="http://cdn.benjamincharity.com/open_source/angular-flickity/custom-buttons.png" align="right" alt="Plug'n'Play buttons">
 
-![Custom buttons](http://cdn.benjamincharity.com/open_source/angular-flickity/custom-buttons.png)
+This directive now supports Plug'n'Play (PnP) button types to the
+left and right of the final digit. These button types can be used on either side (or both, but I
+can't imagine what that use case would be).
+
+Even when using a <abbr title="plug'n'play">(PnP)</abbr> button, any defined [custom
+methods](#custom-methods) will still be called.
+
+Any <abbr title="plug'n'play">(PnP)</abbr> button template can be overwritten using methods exposed
+via the [provider](#bckeypadconfigprovider).
+
+---
 
 ```html
 <!-- Example directive setup for the above image -->
@@ -145,15 +189,44 @@ This directive now supports plug'n'play button types to the left and right of th
 ```
 
 
-
 ### Backspace
 
 ```html
+<!-- This would create a backspace button in the bottom left corner of the keypad -->
 <bc-keypad
   bc-number-model="vm.numbers"
   bc-button-right="backspace"
 ></bc-keypad>
 ```
+
+This will create a backspace button with styles and functionality already wired together.
+
+#### Functionality
+
+Each time a backspace button is clicked/tapped the last number will be removed from
+[`bc-number-model`](#bc-number-model).
+
+If a custom method was passed to [`bc-empty-backspace-method`](#bc-empty-backspace-method) it will
+be called when the backspace button is clicked/tapped and [`bc-number-model`](#bc-number-model) is
+already empty. This can be useful for allowing users to step backwards through a multi-part form.
+
+Any defined [custom methods](#custom-methods) will still be called.
+
+#### Style
+
+By default the button is using a raw SVG version of `ion-backspace-outline` from [ionicons][ionicons] since
+this allows you to customize the SVG styles with your project's CSS.
+
+![Ionicons backspace icon][backspace]
+
+A special class is added to the backspace button which can be used to target specific styles:
+
+```scss
+.bc-keypad__key-button--backspace {
+  // define your custom styles
+}
+```
+
 
 ### Submit
 
@@ -163,6 +236,25 @@ This directive now supports plug'n'play button types to the left and right of th
   bc-button-right="submit"
 ></bc-keypad>
 ```
+
+This is a purely aesthetic <abbr title="plug'n'play">(PnP)</abbr> button type. No custom methods are
+attached, but any defined [custom methods](#custom-methods) will still be called.
+
+#### Style
+
+By default the button is using a raw SVG version of `ion-log-in` from [ionicons][ionicons] since this allows
+you to customize the SVG styles with your project's CSS.
+
+![Ionicons submit icon][submit]
+
+A special class is added to the submit button which can be used to target specific styles:
+
+```scss
+.bc-keypad__key-button--submit {
+  // define your custom styles
+}
+```
+
 
 ## Styles
 
@@ -277,10 +369,7 @@ As not everyone may want that style of interaction, this project does not automa
 
 
 
-[demo_basic]: http://embed.plnkr.co/VWJh3w/
 [issues]: https://github.com/benjamincharity/angular-keypad/issues
-[demo_length]: http://embed.plnkr.co/qXq3s4/
-[demo_ripple]: http://embed.plnkr.co/oXUTui/
 [angular_ripple]: https://github.com/nelsoncash/angular-ripple
 [angular_ripple_fork]: https://github.com/KL-Moment/angular-ripple
 [ripple_changes]: https://github.com/KL-Moment/angular-ripple/commit/09374947e6cc986ebe7e2629b48edb0885ca842b
@@ -288,6 +377,10 @@ As not everyone may want that style of interaction, this project does not automa
 [submit]: http://cdn.benjamincharity.com/open_source/angular-keypad/log-in.svg
 [ionicons]: http://ionicons.com/
 [max_length_gif]: http://cdn.benjamincharity.com/plnkr/angular-keypad/rippleDemo.gif
+
+[demo_basic]: http://embed.plnkr.co/VWJh3w/
+[demo_length]: http://embed.plnkr.co/qXq3s4/
+[demo_ripple]: http://embed.plnkr.co/oXUTui/
 [demo_custom_array]: http://embed.plnkr.co/LkrspU/
 
 [coveralls_badge]: https://coveralls.io/repos/github/benjamincharity/angular-keypad/badge.svg?branch=master
