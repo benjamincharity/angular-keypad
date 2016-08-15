@@ -148,16 +148,101 @@ any [valid PNP button](#availablepnpbuttontypes).
 
 **Optional**: `method`
 
+You can pass in a custom method that will be called each time the button is interacted with. This
+allows you to track interaction or handle custom validation in your controller.
+
+##### Available Parameters:
+
+| Param | Type | Details |
+|-------|------|---------|
+| `$event` | Object | The original [event object][angular_event] from the `ng-click` |
+| `numbers` | String | The current value of [`bc-number-model`](#bc-number-model) |
+
+
+<!-- TODO: link demo -->
+
+```html
+<!-- This would create a backspace button in the bottom right corner of the keypad -->
+<bc-keypad
+  bc-number-model="vm.numbers"
+  bc-button-right="backspace"
+  bc-button-right-method="vm.doSomething($event, numbers)"
+></bc-keypad>
+```
+
+```javascript
+export class YourController {
+
+    constructor() {
+        this.numbers = '';
+    }
+
+    // I will be called each time the right button is interacted with
+    doSomething($event, numbers) {
+        console.log('The backspace button on the right was clicked!');
+        console.log('Original click event object: ', $event)
+        console.log('Current number model value: ', numbers)
+    }
+
+}
+```
+
+
 #### `bc-right-button-method`
 
 **Optional**: `method`
+
+You can pass in a custom method that will be called each time the button is interacted with. This
+allows you to track interaction or handle custom validation in your controller.
+
+##### Available Parameters:
+
+| Param | Type | Details |
+|-------|------|---------|
+| `$event` | Object | The original [event object][angular_event] from the `ng-click` |
+| `numbers` | String | The current value of [`bc-number-model`](#bc-number-model) |
+
+
+<!-- TODO: link demo -->
+
+```html
+<!-- This would create a submit button in the bottom right corner of the keypad -->
+<bc-keypad
+  bc-number-model="vm.numbers"
+  bc-button-right="submit"
+  bc-button-right-method="vm.doSomething($event, numbers)"
+></bc-keypad>
+```
+
+```javascript
+export class YourController {
+
+    constructor() {
+        this.numbers = '';
+    }
+
+    // I will be called each time the right button is interacted with
+    doSomething($event, numbers) {
+        console.log('The submit button on the right was clicked!');
+        console.log('Original click event object: ', $event)
+        console.log('Current number model value: ', numbers)
+    }
+
+}
+```
+
 
 #### `bc-empty-backspace-method`
 
 **Optional**: `method`
 
+You can pass in a custom method that will be called when the [backspace](#backspace) button is
+interacted with **and** [`bc-number-model`](#bc-number-model) is already empty. This can be useful
+for allowing users to step backwards through a multi-part form.
+
+<!-- TODO: link demo -->
+
 ```html
-<!-- This would create a backspace button in the bottom left corner of the keypad -->
 <bc-keypad
   bc-number-model="vm.numbers"
   bc-button-right="backspace"
@@ -172,7 +257,8 @@ export class YourController {
         this.numbers = '';
     }
 
-    // I will be called when the backspace PnP button is clicked but the numbers model is empty
+    // I will be called when the backspace PnP button is clicked but
+    // the numbers model is empty
     backspaceWhenEmpty() {
         console.log('Backspace clicked, but no more numbers exist!');
     }
@@ -227,12 +313,12 @@ This will create a backspace button with styles and functionality already wired 
 
 #### Functionality
 
-Each time a backspace button is clicked/tapped the last number will be removed from
+Each time a backspace button instance is interacted with, the last number will be removed from
 [`bc-number-model`](#bc-number-model).
 
 If a custom method was passed to [`bc-empty-backspace-method`](#bc-empty-backspace-method) it will
-be called when the backspace button is clicked/tapped and [`bc-number-model`](#bc-number-model) is
-already empty. This can be useful for allowing users to step backwards through a multi-part form.
+be called when the backspace button is interacted with **and** [`bc-number-model`](#bc-number-model)
+is already empty. This can be useful for allowing users to step backwards through a multi-part form.
 
 Any defined [custom methods](#custom-methods) will still be called.
 
@@ -401,6 +487,7 @@ As not everyone may want that style of interaction, this project does not automa
 [submit]: http://cdn.benjamincharity.com/open_source/angular-keypad/log-in.svg
 [ionicons]: http://ionicons.com/
 [max_length_gif]: http://cdn.benjamincharity.com/plnkr/angular-keypad/rippleDemo.gif
+[angular_event]: https://docs.angularjs.org/guide/expression#-event-
 
 [demo_basic]: http://embed.plnkr.co/VWJh3w/
 [demo_length]: http://embed.plnkr.co/qXq3s4/
