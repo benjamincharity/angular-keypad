@@ -115,7 +115,7 @@ number model (`vm.numbers` in the example below).
 **Optional**: `String`
 
 You can define a custom [Plug'n'Play button](#plug-n-play-buttons) type by passing in the name of
-any [valid PNP button](#availablepnpbuttontypes).
+any [valid <abbr title="plug'n'play">(PnP)</abbr> button](#availablepnpbuttontypes).
 
 ```html
 <!-- This would generate a backspace button in the bottom left of the keypad -->
@@ -130,7 +130,7 @@ any [valid PNP button](#availablepnpbuttontypes).
 **Optional**: `String`
 
 You can define a custom [Plug'n'Play button](#plug-n-play-buttons) type by passing in the name of
-any [valid PNP button](#availablepnpbuttontypes).
+any [valid <abbr title="plug'n'play">(PnP)</abbr> button](#availablepnpbuttontypes).
 
 ```html
 <!-- This would generate a submit button in the bottom right of the keypad -->
