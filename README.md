@@ -161,11 +161,11 @@ allows you to track interaction or handle custom validation in your controller.
 <!-- TODO: link demo -->
 
 ```html
-<!-- This would create a backspace button in the bottom right corner of the keypad -->
+<!-- This would create a backspace button in the bottom left corner of the keypad -->
 <bc-keypad
   bc-number-model="vm.numbers"
-  bc-button-right="backspace"
-  bc-button-right-method="vm.doSomething($event, numbers)"
+  bc-button-left="backspace"
+  bc-button-left-method="vm.doSomething($event, numbers)"
 ></bc-keypad>
 ```
 
@@ -178,7 +178,7 @@ export class YourController {
 
     // I will be called each time the right button is interacted with
     doSomething($event, numbers) {
-        console.log('The backspace button on the right was clicked!');
+        console.log('The backspace button on the left was clicked!');
         console.log('Original click event object: ', $event)
         console.log('Current number model value: ', numbers)
     }
