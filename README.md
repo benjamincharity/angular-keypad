@@ -389,7 +389,7 @@ This targets the 'backspace' button (`<button>`) on the keypad.
 
 ## `bcKeypadConfigProvider`
 
-This module exposes `KeypadConfigProvider` which can be used to set project-wide defaults for the
+This module exposes `bcKeypadConfigProvider` which can be used to set project-wide defaults for the
 directive. Setting options here will overwrite the directive's default options for all instances
 within a project.
 
@@ -441,17 +441,21 @@ this allows you to overwrite the SVG styles with CSS.
 bcKeypadConfigProvider.setSubmitTemplate('Go');
 ```
 
+---
+
 ### `setMaxLength`
 
 The directive will use this number to impose a hard limit on how many characters the model can hold.
 This is useful for specific data items such as a phone number:
 
-![max-length demo][max_length_gif]
-
 ```javascript
-KeypadConfigProvider.maxLength = 6;
+bcKeypadConfigProvider.setMaxLength(10);
 ```
 
+<img src="http://cdn.benjamincharity.com/plnkr/angular-keypad/rippleDemo.gif" align="right" alt="Max
+length demo">
+
+---
 
 ## angular-ripple
 
