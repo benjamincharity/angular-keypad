@@ -275,6 +275,8 @@ This directive now supports Plug'n'Play (PnP) button types to the
 left and right of the final digit. These button types can be used on either side (or both, but I
 can't imagine what that use case would be).
 
+<!-- TODO: link demo -->
+
 ##### Available <abbr title="plug'n'play">(PnP)</abbr> Button Types
 
 - [backspace](#backspace)
@@ -371,6 +373,8 @@ This module exposes `bcKeypadConfigProvider` which can be used to set project-wi
 directive. Setting options here will overwrite the directive's default options for all instances
 within a project.
 
+<!-- TODO: link demo -->
+
 ```javascript
 // ES6 Config Example
 export function config(bcKeypadConfigProvider) {
@@ -439,18 +443,18 @@ styles should be written at your project level using the associated classes.
 Your project CSS should always be included after any library CSS files. This makes it easy for you
 to override or add to any styles added by this module. Below are the classes available for styling.
 
-### `.bc-keypad`
+| Class | Element | Details |
+|-------|---------|---------|
+| `.bc-keypad` | `<div>` | Primary container (`<div>`) around the keypad. |
+| `.bc-keypad__key` | `<div>` | Individual wrapper for each key. |
+| `.bc-keypad__key--left` | `<div>` | Target the **left** customizable key. |
+| `.bc-keypad__key--center` | `<div>` | Target the last number key (between the two customizable keys). |
+| `.bc-keypad__key--right` | `<div>` | Target the **right** customizable key. |
+| `.bc-keypad__key-button` | `<button>` | The button inside each key. |
+| `.bc-keypad__key-button--backspace` | `<button>` | Target the [backspace key](#backspace) (if used) |
+| `.bc-keypad__key-button--submit` | `<button>` | Target the [submit key](#submit) (if used) |
 
-This targets the primary container (`<div>`) around the keypad.
-
-### `.bc-keypad__button`
-
-This targets all buttons (`<button>`) on the keypad.
-
-### `.bc-keypad__button--backspace`
-
-This targets the 'backspace' button (`<button>`) on the keypad.
-
+<!-- TODO: link demo -->
 
 ## angular-ripple
 
