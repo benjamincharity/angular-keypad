@@ -32,7 +32,7 @@ _[Comments and Pull Requests welcome!][issues]_
 - [`bcKeypadConfigProvider`](#bckeypadconfigprovider)
   - [`setBackspaceTemplate`](#setbackspacetemplate)
   - [`setSubmitTemplate`](#setsubmittemplate)
-  - [`setMaxLength()`](#setmaxlength)
+  - [`setMaxLength`](#setmaxlength)
 - [angular-ripple](#angular-ripple)
 - [Development](#development)
 
@@ -53,7 +53,7 @@ bower install angular-keypad --save
 
 #### Manually
 
-Add the scripts to your HTML:
+Add the script and styles to your HTML:
 
 ```html
 <link rel="stylesheet" href="../path/to/your/bower_components/angular-keypad/dist/angular-keypad.css">
@@ -78,8 +78,8 @@ Use the directive anywhere in your HTML. The keypad will expand to fill the widt
 while maintaining the aspect ratio of the keypad buttons.
 
 ```html
-<!-- Add the input where to put display numbers: -->
-<input type="text" data-ng-model="vm.numbers">
+<!-- Show the number model in your UI: -->
+<span>{{ vm.numbers }}</span>
 
 <!-- Define the keypad: -->
 <bc-keypad bc-number-model="vm.numbers"></bc-keypad>
@@ -440,7 +440,7 @@ this allows you to overwrite the SVG styles with CSS.
 bcKeypadConfigProvider.setSubmitTemplate('Go');
 ```
 
-### `setMaxLength()`
+### `setMaxLength`
 
 The directive will use this number to impose a hard limit on how many characters the model can hold.
 This is useful for specific data items such as a phone number:
