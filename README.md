@@ -32,8 +32,7 @@ _[Comments and Pull Requests welcome!][issues]_
 - [`bcKeypadConfigProvider`](#bckeypadconfigprovider)
   - [`setBackspaceTemplate`](#setbackspacetemplate)
   - [`setSubmitTemplate`](#setsubmittemplate)
-  - [`setMaxLength`](#setmaxlength)
-  - [`setCustomNumbers`](#setcustomnumbers)
+  - [`setMaxLength()`](#setmaxlength)
 - [angular-ripple](#angular-ripple)
 - [Development](#development)
 
@@ -441,21 +440,17 @@ this allows you to overwrite the SVG styles with CSS.
 bcKeypadConfigProvider.setSubmitTemplate('Go');
 ```
 
----
-
-### `setMaxLength`
+### `setMaxLength()`
 
 The directive will use this number to impose a hard limit on how many characters the model can hold.
 This is useful for specific data items such as a phone number:
+
+![max-length demo][max_length_gif]
 
 ```javascript
 bcKeypadConfigProvider.setMaxLength(10);
 ```
 
-<img src="http://cdn.benjamincharity.com/plnkr/angular-keypad/rippleDemo.gif" align="right" alt="Max
-length demo">
-
----
 
 ## angular-ripple
 
