@@ -28,11 +28,11 @@ _[Comments and Pull Requests welcome!][issues]_
     - [`bc-left-button-method`](#bc-left-button-method)
     - [`bc-empty-backspace-method`](#bc-empty-backspace-method)
 - [Plug'n'Play Buttons](#plug-n-play-buttons)
-- [Styles](#styles)
 - [`bcKeypadConfigProvider`](#bckeypadconfigprovider)
   - [`setBackspaceTemplate`](#setbackspacetemplate)
   - [`setSubmitTemplate`](#setsubmittemplate)
   - [`setMaxLength`](#setmaxlength)
+- [Styles](#styles)
 - [angular-ripple](#angular-ripple)
 - [Development](#development)
 
@@ -256,7 +256,7 @@ export class YourController {
         this.numbers = '';
     }
 
-    // I will be called when the backspace PnP button is clicked but
+    // I will be called when the backspace PnP button is clicked and
     // the numbers model is empty
     backspaceWhenEmpty() {
         console.log('Backspace clicked, but no more numbers exist!');
@@ -275,7 +275,7 @@ This directive now supports Plug'n'Play (PnP) button types to the
 left and right of the final digit. These button types can be used on either side (or both, but I
 can't imagine what that use case would be).
 
-##### Available PnP Button Types
+##### Available <abbr title="plug'n'play">(PnP)</abbr> Button Types
 
 - [backspace](#backspace)
 - [submit](#submit)
@@ -365,27 +365,6 @@ A special class is added to the submit button which can be used to target specif
 ```
 
 
-## Styles
-
-The included styles are 99% layout with _just_ enough style to work out of the box. The true
-styles should be written at your project level using the associated classes.
-
-Your project CSS should always be included after any library CSS files. This makes it easy for you
-to override or add to any styles added by this module. Below are the classes available for styling.
-
-### `.bc-keypad`
-
-This targets the primary container (`<div>`) around the keypad.
-
-### `.bc-keypad__button`
-
-This targets all buttons (`<button>`) on the keypad.
-
-### `.bc-keypad__button--backspace`
-
-This targets the 'backspace' button (`<button>`) on the keypad.
-
-
 ## `bcKeypadConfigProvider`
 
 This module exposes `bcKeypadConfigProvider` which can be used to set project-wide defaults for the
@@ -450,6 +429,27 @@ This is useful for specific data items such as a phone number:
 ```javascript
 bcKeypadConfigProvider.setMaxLength(10);
 ```
+
+
+## Styles
+
+The included styles are 99% layout with _just_ enough style to work out of the box. The true
+styles should be written at your project level using the associated classes.
+
+Your project CSS should always be included after any library CSS files. This makes it easy for you
+to override or add to any styles added by this module. Below are the classes available for styling.
+
+### `.bc-keypad`
+
+This targets the primary container (`<div>`) around the keypad.
+
+### `.bc-keypad__button`
+
+This targets all buttons (`<button>`) on the keypad.
+
+### `.bc-keypad__button--backspace`
+
+This targets the 'backspace' button (`<button>`) on the keypad.
 
 
 ## angular-ripple
