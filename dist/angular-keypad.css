@@ -104,6 +104,14 @@
   position: relative;
 }
 
+.bc-keypad__key-button--backspace {
+  fill: inherit;
+}
+
+.bc-keypad__key-button--submit {
+  fill: inherit;
+}
+
 .bc-keypad__key-button--submit svg {
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);

@@ -116,11 +116,13 @@
 
       // target 'backspace' button
       &--backspace {
-        //
+        fill: inherit;
       }
 
       // target 'submit' button
       &--submit {
+        fill: inherit;
+
         svg {
           transform: translate(-50%, -50%);
         }
