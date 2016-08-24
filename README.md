@@ -371,7 +371,7 @@ A special class is added to the submit button which can be used to target specif
 
 This module exposes `bcKeypadConfigProvider` which can be used to set project-wide defaults for the
 directive. Setting options here will overwrite the directive's default options for all instances
-within a project.
+within your module.
 
 <!-- TODO: link demo -->
 
@@ -458,16 +458,30 @@ to override or add to any styles added by this module. Below are the classes ava
 
 ## angular-ripple
 
-The `bc-keypad` directive was written for mobile where `:hover` cannot be used for interaction
-styles. At the time, we chose to implement the Material design 'ripple' effect to fill this gap.
+The `bc-keypad` directive was written primarily for mobile so it supports the [Google Material
+'ripple' style feedback][material_ripple] via a module called [angular-ripple][angular_ripple]. As
+not everyone may want that style of interaction, this project does not automatically install the
+`angular-ripple` library, but is however built to support it out of the box.
 
-As not everyone may want that style of interaction, this project does not automatically install the
-`angular-ripple` library, but is however built to support it out of the box. Simply install the
-`angular-ripple` in your primary project and you should see it working.
+Just install the `angular-ripple` library:
 
-- [angular-ripple][angular_ripple]: The original `angular-ripple` library.
-- [KL-Moment/angular-ripple][angular_ripple_fork]: Custom fork of `angular-ripple` library with
-  better mobile support.
+```bash
+$ npm install nelsoncash/angular-ripple --save
+# or
+$ bower install angular-ripple --save
+```
+
+Include it as a dependency in your primary project:
+
+```javascript
+angular.module('YourModule', ['bc.AngularKeypad', 'angularRipple']);
+```
+
+And you should see it working!
+
+- [angular-ripple][angular_ripple]: The `angular-ripple` library.
+- [KL-Moment/angular-ripple][angular_ripple_fork]: A custom fork of `angular-ripple` library with
+    better mobile support.
 
 
 ## Development
@@ -491,6 +505,7 @@ As not everyone may want that style of interaction, this project does not automa
 [ionicons]: http://ionicons.com/
 [max_length_gif]: http://cdn.benjamincharity.com/plnkr/angular-keypad/rippleDemo.gif
 [angular_event]: https://docs.angularjs.org/guide/expression#-event-
+[material_ripple]: https://material.google.com/motion/material-motion.html#material-motion-how-does-material-move
 
 [demo_basic]: http://embed.plnkr.co/VWJh3w/
 [demo_length]: http://embed.plnkr.co/qXq3s4/
