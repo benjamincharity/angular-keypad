@@ -348,7 +348,7 @@ A special class is added to the backspace button which can be used to target spe
 ></bc-keypad>
 ```
 
-This is a purely aesthetic <abbr title="plug'n'play">(PnP)</abbr> button type. No custom methods are
+This is a purely aesthetic <abbr title="plug'n'play">(PnP)</abbr> button type. No functionality is
 attached, but any defined [custom methods](#custom-methods) will still be called.
 
 #### Style
