@@ -6,7 +6,8 @@ An Angular directive that creates a numeric keypad.
 
 [![MIT License][license_image]][license_url] [![Coverage Status][coveralls_badge]][coveralls_link] [![NPM version][npm_version_image]][npm_url]
 
-[**Simple Demo (Plunker)**][demo_basic]
+<!-- Make opening demo 'sexier' -->
+> [:tv: **Simple Demo (Plunker)**][demo_basic]
 
 _[Comments and Pull Requests welcome!][issues]_
 
@@ -68,7 +69,7 @@ Add the script and styles to your HTML:
 
 ## Usage
 
-Include `bc.AngularKeypad` as a dependency in your project.
+Include `bc.AngularKeypad` as a dependency in your project:
 
 ```javascript
 angular.module('YourModule', ['bc.AngularKeypad']);
@@ -84,6 +85,8 @@ while maintaining the aspect ratio of the keypad buttons.
 <!-- Define the keypad: -->
 <bc-keypad bc-number-model="vm.numbers"></bc-keypad>
 ```
+
+> [:tv: Simple Plunker demo][demo_basic]
 
 #### `bc-number-model`
 
@@ -103,7 +106,10 @@ attribute.
 The directive will use this number to set a hard limit on how many characters are allowed in the
 number model (`vm.numbers` in the example below).
 
+> [:tv: Max-length Plunker demo][demo_length]
+
 ```html
+<!-- Restrict 'vm.numbers' to the length of 4 -->
 <bc-keypad
   bc-number-model="vm.numbers"
   bc-max-length="4"
@@ -117,11 +123,13 @@ number model (`vm.numbers` in the example below).
 You can define a custom [Plug'n'Play button](#plug-n-play-buttons) type by passing in the name of
 any [valid <abbr title="plug'n'play">(PnP)</abbr> button](#availablepnpbuttontypes).
 
+> [:tv: Plunker demo for Plug'n'Play button types with custom methods][demo_pnp_with_methods]
+
 ```html
 <!-- This would generate a backspace button in the bottom left of the keypad -->
 <bc-keypad
   bc-number-model="vm.numbers"
-  bc-button-left="backspace"
+  bc-left-button="backspace"
 ></bc-keypad>
 ```
 
@@ -132,11 +140,13 @@ any [valid <abbr title="plug'n'play">(PnP)</abbr> button](#availablepnpbuttontyp
 You can define a custom [Plug'n'Play button](#plug-n-play-buttons) type by passing in the name of
 any [valid <abbr title="plug'n'play">(PnP)</abbr> button](#availablepnpbuttontypes).
 
+> [:tv: Plunker demo for Plug'n'Play button types with custom methods][demo_pnp_with_methods]
+
 ```html
 <!-- This would generate a submit button in the bottom right of the keypad -->
 <bc-keypad
   bc-number-model="vm.numbers"
-  bc-button-right="submit"
+  bc-right-button="submit"
 ></bc-keypad>
 ```
 
@@ -157,15 +167,14 @@ allows you to track interaction or handle custom validation in your controller.
 | `$event` | Object | The original [event object][angular_event] from the `ng-click` |
 | `numbers` | String | The current value of [`bc-number-model`](#bc-number-model) |
 
-
-<!-- TODO: link demo -->
+> [:tv: Plunker demo for Plug'n'Play button types with custom methods][demo_pnp_with_methods]
 
 ```html
 <!-- This would create a backspace button in the bottom left corner of the keypad -->
 <bc-keypad
   bc-number-model="vm.numbers"
-  bc-button-left="backspace"
-  bc-button-left-method="vm.doSomething($event, numbers)"
+  bc-left-button="backspace"
+  bc-left-button-method="vm.doSomething($event, numbers)"
 ></bc-keypad>
 ```
 
@@ -176,7 +185,7 @@ export class YourController {
         this.numbers = '';
     }
 
-    // I will be called each time the right button is interacted with
+    // I will be called each time the left (backspace) button is interacted with
     doSomething($event, numbers) {
         console.log('The backspace button on the left was clicked!');
         console.log('Original click event object: ', $event)
@@ -201,15 +210,14 @@ allows you to track interaction or handle custom validation in your controller.
 | `$event` | Object | The original [event object][angular_event] from the `ng-click` |
 | `numbers` | String | The current value of [`bc-number-model`](#bc-number-model) |
 
-
-<!-- TODO: link demo -->
+> [:tv: Plunker demo for Plug'n'Play button types with custom methods][demo_pnp_with_methods]
 
 ```html
 <!-- This would create a submit button in the bottom right corner of the keypad -->
 <bc-keypad
   bc-number-model="vm.numbers"
-  bc-button-right="submit"
-  bc-button-right-method="vm.doSomething($event, numbers)"
+  bc-right-button="submit"
+  bc-right-button-method="vm.doSomething($event, numbers)"
 ></bc-keypad>
 ```
 
@@ -220,7 +228,7 @@ export class YourController {
         this.numbers = '';
     }
 
-    // I will be called each time the right button is interacted with
+    // I will be called each time the right (submit) button is interacted with
     doSomething($event, numbers) {
         console.log('The submit button on the right was clicked!');
         console.log('Original click event object: ', $event)
@@ -239,12 +247,12 @@ You can pass in a custom method that will be called when the [backspace](#backsp
 interacted with **and** [`bc-number-model`](#bc-number-model) is already empty. This can be useful
 for allowing users to step backwards through a multi-part form.
 
-<!-- TODO: link demo -->
+> [Plunker demo for bc-empty-backspace-method][demo_backspace_empty]
 
 ```html
 <bc-keypad
   bc-number-model="vm.numbers"
-  bc-button-right="backspace"
+  bc-right-button="backspace"
   bc-empty-backspace-method="vm.backspaceWhenEmpty()"
 ></bc-keypad>
 ```
@@ -256,10 +264,10 @@ export class YourController {
         this.numbers = '';
     }
 
-    // I will be called when the backspace PnP button is clicked and
-    // the numbers model is empty
+    // I will be called when the backspace button is clicked and the numbers
+    // model is empty
     backspaceWhenEmpty() {
-        console.log('Backspace clicked, but no more numbers exist!');
+        console.log('Backspace clicked, but "vm.numbers" is empty!');
     }
 
 }
@@ -272,10 +280,10 @@ export class YourController {
 <img src="http://cdn.benjamincharity.com/open_source/angular-flickity/custom-buttons.png" align="right" alt="Plug'n'Play buttons">
 
 This directive now supports Plug'n'Play (PnP) button types to the
-left and right of the final digit. These button types can be used on either side (or both, but I
-can't imagine what that use case would be).
+left and right of the final digit. These button types can be used on either side (or both if you
+really wanted to).
 
-<!-- TODO: link demo -->
+> [:tv: Plunker demo for Plug'n'Play button types with custom methods][demo_pnp_with_methods]
 
 ##### Available <abbr title="plug'n'play">(PnP)</abbr> Button Types
 
@@ -294,8 +302,9 @@ via the [provider](#bckeypadconfigprovider).
 <!-- Example directive setup for the above image -->
 <bc-keypad
   bc-number-model="vm.numbers"
-  bc-button-left="backspace"
-  bc-button-right="submit"
+  bc-left-button="backspace"
+  bc-right-button="submit"
+  bc-right-button-method="vm.submitMyData($event, numbers)"
 ></bc-keypad>
 ```
 
@@ -306,7 +315,7 @@ via the [provider](#bckeypadconfigprovider).
 <!-- This would create a backspace button in the bottom left corner of the keypad -->
 <bc-keypad
   bc-number-model="vm.numbers"
-  bc-button-right="backspace"
+  bc-right-button="backspace"
 ></bc-keypad>
 ```
 
@@ -325,13 +334,16 @@ Any defined [custom methods](#custom-methods) will still be called.
 
 #### Style
 
-By default the button is using a raw SVG version of `ion-backspace-outline` from [ionicons][ionicons] since
-this allows you to customize the SVG styles with your project's CSS.
+By default the button is using a raw SVG version of [`ion-backspace-outline`][ionicons_backspace]
+from [ionicons][ionicons] since this allows you to customize the SVG styles with your project's CSS.
+
+<!-- TODO: link demo -->
 
 ![Ionicons backspace icon][backspace]
 
 A special class is added to the backspace button which can be used to target specific styles:
 
+<!-- TODO: add example 'fill' styles -->
 ```scss
 .bc-keypad__key-button--backspace {
   // define your custom styles
@@ -344,7 +356,7 @@ A special class is added to the backspace button which can be used to target spe
 ```html
 <bc-keypad
   bc-number-model="vm.numbers"
-  bc-button-right="submit"
+  bc-right-button="submit"
 ></bc-keypad>
 ```
 
@@ -353,13 +365,16 @@ attached, but any defined [custom methods](#custom-methods) will still be called
 
 #### Style
 
-By default the button is using a raw SVG version of `ion-log-in` from [ionicons][ionicons] since this allows
-you to customize the SVG styles with your project's CSS.
+By default the button is using a raw SVG version of [`ion-log-in`][ionicons_submit] from
+[ionicons][ionicons] since this allows you to customize the SVG styles with your project's CSS.
+
+<!-- TODO: link demo -->
 
 ![Ionicons submit icon][submit]
 
 A special class is added to the submit button which can be used to target specific styles:
 
+<!-- TODO: add example 'fill' styles -->
 ```scss
 .bc-keypad__key-button--submit {
   // define your custom styles
@@ -369,7 +384,7 @@ A special class is added to the submit button which can be used to target specif
 
 ## `bcKeypadConfigProvider`
 
-This module exposes `bcKeypadConfigProvider` which can be used to set project-wide defaults for the
+This module exposes `bcKeypadConfigProvider` which can be used to set custom defaults for the
 directive. Setting options here will overwrite the directive's default options for all instances
 within your module.
 
@@ -380,7 +395,7 @@ within your module.
 export function config(bcKeypadConfigProvider) {
     'ngInject';
 
-    // Set a project wide default of '7' for the max length
+    // Set a default of '7' for the max length of all keypads within your module
     bcKeypadConfigProvider.setMaxLength(7);
 
 }
@@ -401,21 +416,25 @@ angular.module('myModule')
 
 This allows you to specify a custom template for the [backspace](#backspace) key.
 
-By default it is using a raw SVG version of `ion-backspace-outline` from [ionicons][ionicons] since
-this allows you to overwrite the SVG styles with CSS.
+By default it is using a raw SVG version of [`ion-backspace-outline`][ionicons_backspace] from
+[ionicons][ionicons] since this allows you to overwrite the SVG styles with CSS.
+
+<!-- TODO: link demo -->
 
 ![Ionicons backspace icon][backspace]
 
 ```javascript
-bcKeypadConfigProvider.setBackspaceTemplate('<span>hi</span>');
+bcKeypadConfigProvider.setBackspaceTemplate('<span>↩</span>');
 ```
 
 ### `setSubmitTemplate`
 
 This allows you to specify a custom template for the [submit](#submit) key.
 
-By default it is using a raw SVG version of `ion-log-in` from [ionicons][ionicons] since
-this allows you to overwrite the SVG styles with CSS.
+By default it is using a raw SVG version of [`ion-log-in`][ionicons_submit] from
+[ionicons][ionicons] since this allows you to overwrite the SVG styles with CSS.
+
+<!-- TODO: link demo -->
 
 ![Ionicons log in icon][submit]
 
@@ -427,6 +446,8 @@ bcKeypadConfigProvider.setSubmitTemplate('Go');
 
 The directive will use this number to impose a hard limit on how many characters the model can hold.
 This is useful for specific data items such as a phone number:
+
+<!-- TODO: link demo -->
 
 ![max-length demo][max_length_gif]
 
@@ -441,7 +462,8 @@ The included styles are 99% layout with _just_ enough style to work out of the b
 styles should be written at your project level using the associated classes.
 
 Your project CSS should always be included after any library CSS files. This makes it easy for you
-to override or add to any styles added by this module. Below are the classes available for styling.
+to override or add to any styles defined by this module. Below are the classes available for
+styling.
 
 | Class | Element | Details |
 |-------|---------|---------|
@@ -462,6 +484,8 @@ The `bc-keypad` directive was written primarily for mobile so it supports the [G
 'ripple' style feedback][material_ripple] via a module called [angular-ripple][angular_ripple]. As
 not everyone may want that style of interaction, this project does not automatically install the
 `angular-ripple` library, but is however built to support it out of the box.
+
+<!-- TODO: link demo -->
 
 Just install the `angular-ripple` library:
 
@@ -503,14 +527,17 @@ And you should see it working!
 [backspace]: http://cdn.benjamincharity.com/plnkr/angular-keypad/backspace.svg
 [submit]: http://cdn.benjamincharity.com/open_source/angular-keypad/log-in.svg
 [ionicons]: http://ionicons.com/
+[ionicons_backspace]: https://github.com/driftyco/ionicons/blob/master/src/backspace-outline.svg
+[ionicons_submit]: https://github.com/driftyco/ionicons/blob/master/src/log-in.svg
 [max_length_gif]: http://cdn.benjamincharity.com/plnkr/angular-keypad/rippleDemo.gif
 [angular_event]: https://docs.angularjs.org/guide/expression#-event-
 [material_ripple]: https://material.google.com/motion/material-motion.html#material-motion-how-does-material-move
 
-[demo_basic]: http://embed.plnkr.co/VWJh3w/
-[demo_length]: http://embed.plnkr.co/qXq3s4/
+[demo_basic]: http://plnkr.co/edit/TODypN?p=preview
+[demo_length]: http://plnkr.co/edit/WRY53m?p=preview
 [demo_ripple]: http://embed.plnkr.co/oXUTui/
-[demo_custom_array]: http://embed.plnkr.co/LkrspU/
+[demo_pnp_with_methods]: http://plnkr.co/edit/5kPJTW?p=preview
+[demo_backspace_empty]: http://plnkr.co/edit/48bvxN?p=preview
 
 [coveralls_badge]: https://coveralls.io/repos/github/benjamincharity/angular-keypad/badge.svg?branch=master
 [coveralls_link]: https://coveralls.io/github/benjamincharity/angular-keypad?branch=master
