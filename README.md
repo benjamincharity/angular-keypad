@@ -483,7 +483,7 @@ The `bc-keypad` directive was written primarily for mobile so it supports the [G
 not everyone may want that style of interaction, this project does not automatically install the
 `angular-ripple` library, but is however built to support it out of the box.
 
-<!-- TODO: link demo -->
+> [:tv: Plunker demo for `angular-ripple` integration][demo_ripple]
 
 Just install the `angular-ripple` library:
 
@@ -538,6 +538,7 @@ And you should see it working!
 [demo_backspace_empty]: http://plnkr.co/edit/48bvxN?p=preview
 [demo_custom_button_css]: http://plnkr.co/edit/L5y260?p=preview
 [demo_provider]: http://plnkr.co/edit/jZvSdx?p=preview
+[demo_ripple]: http://plnkr.co/edit/NkwiXs?p=preview
 
 [coveralls_badge]: https://coveralls.io/repos/github/benjamincharity/angular-keypad/badge.svg?branch=master
 [coveralls_link]: https://coveralls.io/github/benjamincharity/angular-keypad?branch=master
