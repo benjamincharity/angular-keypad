@@ -106,7 +106,7 @@ attribute.
 The directive will use this number to set a hard limit on how many characters are allowed in the
 number model (`vm.numbers` in the example below).
 
-> [:tv: Max-length Plunker demo][demo_length]
+> [:tv: Plunker demo for `max-length`][demo_length]
 
 ```html
 <!-- Restrict 'vm.numbers' to the length of 4 -->
@@ -247,7 +247,7 @@ You can pass in a custom method that will be called when the [backspace](#backsp
 interacted with **and** [`bc-number-model`](#bc-number-model) is already empty. This can be useful
 for allowing users to step backwards through a multi-part form.
 
-> [Plunker demo for bc-empty-backspace-method][demo_backspace_empty]
+> [:tv: Plunker demo for bc-empty-backspace-method][demo_backspace_empty]
 
 ```html
 <bc-keypad
@@ -337,7 +337,7 @@ Any defined [custom methods](#custom-methods) will still be called.
 By default the button is using a raw SVG version of [`ion-backspace-outline`][ionicons_backspace]
 from [ionicons][ionicons] since this allows you to customize the SVG styles with your project's CSS.
 
-> [:tv: Custom button CSS Plunker demo][demo_custom_button_css]
+> [:tv: Plunker demo for custom button CSS][demo_custom_button_css]
 
 ![Ionicons backspace icon][backspace]
 
@@ -367,7 +367,7 @@ attached, but any defined [custom methods](#custom-methods) will still be called
 By default the button is using a raw SVG version of [`ion-log-in`][ionicons_submit] from
 [ionicons][ionicons] since this allows you to customize the SVG styles with your project's CSS.
 
-> [:tv: Custom button CSS Plunker demo][demo_custom_button_css]
+> [:tv: Plunker demo for custom button CSS][demo_custom_button_css]
 
 ![Ionicons submit icon][submit]
 
@@ -386,7 +386,7 @@ This module exposes `bcKeypadConfigProvider` which can be used to set custom def
 directive. Setting options here will overwrite the directive's default options for all instances
 within your module.
 
-> [:tv: Provider Plunker demo][demo_provider]
+> [:tv: Plunker demo for `bcKeypadConfigProvider`][demo_provider]
 
 ```javascript
 // ES6 Config Example
@@ -417,7 +417,7 @@ This allows you to specify a custom template for the [backspace](#backspace) key
 By default it is using a raw SVG version of [`ion-backspace-outline`][ionicons_backspace] from
 [ionicons][ionicons] since this allows you to overwrite the SVG styles with CSS.
 
-> [:tv: Provider Plunker demo][demo_provider]
+> [:tv: Plunker demo for `bcKeypadConfigProvider`][demo_provider]
 
 ![Ionicons backspace icon][backspace]
 
@@ -432,7 +432,7 @@ This allows you to specify a custom template for the [submit](#submit) key.
 By default it is using a raw SVG version of [`ion-log-in`][ionicons_submit] from
 [ionicons][ionicons] since this allows you to overwrite the SVG styles with CSS.
 
-> [:tv: Provider Plunker demo][demo_provider]
+> [:tv: Plunker demo for `bcKeypadConfigProvider`][demo_provider]
 
 ![Ionicons log in icon][submit]
 
@@ -445,7 +445,7 @@ bcKeypadConfigProvider.setSubmitTemplate('Go');
 The directive will use this number to impose a hard limit on how many characters the model can hold.
 This is useful for specific data items such as a phone number:
 
-> [:tv: Provider Plunker demo][demo_provider]
+> [:tv: Plunker demo for `bcKeypadConfigProvider`][demo_provider]
 
 ![max-length demo][max_length_gif]
 
