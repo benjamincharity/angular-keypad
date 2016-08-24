@@ -337,16 +337,15 @@ Any defined [custom methods](#custom-methods) will still be called.
 By default the button is using a raw SVG version of [`ion-backspace-outline`][ionicons_backspace]
 from [ionicons][ionicons] since this allows you to customize the SVG styles with your project's CSS.
 
-<!-- TODO: link demo -->
+> [:tv: Custom button CSS Plunker demo][demo_custom_button_css]
 
 ![Ionicons backspace icon][backspace]
 
 A special class is added to the backspace button which can be used to target specific styles:
 
-<!-- TODO: add example 'fill' styles -->
 ```scss
 .bc-keypad__key-button--backspace {
-  // define your custom styles
+  fill: #DE1E7E;
 }
 ```
 
@@ -368,16 +367,15 @@ attached, but any defined [custom methods](#custom-methods) will still be called
 By default the button is using a raw SVG version of [`ion-log-in`][ionicons_submit] from
 [ionicons][ionicons] since this allows you to customize the SVG styles with your project's CSS.
 
-<!-- TODO: link demo -->
+> [:tv: Custom button CSS Plunker demo][demo_custom_button_css]
 
 ![Ionicons submit icon][submit]
 
 A special class is added to the submit button which can be used to target specific styles:
 
-<!-- TODO: add example 'fill' styles -->
 ```scss
 .bc-keypad__key-button--submit {
-  // define your custom styles
+  fill: #101CA7;
 }
 ```
 
@@ -538,6 +536,7 @@ And you should see it working!
 [demo_ripple]: http://embed.plnkr.co/oXUTui/
 [demo_pnp_with_methods]: http://plnkr.co/edit/5kPJTW?p=preview
 [demo_backspace_empty]: http://plnkr.co/edit/48bvxN?p=preview
+[demo_custom_button_css]: http://plnkr.co/edit/L5y260?p=preview
 
 [coveralls_badge]: https://coveralls.io/repos/github/benjamincharity/angular-keypad/badge.svg?branch=master
 [coveralls_link]: https://coveralls.io/github/benjamincharity/angular-keypad?branch=master
