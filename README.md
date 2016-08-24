@@ -386,7 +386,7 @@ This module exposes `bcKeypadConfigProvider` which can be used to set custom def
 directive. Setting options here will overwrite the directive's default options for all instances
 within your module.
 
-<!-- TODO: link demo -->
+> [:tv: Provider Plunker demo][demo_provider]
 
 ```javascript
 // ES6 Config Example
@@ -417,7 +417,7 @@ This allows you to specify a custom template for the [backspace](#backspace) key
 By default it is using a raw SVG version of [`ion-backspace-outline`][ionicons_backspace] from
 [ionicons][ionicons] since this allows you to overwrite the SVG styles with CSS.
 
-<!-- TODO: link demo -->
+> [:tv: Provider Plunker demo][demo_provider]
 
 ![Ionicons backspace icon][backspace]
 
@@ -432,7 +432,7 @@ This allows you to specify a custom template for the [submit](#submit) key.
 By default it is using a raw SVG version of [`ion-log-in`][ionicons_submit] from
 [ionicons][ionicons] since this allows you to overwrite the SVG styles with CSS.
 
-<!-- TODO: link demo -->
+> [:tv: Provider Plunker demo][demo_provider]
 
 ![Ionicons log in icon][submit]
 
@@ -445,7 +445,7 @@ bcKeypadConfigProvider.setSubmitTemplate('Go');
 The directive will use this number to impose a hard limit on how many characters the model can hold.
 This is useful for specific data items such as a phone number:
 
-<!-- TODO: link demo -->
+> [:tv: Provider Plunker demo][demo_provider]
 
 ![max-length demo][max_length_gif]
 
@@ -537,6 +537,7 @@ And you should see it working!
 [demo_pnp_with_methods]: http://plnkr.co/edit/5kPJTW?p=preview
 [demo_backspace_empty]: http://plnkr.co/edit/48bvxN?p=preview
 [demo_custom_button_css]: http://plnkr.co/edit/L5y260?p=preview
+[demo_provider]: http://plnkr.co/edit/jZvSdx?p=preview
 
 [coveralls_badge]: https://coveralls.io/repos/github/benjamincharity/angular-keypad/badge.svg?branch=master
 [coveralls_link]: https://coveralls.io/github/benjamincharity/angular-keypad?branch=master
