@@ -6,8 +6,7 @@ An Angular directive that creates a numeric keypad.
 
 [![MIT License][license_image]][license_url] [![Coverage Status][coveralls_badge]][coveralls_link] [![NPM version][npm_version_image]][npm_url]
 
-<!-- Make opening demo 'sexier' -->
-> [:tv: **Simple Demo (Plunker)**][demo_basic]
+> [:tv: **Plunker demo**][demo_custom_theme]
 
 _[Comments and Pull Requests welcome!][issues]_
 
