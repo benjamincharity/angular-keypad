@@ -474,7 +474,7 @@ styling.
 | `.bc-keypad__key-button--backspace` | `<button>` | Target the [backspace key](#backspace) (if used) |
 | `.bc-keypad__key-button--submit` | `<button>` | Target the [submit key](#submit) (if used) |
 
-<!-- TODO: link demo -->
+> [:tv: Plunker demo for custom theming][demo_custom_theme]
 
 ## angular-ripple
 
@@ -539,6 +539,7 @@ And you should see it working!
 [demo_custom_button_css]: http://plnkr.co/edit/L5y260?p=preview
 [demo_provider]: http://plnkr.co/edit/jZvSdx?p=preview
 [demo_ripple]: http://plnkr.co/edit/NkwiXs?p=preview
+[demo_custom_theme]: http://plnkr.co/edit/L5y260?p=preview
 
 [coveralls_badge]: https://coveralls.io/repos/github/benjamincharity/angular-keypad/badge.svg?branch=master
 [coveralls_link]: https://coveralls.io/github/benjamincharity/angular-keypad?branch=master
