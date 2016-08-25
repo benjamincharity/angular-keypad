@@ -1,0 +1,39 @@
+<div class="bc-keypad">
+
+  <div
+    class="bc-keypad__key"
+    data-ng-repeat="number in ::vm.numbers track by number"
+  >
+    <button
+      class="bc-keypad__key-button"
+      data-ng-click="vm.setNumber(number)"
+      angular-ripple
+      aria-role="{{ ::number }}"
+    >
+      {{ ::number }}
+    </button>
+  </div>
+
+
+  <div class="bc-keypad__key  bc-keypad__key--left">
+    <ng-include src="vm.keyTemplate(vm.bcLeftButton, 'Left')"></ng-include>
+  </div>
+
+
+  <div class="bc-keypad__key  bc-keypad__key--center">
+    <button
+      class="bc-keypad__key-button"
+      data-ng-click="vm.setNumber(vm.lastNumber)"
+      angular-ripple
+    >
+      {{ ::vm.lastNumber }}
+    </button>
+  </div>
+
+
+  <div class="bc-keypad__key  bc-keypad__key--right">
+    <ng-include src="vm.keyTemplate(vm.bcRightButton, 'Right')"></ng-include>
+  </div>
+
+</div>
+

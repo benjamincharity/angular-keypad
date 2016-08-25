@@ -1,5 +1,5 @@
 import { KeypadController } from './keypad.controller';
-import template from './keypad.html';
+import template from './templates/keypad.html';
 
 /**
  * Creates a keypad
@@ -18,6 +18,11 @@ export function KeypadDirective() {
         bindToController: {
             bcNumberModel: '=',
             bcMaxLength: '@',
+            bcLeftButton: '@',
+            bcRightButton: '@',
+            bcLeftButtonMethod: '&',
+            bcRightButtonMethod: '&',
+            bcEmptyBackspaceMethod: '&',
         },
         templateUrl: template,
         controller: KeypadController,

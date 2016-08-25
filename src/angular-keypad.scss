@@ -11,14 +11,25 @@
 // @end
 
 
-$color_black: #000;
-$color_white: #fff;
-$color_light_gray: #ccc;
-
 
 
 // <div> primary keypad container
 .bc-keypad {
+  // Define colors
+  $color_black: #000;
+  $color_white: #fff;
+  $color_light_gray: #ccc;
+
+  // Define a nice scale effect animation
+  @keyframes ripple {
+    100% {
+      opacity: 0;
+      transform: scale(2.5);
+    }
+  }
+
+  display: flex;
+  flex-flow: row wrap;
   overflow: hidden;
   padding-bottom: .375em;
   text-align: center;
@@ -26,58 +37,63 @@ $color_light_gray: #ccc;
   // <span> target the span injected by angular-ripple
   .angular-ripple {
     background-color: rgba($color_black, .1);
+    border-radius: 50%;
+    display: block;
+    position: absolute;
+    transform: scale(0);
+
+    &.animate {
+      animation: ripple .3s linear;
+    }
   }
 
-  // <button> number button
-  &__button {
-    background: none;
-    background-color: transparent;
-    border: 0;
-    color: inherit;
-    cursor: pointer;
-    font-size: 1.4rem;
-    line-height: 1.5em;
-    outline: 0;
-    padding: 2%;
+  &__key {
     position: relative;
     text-align: center;
-    width: 30%;
+    width: calc(100% / 3);
 
-    // you should define your own 'active' styles per project
-    &:focus {
-      outline: 0;
-    }
-
-    // create pseudo element for underline
-    &::after {
-      background-color: $color_light_gray;
-      content: '';
+    &::before {
       display: block;
-      height: 1px;
-      position: absolute;
-      left: 10%;
-      right: 10%;
-      // angular-ripple adds overflow: hidden so this cannot be below 0
-      bottom: 0;
+      content: '';
+      padding-top: 50%;
+      width: 100%;
     }
 
-    // target '0'
-    &:nth-of-type(10) {
-      margin-left: 32%;
-    }
-
-    // target 'backspace' button
-    &--backspace {
-      background-size: 50%;
-      background-position: 45% 50%;
-      background-repeat: no-repeat;
+    // <button> number button
+    &-button {
+      background: none;
+      background-color: transparent;
       border: 0;
-      position: relative;
+      color: inherit;
+      cursor: pointer;
+      font-size: 1.4rem;
+      line-height: 1.5em;
+      outline: 0;
+      padding: 2%;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      top: 0;
+      text-align: center;
+      width: 100%;
 
-      &::before {
-        color: transparent;
-        content: 'Delete';
-        display: inline-block;
+      // you should define your own 'active' styles per project
+      &:focus {
+        outline: 0;
+      }
+
+      // create pseudo element for underline
+      &::after {
+        background-color: $color_light_gray;
+        content: '';
+        display: block;
+        height: 1px;
+        position: absolute;
+        left: 10%;
+        right: 10%;
+        // angular-ripple adds overflow: hidden so this cannot be below 0
+        bottom: 0;
       }
 
       // icon
@@ -86,41 +102,44 @@ $color_light_gray: #ccc;
         position: absolute;
         left: 50%;
         top: 50%;
-        transform: translate(-60%, -50%);
+        transform: translate(-50%, -50%);
         width: 50px;
       }
+
+      &--icon {
+        background-size: 50%;
+        background-position: 45% 50%;
+        background-repeat: no-repeat;
+        border: 0;
+        position: relative;
+      }
+
+      // target 'backspace' button
+      &--backspace {
+        fill: inherit;
+      }
+
+      // target 'submit' button
+      &--submit {
+        fill: inherit;
+      }
+    }
+  }
+
+
+  //
+  // Angular-Ripple styles
+  //
+  // target the parent element (the button/link)
+  [angular-ripple] {
+    overflow: hidden;
+    position: relative;
+
+    &.bc-keypad__key-button {
+      position: absolute;
     }
   }
 
 }
 
-
-//
-// Angular-Ripple styles
-//
-// target the parent element (the button/link)
-[angular-ripple] {
-  overflow: hidden;
-  position: relative;
-}
-
-// <span> injected by angiular-ripple
-.angular-ripple {
-  transform: scale(0);
-  border-radius: 50%;
-  display: block;
-  position: absolute;
-
-  &.animate {
-    animation: ripple .2s linear;
-  }
-}
-
-// Define a nice scale effect animation
-@keyframes ripple {
-  100% {
-    opacity: 0;
-    transform: scale(2.5);
-  }
-}
 
