@@ -102,7 +102,7 @@
         position: absolute;
         left: 50%;
         top: 50%;
-        transform: translate(-60%, -50%);
+        transform: translate(-50%, -50%);
         width: 50px;
       }
 
@@ -122,10 +122,6 @@
       // target 'submit' button
       &--submit {
         fill: inherit;
-
-        svg {
-          transform: translate(-50%, -50%);
-        }
       }
     }
   }
