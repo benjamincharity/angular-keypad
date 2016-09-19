@@ -35,10 +35,10 @@
     "url": "https://github.com/benjamincharity/angular-keypad.git"
   },
   "dependencies": {
-    "webpack-dev-server": "^1.14.1"
+    "angular": "^1.4.0"
   },
   "devDependencies": {
-    "angular": "^1.5.8",
+    "webpack-dev-server": "^1.14.1",
     "angular-mocks": "^1.5.8",
     "autoprefixer": "^6.3.3",
     "babel": "6.3.13",
