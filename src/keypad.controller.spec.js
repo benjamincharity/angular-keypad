@@ -207,7 +207,8 @@ describe('KeypadController', () => {
 
         it('should add to the number model when number key is clicked', () => {
             const ORIGINAL_LENGTH = vm.bcNumberModel.length;
-            const numberButton = element[0].querySelectorAll('.bc-keypad__key > button')[2];
+            const buttonArray = element[0].querySelectorAll('.bc-keypad__key > button');
+            const numberButton = buttonArray[2];
             angular.element(numberButton).triggerHandler('click');
 
             expect(vm.bcNumberModel.length).toEqual(ORIGINAL_LENGTH + 1);
@@ -274,6 +275,66 @@ describe('KeypadController', () => {
             expect($scope.buttonRight).toHaveBeenCalled();
         });
 
+
+    });
+
+    describe('Config Invariance', () => {
+        let $scope;
+        let element;
+        let vm;
+        const defaultNumbers =
+          [1, 2, 3, 4, 5, 6, 7, 8, 9, 0]; // eslint-disable-line no-magic-numbers
+
+        beforeEach(() => {
+            $scope = $rootScope.$new();
+            $scope.buttonLeft = function($event, numbers) {};
+            $scope.buttonRight = function($event, numbers) {};
+            $scope.numbers = '';
+            element = angular.element(`
+                    <bc-keypad
+                        bc-number-model="numbers"
+                        bc-left-button-method="buttonLeft($event, numbers)"
+                        bc-right-button-method="buttonRight($event, numbers)"
+                    ></bc-keypad>
+                `);
+            element = $compile(element)($scope);
+            $scope.$apply();
+            vm = element.isolateScope().vm;
+
+            spyOn($scope, 'buttonLeft');
+            spyOn($scope, 'buttonRight');
+        });
+
+        it('config should still contain the same numbers after keypad constructed', () => {
+            const buttons = vm.bcKeypadConfig.numbers;
+
+            expect(buttons).toEqual(defaultNumbers);
+        });
+
+        it('config should still remain the same after keypad constructions', () => {
+            for (let i = 0; i < 3; i = i + 1) { // eslint-disable-line no-magic-numbers
+                $scope = $rootScope.$new();
+                $scope.numbers = '';
+                element = angular.element(`
+                        <bc-keypad
+                            bc-number-model="numbers"
+                        ></bc-keypad>
+                    `);
+                element = $compile(element)($scope);
+                $scope.$apply();
+                vm = element.isolateScope().vm;
+
+                const buttons = vm.bcKeypadConfig.numbers;
+
+                expect(buttons).toEqual(defaultNumbers);
+            }
+        });
+
+        it('the keypad should have 12 buttons given a left and right method', () => {
+            const buttonArray = element[0].querySelectorAll('.bc-keypad__key');
+
+            expect(buttonArray.length).toEqual(defaultNumbers.length + 2);
+        });
 
     });
 
