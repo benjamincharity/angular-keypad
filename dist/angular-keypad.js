@@ -291,13 +291,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	                submitLeft: _submitLeft2.default
 	            };
 	
-	            console.log('before: ', this.bcKeypadConfig.numbers);
 	            // The numbers that make up the keypad
-	            this.numbers = this.bcKeypadConfig.numbers.slice(0);
+	            this.numbers = this.bcKeypadConfig.numbers.slice();
 	
 	            // Pull the last number off of the array so that we can inject it outside of the ng-repeat
 	            this.lastNumber = this.numbers.splice(this.numbers.length - 1, 1)[0];
-	            console.log('after: ', this.bcKeypadConfig.numbers);
 	
 	            // Set the max length
 	            this.bcMaxLength = this.bcMaxLength || this.bcKeypadConfig.maxLength;
