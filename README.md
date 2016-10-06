@@ -6,7 +6,7 @@ An Angular directive that creates a numeric keypad.
 
 [![MIT License][license_image]][license_url] [![Coverage Status][coveralls_badge]][coveralls_link] [![NPM version][npm_version_image]][npm_url]
 
-> [:tv: **Plunker demo**][demo_custom_theme]
+> [:tv: **All Demos**][demo_collection]
 
 _[Comments and Pull Requests welcome!][issues]_
 
@@ -85,7 +85,7 @@ while maintaining the aspect ratio of the keypad buttons.
 <bc-keypad bc-number-model="vm.numbers"></bc-keypad>
 ```
 
-> [:tv: Simple Plunker demo][demo_basic]
+> [:tv: Simple demo][demo_basic]
 
 #### `bc-number-model`
 
@@ -105,7 +105,7 @@ attribute.
 The directive will use this number to set a hard limit on how many characters are allowed in the
 number model (`vm.numbers` in the example below).
 
-> [:tv: Plunker demo for `max-length`][demo_length]
+> [:tv: Demo for `max-length`][demo_length]
 
 ```html
 <!-- Restrict 'vm.numbers' to the length of 4 -->
@@ -122,7 +122,7 @@ number model (`vm.numbers` in the example below).
 You can define a custom [Plug'n'Play button](#plug-n-play-buttons) type by passing in the name of
 any [valid <abbr title="plug'n'play">(PnP)</abbr> button](#availablepnpbuttontypes).
 
-> [:tv: Plunker demo for Plug'n'Play button types with custom methods][demo_pnp_with_methods]
+> [:tv: Demo for Plug'n'Play button types with custom methods][demo_pnp_with_methods]
 
 ```html
 <!-- This would generate a backspace button in the bottom left of the keypad -->
@@ -139,7 +139,7 @@ any [valid <abbr title="plug'n'play">(PnP)</abbr> button](#availablepnpbuttontyp
 You can define a custom [Plug'n'Play button](#plug-n-play-buttons) type by passing in the name of
 any [valid <abbr title="plug'n'play">(PnP)</abbr> button](#availablepnpbuttontypes).
 
-> [:tv: Plunker demo for Plug'n'Play button types with custom methods][demo_pnp_with_methods]
+> [:tv: Demo for Plug'n'Play button types with custom methods][demo_pnp_with_methods]
 
 ```html
 <!-- This would generate a submit button in the bottom right of the keypad -->
@@ -166,7 +166,7 @@ allows you to track interaction or handle custom validation in your controller.
 | `$event` | Object | The original [event object][angular_event] from the `ng-click` |
 | `numbers` | String | The current value of [`bc-number-model`](#bc-number-model) |
 
-> [:tv: Plunker demo for Plug'n'Play button types with custom methods][demo_pnp_with_methods]
+> [:tv: Demo for Plug'n'Play button types with custom methods][demo_pnp_with_methods]
 
 ```html
 <!-- This would create a backspace button in the bottom left corner of the keypad -->
@@ -209,7 +209,7 @@ allows you to track interaction or handle custom validation in your controller.
 | `$event` | Object | The original [event object][angular_event] from the `ng-click` |
 | `numbers` | String | The current value of [`bc-number-model`](#bc-number-model) |
 
-> [:tv: Plunker demo for Plug'n'Play button types with custom methods][demo_pnp_with_methods]
+> [:tv: Demo for Plug'n'Play button types with custom methods][demo_pnp_with_methods]
 
 ```html
 <!-- This would create a submit button in the bottom right corner of the keypad -->
@@ -246,7 +246,7 @@ You can pass in a custom method that will be called when the [backspace](#backsp
 interacted with **and** [`bc-number-model`](#bc-number-model) is already empty. This can be useful
 for allowing users to step backwards through a multi-part form.
 
-> [:tv: Plunker demo for bc-empty-backspace-method][demo_backspace_empty]
+> [:tv: Demo for bc-empty-backspace-method][demo_backspace_empty]
 
 ```html
 <bc-keypad
@@ -282,7 +282,7 @@ This directive now supports Plug'n'Play (PnP) button types to the
 left and right of the final digit. These button types can be used on either side (or both if you
 really wanted to).
 
-> [:tv: Plunker demo for Plug'n'Play button types with custom methods][demo_pnp_with_methods]
+> [:tv: Demo for Plug'n'Play button types with custom methods][demo_pnp_with_methods]
 
 ##### Available <abbr title="plug'n'play">(PnP)</abbr> Button Types
 
@@ -336,7 +336,7 @@ Any defined [custom methods](#custom-methods) will still be called.
 By default the button is using a raw SVG version of [`ion-backspace-outline`][ionicons_backspace]
 from [ionicons][ionicons] since this allows you to customize the SVG styles with your project's CSS.
 
-> [:tv: Plunker demo for custom button CSS][demo_custom_button_css]
+> [:tv: Demo for custom button CSS][demo_custom_theme]
 
 ![Ionicons backspace icon][backspace]
 
@@ -366,7 +366,7 @@ attached, but any defined [custom methods](#custom-methods) will still be called
 By default the button is using a raw SVG version of [`ion-log-in`][ionicons_submit] from
 [ionicons][ionicons] since this allows you to customize the SVG styles with your project's CSS.
 
-> [:tv: Plunker demo for custom button CSS][demo_custom_button_css]
+> [:tv: Demo for custom button CSS][demo_custom_theme]
 
 ![Ionicons submit icon][submit]
 
@@ -385,7 +385,7 @@ This module exposes `bcKeypadConfigProvider` which can be used to set custom def
 directive. Setting options here will overwrite the directive's default options for all instances
 within your module.
 
-> [:tv: Plunker demo for `bcKeypadConfigProvider`][demo_provider]
+> [:tv: Demo for `bcKeypadConfigProvider`][demo_provider]
 
 ```javascript
 // ES6 Config Example
@@ -416,7 +416,7 @@ This allows you to specify a custom template for the [backspace](#backspace) key
 By default it is using a raw SVG version of [`ion-backspace-outline`][ionicons_backspace] from
 [ionicons][ionicons] since this allows you to overwrite the SVG styles with CSS.
 
-> [:tv: Plunker demo for `bcKeypadConfigProvider`][demo_provider]
+> [:tv: Demo for `bcKeypadConfigProvider`][demo_provider]
 
 ![Ionicons backspace icon][backspace]
 
@@ -431,7 +431,7 @@ This allows you to specify a custom template for the [submit](#submit) key.
 By default it is using a raw SVG version of [`ion-log-in`][ionicons_submit] from
 [ionicons][ionicons] since this allows you to overwrite the SVG styles with CSS.
 
-> [:tv: Plunker demo for `bcKeypadConfigProvider`][demo_provider]
+> [:tv: Demo for `bcKeypadConfigProvider`][demo_provider]
 
 ![Ionicons log in icon][submit]
 
@@ -444,7 +444,7 @@ bcKeypadConfigProvider.setSubmitTemplate('Go');
 The directive will use this number to impose a hard limit on how many characters the model can hold.
 This is useful for specific data items such as a phone number:
 
-> [:tv: Plunker demo for `bcKeypadConfigProvider`][demo_provider]
+> [:tv: Demo for `bcKeypadConfigProvider`][demo_provider]
 
 ![max-length demo][max_length_gif]
 
@@ -473,7 +473,7 @@ styling.
 | `.bc-keypad__key-button--backspace` | `<button>` | Target the [backspace key](#backspace) (if used) |
 | `.bc-keypad__key-button--submit` | `<button>` | Target the [submit key](#submit) (if used) |
 
-> [:tv: Plunker demo for custom theming][demo_custom_theme]
+> [:tv: Demo for custom theming][demo_custom_theme]
 
 ## angular-ripple
 
@@ -482,7 +482,7 @@ The `bc-keypad` directive was written primarily for mobile so it supports the [G
 not everyone may want that style of interaction, this project does not automatically install the
 `angular-ripple` library, but is however built to support it out of the box.
 
-> [:tv: Plunker demo for `angular-ripple` integration][demo_ripple]
+> [:tv: Demo for `angular-ripple` integration][demo_ripple]
 
 Just install the `angular-ripple` library:
 
@@ -530,15 +530,14 @@ And you should see it working!
 [angular_event]: https://docs.angularjs.org/guide/expression#-event-
 [material_ripple]: https://material.google.com/motion/material-motion.html#material-motion-how-does-material-move
 
-[demo_basic]: http://plnkr.co/edit/TODypN?p=preview
-[demo_length]: http://plnkr.co/edit/WRY53m?p=preview
-[demo_ripple]: http://embed.plnkr.co/oXUTui/
-[demo_pnp_with_methods]: http://plnkr.co/edit/5kPJTW?p=preview
-[demo_backspace_empty]: http://plnkr.co/edit/48bvxN?p=preview
-[demo_custom_button_css]: http://plnkr.co/edit/L5y260?p=preview
-[demo_provider]: http://plnkr.co/edit/jZvSdx?p=preview
-[demo_ripple]: http://plnkr.co/edit/NkwiXs?p=preview
-[demo_custom_theme]: http://plnkr.co/edit/L5y260?p=preview
+[demo_basic]: https://codepen.io/benjamincharity/pen/dpdpNo?editors=0010
+[demo_length]: http://codepen.io/benjamincharity/pen/EgQgKr?editors=0010
+[demo_ripple]: https://codepen.io/benjamincharity/pen/ozExBZ?editors=0010
+[demo_pnp_with_methods]: https://codepen.io/benjamincharity/pen/VKQjZV?editors=0010
+[demo_backspace_empty]: http://codepen.io/benjamincharity/pen/WGrGpr?editors=0010
+[demo_provider]: https://codepen.io/benjamincharity/pen/YGZGPX?editors=0010
+[demo_custom_theme]: https://codepen.io/benjamincharity/pen/mAXPzz?editors=0010
+[demo_collection]: https://codepen.io/collection/DkEqLr/
 
 [coveralls_badge]: https://coveralls.io/repos/github/benjamincharity/angular-keypad/badge.svg?branch=master
 [coveralls_link]: https://coveralls.io/github/benjamincharity/angular-keypad?branch=master
@@ -546,3 +545,4 @@ And you should see it working!
 [license_url]: LICENSE
 [npm_url]: https://npmjs.org/package/angular-keypad
 [npm_version_image]: http://img.shields.io/npm/v/angular-keypad.svg
+
