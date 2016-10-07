@@ -1,14 +1,21 @@
 # angular-keypad
 
-<img src="http://cdn.benjamincharity.com/open_source/angular-keypad/keypad-logo.jpg" align="right" alt="angular-keypad">
+<div>
 
-An Angular directive that creates a numeric keypad.
+  <img src="http://cdn.benjamincharity.com/codepen/angular-keypad/keypadDemo.gif" align="right" alt="angular-keypad">
 
-[![MIT License][license_image]][license_url] [![Coverage Status][coveralls_badge]][coveralls_link] [![NPM version][npm_version_image]][npm_url]
+  :iphone::1234: An Angular directive that creates a numeric keypad.
 
-> [:tv: **All Demos**][demo_collection]
+  [![MIT License][license_image]][license_url] [![Coverage Status][coveralls_badge]][coveralls_link] [![NPM version][npm_version_image]][npm_url]
 
-_[Comments and Pull Requests welcome!][issues]_
+  > [:tv: **All Demos**][demo_collection]
+
+  _[Comments and Pull Requests welcome!][issues]_
+
+  <div style="clear:both"></div>
+
+</div>
+
 
 ---
 
