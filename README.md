@@ -12,13 +12,6 @@
 
   _[Comments and Pull Requests welcome!][issues]_
 
-  <div style="clear:both"></div>
-
-</div>
-
-
----
-
 ## Contents
 
 - [Installation](#installation)
@@ -42,6 +35,13 @@
 - [Styles](#styles)
 - [angular-ripple](#angular-ripple)
 - [Development](#development)
+
+  <div style="clear:both"></div>
+
+</div>
+
+
+---
 
 
 ## Installation
