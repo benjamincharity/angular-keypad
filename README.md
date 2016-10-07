@@ -521,12 +521,12 @@ And you should see it working!
 [angular_ripple]: https://github.com/nelsoncash/angular-ripple
 [angular_ripple_fork]: https://github.com/KL-Moment/angular-ripple
 [ripple_changes]: https://github.com/KL-Moment/angular-ripple/commit/09374947e6cc986ebe7e2629b48edb0885ca842b
-[backspace]: http://cdn.benjamincharity.com/plnkr/angular-keypad/backspace.svg
+[backspace]: http://cdn.benjamincharity.com/codepen/angular-keypad/backspace.svg
 [submit]: http://cdn.benjamincharity.com/open_source/angular-keypad/log-in.svg
 [ionicons]: http://ionicons.com/
 [ionicons_backspace]: https://github.com/driftyco/ionicons/blob/master/src/backspace-outline.svg
 [ionicons_submit]: https://github.com/driftyco/ionicons/blob/master/src/log-in.svg
-[max_length_gif]: http://cdn.benjamincharity.com/plnkr/angular-keypad/rippleDemo.gif
+[max_length_gif]: http://cdn.benjamincharity.com/codepen/angular-keypad/rippleDemo.gif
 [angular_event]: https://docs.angularjs.org/guide/expression#-event-
 [material_ripple]: https://material.google.com/motion/material-motion.html#material-motion-how-does-material-move
 
