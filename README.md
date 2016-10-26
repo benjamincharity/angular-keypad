@@ -189,8 +189,8 @@ export class YourController {
     // I will be called each time the left (backspace) button is interacted with
     doSomething($event, numbers) {
         console.log('The backspace button on the left was clicked!');
-        console.log('Original click event object: ', $event)
-        console.log('Current number model value: ', numbers)
+        console.log('Original click event object: ', $event);
+        console.log('Current number model value: ', numbers);
     }
 
 }
@@ -232,8 +232,8 @@ export class YourController {
     // I will be called each time the right (submit) button is interacted with
     doSomething($event, numbers) {
         console.log('The submit button on the right was clicked!');
-        console.log('Original click event object: ', $event)
-        console.log('Current number model value: ', numbers)
+        console.log('Original click event object: ', $event);
+        console.log('Current number model value: ', numbers);
     }
 
 }
