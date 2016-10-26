@@ -2,9 +2,9 @@
 
 <img src="http://cdn.benjamincharity.com/codepen/angular-keypad/keypadDemo.gif" align="right" alt="angular-keypad">
 
-:iphone::1234: An Angular directive that creates a numeric keypad.
-
 [![MIT License][license_image]][license_url] [![Coverage Status][coveralls_badge]][coveralls_link] [![NPM version][npm_version_image]][npm_url]
+
+:iphone::1234: An Angular directive that creates a numeric keypad.
 
 > [:tv: **All Demos**][demo_collection]
 
